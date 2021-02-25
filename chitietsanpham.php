@@ -347,7 +347,47 @@
                         <div class="thongke">
                         </div>
                         <div class="sodanhgia">
-                            <p>255 đánh giá</p>
+                            <a href="">255 đánh giá</a>
+                        </div>
+                    </div>
+                    <div class="sosao_thongke_sodanhgia">
+                        <div class="sosao">
+                            <p>4<i class="fas fa-star"></i></p>
+                        </div>
+                        <div class="thongke">
+                        </div>
+                        <div class="sodanhgia">
+                            <a href="">255 đánh giá</a>
+                        </div>
+                    </div>
+                    <div class="sosao_thongke_sodanhgia">
+                        <div class="sosao">
+                            <p>3<i class="fas fa-star"></i></p>
+                        </div>
+                        <div class="thongke">
+                        </div>
+                        <div class="sodanhgia">
+                            <a href="">255 đánh giá</a>
+                        </div>
+                    </div>
+                    <div class="sosao_thongke_sodanhgia">
+                        <div class="sosao">
+                            <p>2<i class="fas fa-star"></i></p>
+                        </div>
+                        <div class="thongke">
+                        </div>
+                        <div class="sodanhgia">
+                            <a href="">255 đánh giá</a>
+                        </div>
+                    </div>
+                    <div class="sosao_thongke_sodanhgia">
+                        <div class="sosao">
+                            <p>1<i class="fas fa-star"></i></p>
+                        </div>
+                        <div class="thongke">
+                        </div>
+                        <div class="sodanhgia">
+                            <a href="">255 đánh giá</a>
                         </div>
                     </div>
                 </div>

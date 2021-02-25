@@ -219,3 +219,68 @@ h3 {
     outline: none;
     font-size: 16px;
 }
+
+.tonghopdanhgia {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.tonghopdanhgia .phantramsao {
+    width: 15%;
+    text-align: center;
+}
+
+.tonghopdanhgia .phantramsao p {
+    font-size: 30px;
+    font-weight: bold;
+    color: #fd9727;
+}
+
+.tonghopdanhgia .phantramsao p i {
+    margin-left: 5px;
+}
+
+.tonghopdanhgia .chitietsao {
+    width: 40%;
+}
+
+.tonghopdanhgia .chitietsao .sosao_thongke_sodanhgia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    padding: 2px 5px;
+}
+
+.tonghopdanhgia .chitietsao .sosao_thongke_sodanhgia .sosao {
+    color: #3f3f3f;
+}
+
+.tonghopdanhgia .chitietsao .sosao_thongke_sodanhgia .sosao p i {
+    margin-left: 5px;
+}
+
+.tonghopdanhgia .chitietsao .sosao_thongke_sodanhgia .thongke {
+    width: 200px;
+    height: 10px;
+    background: #fd9727;
+    margin: 0 10px;
+    border-radius: 20px;
+}
+
+.tonghopdanhgia .chitietsao .sosao_thongke_sodanhgia .sodanhgia {
+    color: rgb(22, 22, 221);
+}
+
+.tonghopdanhgia .bnt_danhgia button {
+    height: 30px;
+    padding: 3px 10px;
+    background: rgb(15, 113, 241);
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+}
