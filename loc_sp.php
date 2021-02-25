@@ -77,9 +77,9 @@
             $echo_dau = $echo_daucuoi[0];
             $echo_cuoi = $echo_daucuoi[1];
             if($echo_cuoi === '0'){
-                $echo_gia = " and sp.gia > '".$echo_cuoi."' ";
+                $echo_gia = " and sp.gia_ban > '".$echo_cuoi."' ";
             }else{
-                $echo_gia = " and sp.gia betweed '".$echo_dau."' and '".$echo_cuoi."' ";
+                $echo_gia = " and sp.gia_ban betweed '".$echo_dau."' and '".$echo_cuoi."' ";
             }
         }else{
             $echo_gia = "";
@@ -110,6 +110,12 @@
             $echo_sosao = "";
         }
 
+        if(isset($_GET['sapxep'])){
+            if($_GET['sapxep'] == 'giatangdan'){
+                $echo_sapxep = " order by sp.gia_ban";
+            }
+        }
+
         $loaisp = "SELECT * from sanpham sp, loaisp lsp 
                     where sp.ma_loaisp = lsp.ma_loaisp 
                     and  sp.ma_loaisp = '".$ma_loaiSP."'
@@ -128,8 +134,8 @@
                         </div>
                         <div class='danhsachsanpham'>";
             while($row1 = $result_lsp->fetch_assoc()){
-                    $gia_goc = number_format($row1['gia_sp'], 0, '', ',');
-                    $gia_giam = number_format($row1['gia_sp']-($row1['gia_sp']*0.05), 0, '', ',');
+                    $gia_goc = number_format($row1['gia_ban'], 0, '', ',');
+                    $gia_giam = number_format($row1['gia_ban']-($row1['gia_ban']*0.05), 0, '', ',');
                     echo "
                         <div class='sanpham'>
                             <a href='chitietsanpham.php?idsp=".$row1['id_sp']."'>";
