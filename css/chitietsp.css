@@ -184,6 +184,7 @@ h3 {
     transition: 0.4s;
     outline: none;
     background-color: red;
+    height: 30px;
 }
 
 #chitietsanpham .noidungsp .mua_giohang input:first-child {
@@ -281,6 +282,72 @@ h3 {
     background: rgb(15, 113, 241);
     color: rgb(255, 255, 255);
     font-size: 16px;
-    font-weight: 500;
+    font-weight: bold;
     border-radius: 5px;
+}
+
+.khachhang_danhgia {}
+
+.khachhang_danhgia .danhgiasao {
+    height: 40px;
+    width: 500px;
+}
+
+.khachhang_danhgia .danhgiasao h4 {
+    line-height: 40px;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.khachhang_danhgia .danhgiasao .start {
+    margin-top: -44px;
+    width: 400px;
+    line-height: 40px;
+}
+
+.khachhang_danhgia .danhgia_all {
+    display: flex;
+    padding: 10px;
+}
+
+.khachhang_danhgia .danhgia_all .comment_and_anh {}
+
+.khachhang_danhgia .danhgia_all .comment_and_anh textarea {
+    width: 500px;
+    height: 100px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.khachhang_danhgia .danhgia_all .comment_and_anh .input_anh label {
+    padding-left: 20px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.khachhang_danhgia .danhgia_all .tt_khach_comment {
+    width: 500px;
+    display: flex;
+    margin-top: -10px;
+}
+
+.khachhang_danhgia .danhgia_all .tt_khach_comment input[type='text'],
+input[type='submit'] {
+    width: 200px;
+    height: 20px;
+    font-size: 13px;
+    padding: 3px 5px;
+    font-weight: bold;
+    margin: 10px 10px;
+}
+
+.khachhang_danhgia .danhgia_all .tt_khach_comment input[type='submit'] {
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    padding: 3px 5px;
+    font-weight: bold;
+    margin: 10px 10px;
+    background-color: rgb(0, 81, 255);
+    color: white;
 }

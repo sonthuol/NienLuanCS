@@ -401,7 +401,7 @@
             <div class="khachhang_danhgia">
                 <form action="">
                     <div class="danhgiasao">
-                        <h4>Chọn đánh giá của bạn</h4>
+                        <h4>Chọn đánh giá của bạn:</h4>
                         <div class="start">
                                 <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
                                 <label class="star star-5" for="star-5"></label>
@@ -417,10 +417,21 @@
                     </div>
                     <div class="danhgia_all">
                         <div class="comment_and_anh">
-                            <textarea name="noidungcmt" id="" cols="70" rows="5"></textarea>
+                            <textarea name="noidungcmt" id="" cols="70" rows="5" placeholder="Nhập nội dụng đánh giá sản phẩm"></textarea>
+                            <div class="input_anh">
+                                <label for="files" class="btn"><i class="fas fa-camera-retro"></i>Chọn ảnh đánh giá sản phẩm</label>
+                                <input id="files" style="visibility:hidden;" type="file">
+                            </div>
                         </div>
                         <div class="tt_khach_comment">
-
+                            <div class="hoten_sdt">
+                                <input type="text" name="hoten_danhgia" placeholder="Họ tên">
+                                <input type="text" name="sodienthoai_danhgia" placeholder="Số điện thoại">
+                            </div>
+                            <div class="email_bnt">
+                                <input type="text" name="email_danhgia" placeholder="Email">
+                                <input type="submit" value="Gửi đánh giá">
+                            </div>
                         </div>
                     </div>
                 </form>
