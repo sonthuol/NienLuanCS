@@ -22,6 +22,9 @@
 
 <?php
     //gia tien tu URL de loc sp
+    if(isset($_GET['lsp'])){
+        echo "";
+    }
     
 ?>
 
