@@ -112,18 +112,24 @@
 
         if(isset($_GET['sapxep'])){
             if($_GET['sapxep'] == 'giatangdan'){
-                $echo_sapxep = " order by sp.gia_ban";
+                $echo_sapxep = " order by sp.gia_ban ASC";
+            }else if($_GET['sapxep'] == 'giatangdan'){
+                $echo_sapxep = " order by sp.gia_ban DESC";
+            }else if($_GET['sapxep'] == 'a-z'){
+                $echo_sapxep = " order by sp.ten_sp ASC";
+            }else if($_GET['sapxep'] == 'z-a'){
+                $echo_sapxep = " order by sp.tensp ASC";
             }
         }
 
         $loaisp = "SELECT * from sanpham sp, loaisp lsp 
-                    where sp.ma_loaisp = lsp.ma_loaisp 
-                    and  sp.ma_loaisp = '".$ma_loaiSP."'
-                    and sp.id_th = '".$row_id_th['id_th']."'
-                    
-                    GROUP by sp.ten_sp
-                    order by sp.id_sp;
-        ";
+                    where sp.ma_loaisp = lsp.ma_loaisp"
+                    .$echo_ma_th
+                    .$echo_gia
+                    .$echo_khuyenmai
+                    .$echo_sosao
+                    .$echo_sapxep
+                    ;
         $result_lsp = $con->query($loaisp);
         $row = $result_lsp->fetch_assoc();
         if($result_lsp->num_rows > 0){
