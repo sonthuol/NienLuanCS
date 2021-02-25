@@ -85,8 +85,30 @@
             $echo_gia = "";
         }
 
-        
+        if(isset($_GET['khuyenmai'])){
+            if($_GET['khuyenmai'] === 'Giảm giá'){
+                $echo_khuyenmai = " and sp.khuyenmai = 'Giảm giá' "; 
+            }else if($_GET['khuyenmai'] === 'Mới ra mắt'){
+                $echo_khuyenmai = " and sp.khuyenmai = 'Mới ra mắt' ";  
+            }else if($_GET['khuyenmai'] === 'Trả góp'){
+                $echo_khuyenmai = " and sp.khuyenmai = 'Trả góp' ";  
+            }
+        }else{
+            $echo_khuyenmai = "";
+        }
 
+        if(isset($_GET['sosao'])){
+            if($_GET['sosao'] === '2'){
+                $echo_sosao = " and sp.sosao > 2";
+            }else if($_GET['sosao'] === '3'){
+                $echo_sosao = " and sp.sosao > 3";
+            }else if($_GET['sosao'] === '4'){
+                $echo_sosao = " and sp.sosao > 4";
+            }
+            $echo_sapxep = " order by sp.sosao ";
+        }else{
+            $echo_sosao = "";
+        }
 
         $loaisp = "SELECT * from sanpham sp, loaisp lsp 
                     where sp.ma_loaisp = lsp.ma_loaisp 
