@@ -195,3 +195,27 @@ h3 {
 #chitietsanpham .noidungsp .mua_giohang input:hover {
     background-color: rgb(163, 173, 182);
 }
+
+.xemdanhgiasanpham {
+    width: 1026px;
+    background-color: rgb(255, 255, 255);
+    margin: 0 auto;
+}
+
+.xemdanhgiasanpham .sodanhgia_timdanhgia {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.xemdanhgiasanpham .sodanhgia_timdanhgia .sodanhgia {
+    font-size: 24px;
+    margin: 5px;
+}
+
+.xemdanhgiasanpham .sodanhgia_timdanhgia .timdanhgia input {
+    height: 26px;
+    width: 200px;
+    outline: none;
+    font-size: 16px;
+}

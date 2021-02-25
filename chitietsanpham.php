@@ -335,6 +335,26 @@
                     <input type="text" name="timnoidungdanhgia" placeholder="Tìm nội dung dánh giá">
                 </div>
             </div>
+            <div class="tonghopdanhgia">
+                <div class="phantramsao">
+                    <p>6.5<i class="fas fa-star"></i></p>
+                </div>
+                <div class="chitietsao">
+                    <div class="sosao_thongke_sodanhgia">
+                        <div class="sosao">
+                            <p>5<i class="fas fa-star"></i></p>
+                        </div>
+                        <div class="thongke">
+                        </div>
+                        <div class="sodanhgia">
+                            <p>255 đánh giá</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bnt_danhgia">
+                    <button>Gủi đánh giá của bạn</button>
+                </div>
+            </div>
         </div>
         <?php
             $loaisp = "SELECT * from sanpham sp, loaisp lsp 
