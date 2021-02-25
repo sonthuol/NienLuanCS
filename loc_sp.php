@@ -61,7 +61,7 @@
         $echo_sapxep = "";
         //Lay lsp tu ulr de loc sp;
         if(isset($_GET['lsp'])){
-            $echo_lsp =  " and  sp.ma_loaisp = '".$_GET['lsp']."'";
+            $echo_lsp =  " and  sp.ma_loaisp = '".$_GET['lsp']."' ";
         }
         if(isset($_GET['ma_th'])){
             $ma_th = $_GET['ma_th'];    
@@ -69,10 +69,24 @@
             $sql_find_id_th = "SELECT id_th from thuonghieu where ma_th = '".$ma_th."' and ma_loaisp = '".$ma_loaiSP."'";
             $result_id_th = $con->query($sql_find_id_th);
             $row_id_th = $result_id_th->fetch_assoc();
-            $echo_ma_th =  "and sp.id_th = '".$row_id_th['id_th']."'";
+            $echo_ma_th =  " and sp.id_th = '".$row_id_th['id_th']."' ";
             
         }
-        if(isset($_GET['gia'])){}
+        if(isset($_GET['gia'])){
+            $echo_daucuoi = explode('-', $_GET['gia']);
+            $echo_dau = $echo_daucuoi[0];
+            $echo_cuoi = $echo_daucuoi[1];
+            if($echo_cuoi === '0'){
+                $echo_gia = " and sp.gia > '".$echo_cuoi."' ";
+            }else{
+                $echo_gia = " and sp.gia betweed '".$echo_dau."' and '".$echo_cuoi."' ";
+            }
+        }else{
+            $echo_gia = "";
+        }
+
+        
+
 
         $loaisp = "SELECT * from sanpham sp, loaisp lsp 
                     where sp.ma_loaisp = lsp.ma_loaisp 
