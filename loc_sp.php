@@ -13,20 +13,10 @@
 
 <?php
     //lay id th tu URL de loc sp
-    $ma_th = $_GET['ma_th'];    
-    $_SESSION['ma_th'] = $ma_th;
-    $sql_find_id_th = "SELECT id_th from thuonghieu where ma_th = '".$ma_th."' and ma_loaisp = '".$ma_loaiSP."'";
-    $result_id_th = $con->query($sql_find_id_th);
-    $row_id_th = $result_id_th->fetch_assoc();
+
 ?>
 
-<?php
-    //gia tien tu URL de loc sp
-    if(isset($_GET['lsp'])){
-        echo "";
-    }
-    
-?>
+
 
 
 
@@ -62,9 +52,31 @@
     ?>
     <div id="noidung">
     <?php
+
+        $echo_lsp = "";
+        $echo_ma_th = "";
+        $echo_gia = "";
+        $echo_khuyenmai = "";
+        $echo_sosao = "";
+        $echo_sapxep = "";
+        //Lay lsp tu ulr de loc sp;
+        if(isset($_GET['lsp'])){
+            $echo_lsp =  " and  sp.ma_loaisp = '".$_GET['lsp']."'";
+        }
+        if(isset($_GET['ma_th'])){
+            $ma_th = $_GET['ma_th'];    
+            $_SESSION['ma_th'] = $ma_th;
+            $sql_find_id_th = "SELECT id_th from thuonghieu where ma_th = '".$ma_th."' and ma_loaisp = '".$ma_loaiSP."'";
+            $result_id_th = $con->query($sql_find_id_th);
+            $row_id_th = $result_id_th->fetch_assoc();
+            $echo_ma_th =  "and sp.id_th = '".$row_id_th['id_th']."'";
+            
+        }
+        if(isset($_GET['gia'])){}
+
         $loaisp = "SELECT * from sanpham sp, loaisp lsp 
-                    where sp.ma_loaisp = '".$ma_loaiSP."' 
-                    and sp.ma_loaisp = lsp.ma_loaisp
+                    where sp.ma_loaisp = lsp.ma_loaisp 
+                    and  sp.ma_loaisp = '".$ma_loaiSP."'
                     and sp.id_th = '".$row_id_th['id_th']."'
                     
                     GROUP by sp.ten_sp
