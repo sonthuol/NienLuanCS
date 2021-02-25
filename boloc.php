@@ -2,7 +2,7 @@
     //loc du lieu
     if(isset($_GET['lsp'])){
         $lsp = $_GET['lsp'];
-        $_SESSION['lsp'] = $lsp;
+        $_SESSION['lsp'] = $lsp;    
     }
     if(isset($_GET['ma_th'])){
         $ma_th = $_GET['ma_th'];
@@ -87,7 +87,7 @@
                                     echo $boloc
                                     .(isset($_SESSION['lsp']) ? "lsp=".$lsp : "")
                                     .(isset($_SESSION['ma_th']) ? "&ma_th=".$ma_th : "")
-                                    . "&gia=13000000"
+                                    . "&gia=13000000-0"
                                     .(isset($_SESSION['khuyenmai']) ? "&khuyenmai=".$khuyenmai : "")
                                     .(isset($_SESSION['sosao']) ? "&sosao=".$sosao : "")
                                     .(isset($_SESSION['sapxep']) ? "&sapxep=".$sapxep : "")

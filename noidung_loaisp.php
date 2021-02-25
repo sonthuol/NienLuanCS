@@ -40,10 +40,10 @@
         include 'slider_loaisp.php';
     ?>
     <?php
-        include 'thuonghieu.php';
-    ?>
-    <?php
         include 'boloc.php';
+    ?>
+        <?php
+        include 'thuonghieu.php';
     ?>
     <div id="noidung">
     <?php

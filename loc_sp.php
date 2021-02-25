@@ -45,10 +45,10 @@
         include 'slider_loaisp.php';
     ?>
     <?php
-        include 'thuonghieu.php';
+        include 'boloc.php';
     ?>
     <?php
-        include 'boloc.php';
+        include 'thuonghieu.php';
     ?>
     <div id="noidung">
     <?php
@@ -77,7 +77,7 @@
             $echo_dau = $echo_daucuoi[0];
             $echo_cuoi = $echo_daucuoi[1];
             if($echo_cuoi === '0'){
-                $echo_gia = " and sp.gia_ban > '".$echo_cuoi."' ";
+                $echo_gia = " and sp.gia_ban > '".$echo_dau."' ";
             }else{
                 $echo_gia = " and sp.gia_ban between '".$echo_dau."' and '".$echo_cuoi."' ";
             }
@@ -111,19 +111,22 @@
         }
 
         if(isset($_GET['sapxep'])){
-            if($_GET['sapxep'] == 'giatangdan'){
+            if($_GET['sapxep'] === 'giatangdan'){
                 $echo_sapxep = " order by sp.gia_ban ASC";
-            }else if($_GET['sapxep'] == 'giatangdan'){
+            }else if($_GET['sapxep'] === 'giatangdan'){
                 $echo_sapxep = " order by sp.gia_ban DESC";
-            }else if($_GET['sapxep'] == 'a-z'){
+            }else if($_GET['sapxep'] === 'a-z'){
                 $echo_sapxep = " order by sp.ten_sp ASC";
-            }else if($_GET['sapxep'] == 'z-a'){
+            }else if($_GET['sapxep'] === 'z-a'){
                 $echo_sapxep = " order by sp.tensp ASC";
             }
+        }else{
+            $echo_sapxep = "";
         }
 
         $loaisp = "SELECT * from sanpham sp, loaisp lsp 
                     where sp.ma_loaisp = lsp.ma_loaisp"
+                    .$echo_lsp
                     .$echo_ma_th
                     .$echo_gia
                     .$echo_khuyenmai

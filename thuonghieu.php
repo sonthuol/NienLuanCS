@@ -1,11 +1,6 @@
 <?php
     include '/NienLuanCS/connection/connection.php';
     $lsp = $_GET['lsp'];
-    if(isset($_GET['ma_th'])){
-        $ma_th = "&ma_th=".$ma_th."";
-    }else{
-        $ma_th = "";
-    }
     if(isset($_SESSION['gia'])){
         $gia = "&gia=".$_SESSION['gia']."";
     }else{
@@ -36,10 +31,11 @@
             echo "
                 <a href='loc_sp.php?lsp=".$row['ma_loaisp']
                 ."&ma_th=".$row['ma_th']
-                ."&gia=".$gia
-                ."&khuyenmai=".$khuyenmai
-                ."&sosao=".$sosao
-                ."&sapxep=".$sapxep."
+                .$gia
+                .$khuyenmai
+                .$sosao
+                .$sapxep
+                ."
                 '><img src='./img/".$row['img_th']."' alt=''></a>
             ";
         }
