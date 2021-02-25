@@ -325,6 +325,17 @@
                 </form>
             </div>
         </div>
+        <div class="xemdanhgiasanpham">
+            <div class="sodanhgia_timdanhgia">
+                <div class="sodanhgia">
+                    <h3 class="sodanhgia">1048 đánh giá cho sản phẩm</h3>
+                </div>
+                <div class="timdanhgia">
+                    <i class="fa fa-search"></i>
+                    <input type="text" name="timnoidungdanhgia" placeholder="Tìm nội dung dánh giá">
+                </div>
+            </div>
+        </div>
         <?php
             $loaisp = "SELECT * from sanpham sp, loaisp lsp 
                         where sp.ma_loaisp = '".$row['ma_loaisp']."' and sp.ma_loaisp = lsp.ma_loaisp
