@@ -286,7 +286,8 @@ h3 {
     border-radius: 5px;
 }
 
-.khachhang_danhgia {}
+
+/* .khachhang_danhgia {} */
 
 .khachhang_danhgia .danhgiasao {
     height: 40px;
@@ -310,7 +311,8 @@ h3 {
     padding: 10px;
 }
 
-.khachhang_danhgia .danhgia_all .comment_and_anh {}
+
+/* .khachhang_danhgia .danhgia_all .comment_and_anh {} */
 
 .khachhang_danhgia .danhgia_all .comment_and_anh textarea {
     width: 500px;
