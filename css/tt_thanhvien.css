@@ -1,0 +1,82 @@
+#introduction #bg {
+    background-color: rgb(189, 189, 189);
+    padding: 20px 0;
+}
+
+#introduction #bg h1 {
+    text-align: center;
+    font-size: 35px;
+    color: rgb(71, 69, 69);
+}
+
+#introduction #content {
+    background-color: rgb(211, 210, 210);
+    height: 300px;
+    display: flex;
+    width: 100%;
+    padding: 20px;
+}
+
+#introduction #content #story {
+    width: 33.33%;
+    font-size: 20px;
+}
+
+#introduction #content #story h2 {
+    text-align: center;
+    color: rgb(0, 140, 255);
+    margin-bottom: 20px;
+}
+
+#introduction #content #story p {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    color: rgb(95, 95, 95);
+}
+
+#introduction #content #image {
+    width: 33.33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#introduction #content #image img {
+    border-radius: 50%;
+    width: 350px;
+    height: 300px;
+    margin: auto;
+    border: 3px solid rgb(83, 83, 83);
+}
+
+#introduction #content #infor_main {
+    width: 33.33%;
+}
+
+#introduction #content #infor_main h2 {
+    text-align: center;
+    color: rgb(0, 140, 255);
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+#introduction #content #infor_main table {
+    margin-top: 30px;
+    width: 400px;
+}
+
+#introduction #content #infor_main table tr td {
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 20px;
+    font-weight: bold;
+    color: rgb(95, 95, 95);
+    border-bottom: 1px solid steelblue;
+}
+
+#introduction #content #infor_main table tr td:first-child {
+    width: 140px;
+    color: black;
+    padding-top: 10px;
+}
