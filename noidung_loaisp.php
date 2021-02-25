@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
+<?php   
+        session_start();
         include 'connection/connection.php';
         $ma_loaiSP = $_GET['lsp'];
+        unset($_SESSION['ma_th']);
+        unset($_SESSION['gia']);
+        unset($_SESSION['khuyenmai']);
+        unset($_SESSION['sosao']);
+        unset($_SESSION['sapxep']);
         $sql = "SELECT * from loaisp where ma_loaisp = '".$ma_loaiSP."'";
         $con->query($sql);
         $row = $con->query($sql)->fetch_assoc();

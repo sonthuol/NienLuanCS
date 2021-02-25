@@ -79,18 +79,18 @@
             if($echo_cuoi === '0'){
                 $echo_gia = " and sp.gia_ban > '".$echo_cuoi."' ";
             }else{
-                $echo_gia = " and sp.gia_ban betweed '".$echo_dau."' and '".$echo_cuoi."' ";
+                $echo_gia = " and sp.gia_ban between '".$echo_dau."' and '".$echo_cuoi."' ";
             }
         }else{
             $echo_gia = "";
         }
 
         if(isset($_GET['khuyenmai'])){
-            if($_GET['khuyenmai'] === 'Giảm giá'){
+            if($_GET['khuyenmai'] === 'giamgia'){
                 $echo_khuyenmai = " and sp.khuyenmai = 'Giảm giá' "; 
-            }else if($_GET['khuyenmai'] === 'Mới ra mắt'){
+            }else if($_GET['khuyenmai'] === 'moiramat'){
                 $echo_khuyenmai = " and sp.khuyenmai = 'Mới ra mắt' ";  
-            }else if($_GET['khuyenmai'] === 'Trả góp'){
+            }else if($_GET['khuyenmai'] === 'tragop'){
                 $echo_khuyenmai = " and sp.khuyenmai = 'Trả góp' ";  
             }
         }else{
@@ -131,7 +131,7 @@
                     .$echo_sapxep
                     ;
         $result_lsp = $con->query($loaisp);
-        $row = $result_lsp->fetch_assoc();
+        echo $loaisp;
         if($result_lsp->num_rows > 0){
             echo "<div id='dienthoai'>
                         <div class='tieude'>
