@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="css/chitietsp.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="css/start.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -394,6 +397,33 @@
                 <div class="bnt_danhgia">
                     <button>Gủi đánh giá của bạn</button>
                 </div>
+            </div>
+            <div class="khachhang_danhgia">
+                <form action="">
+                    <div class="danhgiasao">
+                        <h4>Chọn đánh giá của bạn</h4>
+                        <div class="start">
+                                <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
+                                <label class="star star-5" for="star-5"></label>
+                                <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
+                                <label class="star star-4" for="star-4"></label>
+                                <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
+                                <label class="star star-3" for="star-3"></label>
+                                <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
+                                <label class="star star-2" for="star-2"></label>
+                                <input class="star star-1" id="star-1" type="radio" name="star" value="1" />
+                                <label class="star star-1" for="star-1"></label>
+                        </div>
+                    </div>
+                    <div class="danhgia_all">
+                        <div class="comment_and_anh">
+                            <textarea name="noidungcmt" id="" cols="70" rows="5"></textarea>
+                        </div>
+                        <div class="tt_khach_comment">
+
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <?php
