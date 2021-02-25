@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    unset($_SESSION['lsp']);
+    unset($_SESSION['ma_th']);
+    unset($_SESSION['gia']);
+    unset($_SESSION['khuyenmai']);
+    unset($_SESSION['sosao']);
+    unset($_SESSION['sapxep']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

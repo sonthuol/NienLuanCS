@@ -11,10 +11,6 @@
     }
     if(isset($_GET['boloc']) && $_GET['boloc'] == 'th'){
         unset($_SESSION['ma_th']);
-        unset($_SESSION['gia']);
-        unset($_SESSION['khuyenmai']);
-        unset($_SESSION['sosao']);
-        unset($_SESSION['sapxep']);
         header("Location: loc_sp.php?lsp=".$_SESSION['lsp']."");
     }
     if(isset($_GET['boloc']) && $_GET['boloc'] == 'gia'){

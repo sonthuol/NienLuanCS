@@ -142,8 +142,8 @@
 }
 
 .danhsachsanpham .sanpham .ttsp .giamgia_phantram .phantramgiam {
-    background-color: red;
-    color: white;
+    color: rgb(255, 0, 0);
+    font-weight: 600;
     margin-left: 10px;
 }
 

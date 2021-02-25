@@ -22,8 +22,8 @@
                                 </div>
                                 <div class='danhsachsanpham'>";
                     while($row1 = $result_lsp->fetch_assoc()){
-                            $gia_goc = number_format($row1['gia_sp'], 0, '', ',');
-                            $gia_giam = number_format($row1['gia_sp']-($row1['gia_sp']*0.05), 0, '', ',');
+                            $gia_goc = number_format($row1['gia_ban'], 0, '', ',');
+                            $gia_giam = number_format($row1['gia_ban']-($row1['gia_ban']*0.05), 0, '', ',');
                             echo "
                                 <div class='sanpham'>
                                     <a href='chitietsanpham.php?idsp=".$row1['id_sp']."'>";
