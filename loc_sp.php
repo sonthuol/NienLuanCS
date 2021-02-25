@@ -133,6 +133,15 @@
                     .$echo_sosao
                     .$echo_sapxep
                     ;
+                    // $loaisp = "SELECT * from sanpham sp, loaisp lsp 
+                    // where sp.ma_loaisp = lsp.ma_loaisp"
+                    // .$echo_lsp
+                    // .$echo_ma_th
+                    // .$echo_gia
+                    // .$echo_khuyenmai
+                    // .$echo_sosao
+                    // .$echo_sapxep
+                    // ;
         $result_lsp = $con->query($loaisp);
         echo $loaisp;
         if($result_lsp->num_rows > 0){
