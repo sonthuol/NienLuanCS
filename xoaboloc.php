@@ -1,5 +1,6 @@
 <?php
     session_start();
+	/*xoa bo loc*/
     if(isset($_GET['boloc']) && $_GET['boloc'] == 'all'){
         unset($_SESSION['ma_th']);
         unset($_SESSION['gia']);
