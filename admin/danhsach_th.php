@@ -16,6 +16,7 @@
         <?php
             include 'menu_trai.php';
         ?>
+       
         <div id="noidungchinh">
             <h2>Danh sách thương hiệu sản phẩm</h2>
             <div id="chucnang">
@@ -30,7 +31,19 @@
                     <input type="text" onkeyup="timkiem(this.value)">
                 </div>
             </div>
+            <?php
+                include '/NienLuanCS/connection/connection.php';
+                $cout_th = 0;
+                $sql_th = "SELECT COUNT(id_th) as count_th FROM `thuonghieu` WHERE 1";
+                $result_th = $con->query($sql_th);
+                if($result_th->num_rows > 0){
+                    while($row_coutth = $result_th->fetch_assoc()){
+                        $cout_th = $row_coutth['count_th'];
+                    } 
+                }
+            ?>
             <div id="danhsach">
+            <p class="so_th">Tổng số thương hiệu: <?php echo $cout_th?></p>
                 <table border="1">
                 <tr>
                         <th rowspan="2">ID_TH</th>

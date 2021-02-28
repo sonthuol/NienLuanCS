@@ -34,8 +34,17 @@
                 include '/NienLuanCS/connection/connection.php';
                 $sql = "SELECT * from loaisp";
                 $result = $con->query($sql);
+                $cout_loaisp = 0;
+                $sql_dem_loaisp = "SELECT COUNT(ma_loaisp) as count_loaisp FROM `loaisp` WHERE 1";
+                $result_demloaisp = $con->query($sql_dem_loaisp);
+                if($result_demloaisp->num_rows > 0){
+                    while($row_coutlsp = $result_demloaisp->fetch_assoc()){
+                        $cout_loaisp = $row_coutlsp['count_loaisp'];
+                    } 
+                }
             ?>
             <div id="danhsach">
+                <p class="so_loaisp">Tổng số loại sản phẩm: <?php echo $cout_loaisp?></p>
                 <table border="1">
                     <tr>
                         <th rowspan="2">STT</th>

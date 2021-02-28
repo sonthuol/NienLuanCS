@@ -17,6 +17,17 @@
             include 'menu_trai.php'
         ?>
         <div id="noidungchinh">
+            <?php
+                include '/NienLuanCS/connection/connection.php';
+                $cout_sp = 0;
+                $sql_sp = "SELECT COUNT(id_sp) as count_sp FROM `sanpham` WHERE 1";
+                $result_sp = $con->query($sql_sp);
+                if($result_sp->num_rows > 0){
+                    while($row_coutsp = $result_sp->fetch_assoc()){
+                        $cout_sp = $row_coutsp['count_sp'];
+                    } 
+                }
+            ?>
             <h2>Danh sách sản phẩm</h2>
             <div id="chucnang">
                 <div id="upload">
@@ -31,6 +42,7 @@
                 </div>
             </div>
             <div id="danhsach">
+                <p class="so_sp">Tổng số sản phẩm: <?php echo $cout_sp?></p>
                 <table border="1">
                     <tr>
                         <th rowspan="2">STT</th>
@@ -51,7 +63,6 @@
                         <th>Xóa</th>
                     </tr>
             <?php
-                include '/NienLuanCS/connection/connection.php';
                 $sql = "SELECT * from sanpham";
                 $result = $con->query($sql);
                 $i = 0;
