@@ -17,11 +17,13 @@
         $sql_ad = "SELECT * FROM `admin` WHERE username='".$ten."'AND pass='".$temp."'";
         $result_ad = $con->query($sql_ad);
         if($result_ad->num_rows > 0){
-            header("Location: admin/admin.php");
+            while($row_ad = $result_ad->fetch_assoc()){
+                $_SESSION['admin'] = $row_ad['id_ad'];
+                header("Location: admin/admin.php");
+            }
+        
         }else{
             header("Location: index.php");
         }
     }
-
-
 ?>

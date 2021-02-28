@@ -7,7 +7,7 @@
             <div class="p">
             <a href=""><i class="fas fa-user"></i></a>
             <i class="fas fa-angle-double-down"></i>
-            <a href="../../NienLuanCS/index.php">T&T_DD</a>
+            <a href="../../NienLuanCS/dangxuat.php">T&T_DD</a>
             </div>
         </div>
 </div>

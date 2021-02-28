@@ -9,6 +9,12 @@
 </head>
 <body>
     <?php
+        session_start();
+        if(!isset($_SESSION['admin'])){
+            header("Location: ../../NienLuanCS/index.php");
+        }
+    ?> 
+    <?php
         include 'tieude.php';
     ?>  
     <div id="content">
