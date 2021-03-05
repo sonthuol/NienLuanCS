@@ -39,13 +39,6 @@ create table thuonghieu(
 	img_th varchar(400) not null
 );
 
-/*insert into thuonghieu value (null, 'ĐT', 'IP','Iphone', '123');
-insert into thuonghieu value (null, 'ĐT', 'OP','Oppo', '123');
-insert into thuonghieu value (null, 'ĐT', 'AS','Asus', '123');
-insert into thuonghieu value (null, 'LT', 'MAC','Macbook', '123');
-insert into thuonghieu value (null, 'LT', 'Dell','Dell', '123');
-insert into thuonghieu value (null, 'LT', 'AS','Asus', '123');
-insert into thuonghieu value (null, 'LT', 'Acer','Acer', '123');*/
 drop table if exists sanpham;
 create table sanpham(
 	id_sp int(255) not null  auto_increment primary key,
@@ -63,7 +56,6 @@ create table sanpham(
 	danhgia int (255) not null,
 	khuyenmai varchar(255) not null,
 	giatrikhuyenmai int(255),
-	phantramgiam int(255),
 	ngaybatdau_km timestamp,
 	ngayketthuc_km timestamp,
 	ngay_tao timestamp,
