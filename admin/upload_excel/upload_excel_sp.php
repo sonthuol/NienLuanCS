@@ -49,8 +49,8 @@
                     $danhgia = isset($row[9]) ? $row[9] : "";
                     $khuyenmai = isset($row[10]) ? $row[10] : "";
                     $giaitrikhuyenmai = isset($row[11]) ? $row[11] : "";
-                    $ngaybatdaukhuyenmai = date('Y-m-d',strtotime(isset($row[12]) ? $row[12] : ""));
-                    $ngayketthuckhuyenmai = date('Y-m-d',strtotime(isset($row[13]) ? $row[13] : ""));
+                    $ngaybatdaukhuyenmai = (isset($row[12]) ? $row[12] : '');
+                    $ngayketthuckhuyenmai = (isset($row[13]) ? $row[13] : '');
                     $trangthai = isset($row[14]) ? $row[14] : "0";
                     $sql = "INSERT into sanpham value (null, 
                             '".$ma_loaisp."', 
@@ -67,7 +67,9 @@
                             '".$giaitrikhuyenmai."',
                             '".$ngaybatdaukhuyenmai."',
                             '".$ngayketthuckhuyenmai."',
-                            null, null, '".$trangthai."')";
+                            '',
+                            '',
+                            '".$trangthai."')";
                     $con->query($sql);
                     // lay id de trong bang thong so ki thuat;
                     $manhinh = isset($row[15]) ? $row[15] : "";
