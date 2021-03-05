@@ -175,7 +175,6 @@ CREATE TABLE `sanpham` (
   `danhgia` int(255) NOT NULL,
   `khuyenmai` varchar(255) NOT NULL,
   `giatrikhuyenmai` int(255) DEFAULT NULL,
-  `phantramgiam` int(255) DEFAULT NULL,
   `ngaybatdau_km` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ngayketthuc_km` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `ngay_tao` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
