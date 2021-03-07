@@ -85,6 +85,8 @@
                             <input type='text' name='phone' value='".$row_kh['sdt']."'><br>
                             <span>Địa chỉ giao:</span><br>
                             <textarea name='diachi' id='' cols='25' rows='10'>".$row_kh['diachi']."</textarea>
+                            <span>Ghi chú:</span><br>
+                            <textarea name='ghichu' id='' cols='25' rows='10'></textarea>
                             <p id='tamtinh'>Tạm tính: ".number_format($tt, 0, '', ',')." Đ</p>
                             <input type='submit' value='Thanh Toán'>
                         </div>";   
@@ -99,6 +101,8 @@
                     <input type='text' name='phone'><br>
                     <span>Địa chỉ giao:</span><br>
                     <textarea name='diachi' id='' cols='25' rows='10'></textarea>
+                    <span>Ghi chú:</span><br>
+                    <textarea name='ghichu' id='' cols='25' rows='10'></textarea>
                     <p id='tamtinh'>Tạm tính: ".number_format($tt, 0, '', ',')." Đ</p>
                     <input type='submit' value='Thanh Toán'>
                 </div>";

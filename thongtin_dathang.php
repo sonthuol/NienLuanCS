@@ -16,7 +16,12 @@
 <body>
     <?php
         session_start();
+        include '/NienLuanCS/connection/connection.php';
         include 'tieude.php';
+        $sql = "SELECT * from thanhvien where id = '".$_SESSION['id']."'";
+        $result = $con->query($sql);
+        $row = $result->fetch_assoc();
+        echo $sql;
     ?>
     <!-- Nội dung của trang web -->
     <div id="noidung">
@@ -26,15 +31,15 @@
                 <table>
                     <tr>
                         <td>Tên khách hàng: </td>
-                        <th>Sơn Thươl</th>
+                        <th><?php echo $row['hoten_tv'] ?></th>
                     </tr>
                     <tr>
                         <td>Số điện thoại: </td>
-                        <th>0377087266</th>
+                        <th><?php echo $row['sdt'] ?></th>
                     </tr>
                     <tr>
                         <td>Địa chỉ giao hàng: </td>
-                        <th>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, blanditiis.</th>
+                        <th><?php echo $row['diachi'] ?></th>
                     </tr>
                 </table>
             </div>
@@ -49,7 +54,6 @@
                     <th>Thành tiền</th>
                 </tr>
                 <?php
-                    include '/NienLuanCS/connection/connection.php';
                     $sql = "SELECT *, cthd.sl_sp as soluong FROM chitiethoadon cthd, sanpham sp,(
                             SELECT max(id_hd) as lonnhat FROM hoadon WHERE hoadon.id = '".$_SESSION['id']."' ) hd
                             WHERE cthd.id_hd = hd.lonnhat and cthd.id_sp = sp.id_sp

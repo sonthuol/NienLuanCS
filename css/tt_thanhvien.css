@@ -1,12 +1,13 @@
 #introduction #bg {
     background-color: rgb(189, 189, 189);
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 #introduction #bg h1 {
     text-align: center;
     font-size: 35px;
     color: rgb(71, 69, 69);
+    margin-top: 100px;
 }
 
 #introduction #content {

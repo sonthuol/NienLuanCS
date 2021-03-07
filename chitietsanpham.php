@@ -307,19 +307,6 @@
                     </h2>
                     <span>-5%</span> 
                 </div>
-                <?php
-                    if($row['ma_loaisp'] === 'ĐT'){
-                        ?>
-                            <div class="mausac">
-                                <?php
-                                    
-                                ?>
-                            </div>
-                        <?php
-                    }else{
-                        echo "gege";
-                    }
-                ?>
                 <form action="xuly_giohang.php" method="POST" enctype="multipart/form-data">
                 <div class="mua_giohang">
                     <input type="submit" onclick="ktsession()" value="Mua Ngay"></input>
