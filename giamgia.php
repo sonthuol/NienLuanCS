@@ -1,7 +1,7 @@
 <div id="noidung">
     <?php  
         include '/NienLuanCS/connection/connection.php';
-        $sql = "SELECT * from sanpham where khuyenmai = 'Giảm giá' 
+        $sql = "SELECT * from sanpham where khuyenmai = 'Giảm giá' and sl_sp > 0 
                 GROUP by ten_sp
                 limit 0, 5";
         $result = $con->query($sql);

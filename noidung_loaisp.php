@@ -48,7 +48,7 @@
     <div id="noidung">
     <?php
         $loaisp = "SELECT * from sanpham sp, loaisp lsp 
-                    where sp.ma_loaisp = '".$ma_loaiSP."' and sp.ma_loaisp = lsp.ma_loaisp
+                    where sp.ma_loaisp = '".$ma_loaiSP."' and sp.ma_loaisp = lsp.ma_loaisp and sl_sp > 0 
                     GROUP by sp.ten_sp
                     order by sp.id_sp;
         ";
