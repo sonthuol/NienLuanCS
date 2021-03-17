@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/menu_trai.css">
-    <link rel="stylesheet" href="../css/content_ad.css">
     <link rel="stylesheet" href="../css/danhsach_lsp_th_sp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 </head>
@@ -19,8 +16,9 @@
         <?php
             include 'menu_trai.php';
         ?>
+       
         <div id="noidungchinh">
-            <h2>Danh sách khách hàng</h2>
+            <h2>Danh sách thương hiệu sản phẩm</h2>
             <div id="chucnang">
                 <div id="hienthi">
                 </div>
@@ -29,23 +27,35 @@
                     <input type="text" onkeyup="timkiem(this.value)">
                 </div>
             </div>
+            <?php
+                include '/NienLuanCS/connection/connection.php';
+                $cout_th = 0;
+                $sql_th = "SELECT COUNT(id_nv) as count_nv FROM `nhanvien`";
+                $result_th = $con->query($sql_th);
+                if($result_th->num_rows > 0){
+                    while($row_coutth = $result_th->fetch_assoc()){
+                        $cout_nv = $row_coutth['count_nv'];
+                    } 
+                }
+            ?>
             <div id="danhsach">
+            <p class="so_th">Tổng số nhân viên: <?php echo $cout_nv?></p>
                 <table border="1">
                 <tr>
                         <th rowspan="2">STT</th>
-                        <th rowspan="2">Ảnh đại diện</th>
-                        <th rowspan="2">Họ tên</th>
-                        <th rowspan="2">Email</th>
+                        <th rowspan="2">Họ và tên</th>
+                        <th rowspan="2">Tên tài khoản</th>
+                        <th rowspan="2">Mật khẩu</th>
                         <th rowspan="2">Số điện thoại</th>
-                        <th rowspan="2">Xem chi tiết</th>
-                        <th colspan="1">Khoá tài khoản</th>
+                        <th rowspan="2">Ảnh nhân viên</th>
+                        <th colspan="2">Cập nhật</th>
                     </tr>
                 <tr>
+                    <th>Sửa</th>
                     <th>Xóa</th>
                 </tr>
             <?php
-               include '/NienLuanCS/connection/connection.php';
-               $sql = "SELECT * from thanhvien";
+               $sql = "SELECT * from nhanvien";
                $result = $con->query($sql);
                $i = 0;
                if($result->num_rows > 0){
@@ -53,19 +63,15 @@
                    echo "
                        <tr>
                            <td>".($i = $i + 1)."</td>
-                           <td><img src='../img/".$row['path_anh_tv']."' alt='' width=100px height=100px></td>
-                           <td>".$row['hoten_tv']."</td>
-                           <td>".$row['email']."</td>
-                           <td>".$row['sdt']."</td>
-                           <td><a href='chitiet_kh.php'>Xem chi tiết</a></td>
-                           <td><a href='xoa_tv.php?id=".$row['id']."'><img src='../img/delete.png' alt=''></a></td>
+                           <td>".$row['ten_nv']."</td>
+                           <td>".$row['tentaikhoan_nv']."</td>
+                           <td>".$row['matkhau_nv']."</td>
+                           <td>".$row['sdt_nv']."</td>
+                           <td><img src='../img/".$row['img_nv']."' alt='' width=60px height=60px></td>
+                           <td><a href='sua_nv.php?id=".$row['id_nv']."'><img src='../img/edit.png' alt=''></a></td>
+                           <td><a href='xoa_nv.php?id=".$row['id_nv']."'><img src='../img/delete.png' alt=''></a></td>
                        </tr>";
                    }
-               }else{
-                    echo "
-                        <tr>
-                            <td colspan='7'>Chưa có thành viên</td>
-                        </tr>";
                }
             ?>
                 </table>
@@ -85,7 +91,7 @@
                     document.getElementById("danhsach").innerHTML=xmlhttp.responseText; 
                 } 
             }   
-            xmlhttp.open("GET", "../ajax/timkiem_tv.php?tk="+str, true);
+            xmlhttp.open("GET", "../ajax/timkiem_nv.php?tk="+str, true);
             xmlhttp.send();
         }
     </script>

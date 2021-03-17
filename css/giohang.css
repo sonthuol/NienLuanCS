@@ -2,7 +2,6 @@
 #noidung h1 {
     margin: 10px;
     color: black;
-    margin-top: 70px;
 }
 
 #noidung form {
@@ -193,7 +192,7 @@
 }
 
 #banghoadon table {
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(255, 255, 255);
 }
 
 #banghoadon tr td,

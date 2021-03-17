@@ -68,6 +68,14 @@
                             <td><p id="gia">0 VND</p></td>
                         </tr>
                         <tr>
+                            <td>Giá bán: </td>
+                            <td><input type="text" name="gia_ban" placeholder="Giá bán" onkeyup="giasp_ban(this.value)"></td>
+                        </tr>
+                        <tr>
+                            <td>Định dạng giá bán: </td>
+                            <td><p id="gia_ban">0 VND</p></td>
+                        </tr>
+                        <tr>
                             <td>Hình ảnh SP:</td>
                             <td><input type="file" name="logo" placeholder="Logo"></td>
                         </tr>
@@ -200,7 +208,21 @@
             xmlhttp.open("GET", "../ajax/fomatGia.php?gia=" + str, true);
             xmlhttp.send();
         }
+        function giasp_ban(str) {
+            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
 
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    document.getElementById("gia_ban").innerHTML=xmlhttp.responseText; 
+                } 
+            }   
+            xmlhttp.open("GET", "../ajax/fomatGia.php?gia=" + str, true);
+            xmlhttp.send();
+        }
         function showthongtinkithuat(str){
             if(window.XMLHttpRequest){
                 xmlhttp = new XMLHttpRequest();

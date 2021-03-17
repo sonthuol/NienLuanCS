@@ -14,7 +14,7 @@
         $result_gh = $con->query($sql);
         $i = 0;
         if($result_gh->num_rows > 0 && $_SESSION['id']){
-            echo "<form action='../php/xuly_muahang.php' method='POST' enctype='multipart/form-data' onsubmit='return thanhtoan()'>
+            echo "<form action='xuly_muahang.php' method='POST' enctype='multipart/form-data' onsubmit='return thanhtoan()'>
             <div id='bang_sp'>
                 <h1>Wellcome to carts</h1>";
             echo "<table border='1'>";
@@ -22,7 +22,7 @@
                     echo "
                     <tr>
                         <td rowspan='2'>".++ $i."</td>
-                        <td rowspan='2'><img src='img/".$row_gh['img_sp']."' alt='' width='120px' height='90px'></td>
+                        <td rowspan='2'><img src='./img/".$row_gh['img_sp']."' alt='' width='120px' height='90px'></td>
                         <td colspan='5' class='tensp'>".$row_gh['ten_sp']."</td>
                     </tr>
                     <tr>
@@ -30,7 +30,7 @@
                         <td>
                             <div class='buttons_added'>
                                 <input class='minus is-form' type='button' value='-' onclick='congtru(-1, ".$row_gh['id_sp']."); soluonggiohang(".$row_gh['id_sp'].")'>
-                                <input aria-label='quantity' id='".$row_gh['id_sp']."' class='input-qty' max='20' min='1' name='' type='number'  value='".$row_gh['soluong']."'>
+                                <input type='number'  id='".$row_gh['id_sp']."' class='input-qty' min='1' max='20'    value='".$row_gh['soluong']."'>
                                 <input class='plus is-form' type='button' value='+' onclick='congtru(1, ".$row_gh['id_sp']."); soluonggiohang(".$row_gh['id_sp'].")'>
                             </div>
                         </td>
@@ -41,7 +41,7 @@
                             echo "<td><input id='".$row_gh['id_sp']."_mua' type='checkbox' value='0' onclick='checkmua(".$row_gh['id_sp'].")'></td>";
                         }
                         echo "
-                        <td><a href='../php/xoa_sp_giohang.php?id=".$row_gh['id_gh']."'><img src='img/delete.png' alt='' width='20px' height='20px'></a></td>
+                        <td><a href='xoa_sp_giohang.php?id=".$row_gh['id_gh']."'><img src='img/delete.png' alt='' width='20px' height='20px'></a></td>
                     </tr>
                     ";
             }
@@ -72,46 +72,46 @@
             }
             $_SESSION['tongtien'] = $tt;
             echo " </table>";
-            echo "</div>";
-            $sql_kh ="SELECT * from thanhvien where id = ".$_SESSION['id']."";
-            $result_kh = $con->query($sql_kh);
-            if($result_kh->num_rows > 0){
-                while($row_kh = $result_kh->fetch_assoc()){
-                    echo "<div id='ttkh'>
-                            <h3>Thông tin khách hàng</h3>
-                            <span>Họ Tên:</span><br>
-                            <input type='text' name='name_cus' value='".$row_kh['hoten_tv']."'><br>
-                            <span>Số ĐT:</span><br>
-                            <input type='text' name='phone' value='".$row_kh['sdt']."'><br>
-                            <span>Địa chỉ giao:</span><br>
-                            <textarea name='diachi' id='' cols='25' rows='10'>".$row_kh['diachi']."</textarea>
-                            <span>Ghi chú:</span><br>
-                            <textarea name='ghichu' id='' cols='25' rows='10'></textarea>
-                            <p id='tamtinh'>Tạm tính: ".number_format($tt, 0, '', ',')." Đ</p>
-                            <input type='submit' value='Thanh Toán'>
-                        </div>";   
-                }
+echo "</div>";
+$sql_kh ="SELECT * from thanhvien where id = ".$_SESSION['id']."";
+$result_kh = $con->query($sql_kh);
+if($result_kh->num_rows){
+    while($row_kh = $result_kh->fetch_assoc()){
+        echo "<div id='ttkh'>
+                <h3>Thông tin khách hàng</h3>
+                <span>Họ Tên:</span><br>
+                <input type='text' name='name_cus' value='".$row_kh['hoten_tv']."'><br>
+                <span>Số ĐT:</span><br>
+                <input type='text' name='phone' value='".$row_kh['sdt']."'><br>
+                <span>Địa chỉ giao:</span><br>
+                <textarea name='diachi' id='' cols='25' rows='10'>".$row_kh['diachi']."</textarea>
+                <span>Ghi chú:</span><br>
+                <textarea name='ghichu' id='' cols='25' rows='10'></textarea>
+                <p id='tamtinh'>Tạm tính: ".number_format($tt, 0, '', ',')." Đ</p>
+                <input type='submit' value='Thanh Toán'>
+            </div>";   
+    }
 
-            }else{
-                echo "<div id='ttkh'>
-                    <h3>Thông tin khách hàng</h3>
-                    <span>Họ Tên:</span><br>
-                    <input type='text' name='name_cus'><br>
-                    <span>Số ĐT:</span><br>
-                    <input type='text' name='phone'><br>
-                    <span>Địa chỉ giao:</span><br>
-                    <textarea name='diachi' id='' cols='25' rows='10'></textarea>
-                    <span>Ghi chú:</span><br>
-                    <textarea name='ghichu' id='' cols='25' rows='10'></textarea>
-                    <p id='tamtinh'>Tạm tính: ".number_format($tt, 0, '', ',')." Đ</p>
-                    <input type='submit' value='Thanh Toán'>
-                </div>";
-            }
+}else{
+    echo "<div id='ttkh'>
+        <h3>Thông tin khách hàng</h3>
+        <span>Họ Tên:</span><br>
+        <input type='text' name='name_cus'><br>
+        <span>Số ĐT:</span><br>
+        <input type='text' name='phone'><br>
+        <span>Địa chỉ giao:</span><br>
+        <textarea name='diachi' id='' cols='25' rows='10'></textarea>
+        <span>Ghi chứ:</span><br>
+        <textarea name='ghichu' id='' cols='25' rows='10'></textarea>
+        <p id='tamtinh'>Tạm tính: ".number_format($tt, 0, '', ',')." Đ</p>
+        <input type='submit' value='Thanh Toán'>
+    </div>";
+}
     echo "</form>";
         }else{
-            echo "Bạn chưa có sản phẩm nào trong giỏ Tiếp tục mua sắm!";
+            echo "<h1>Bạn chưa có sản phẩm nào trong giỏ Tiếp tục mua sắm!</h1>";
         }
     }else{
-        echo "Bạn chưa có sản phẩm nào trong giỏ Tiếp tục mua sắm!";
+        echo "<h1>Bạn chưa có sản phẩm nào trong giỏ Tiếp tục mua sắm!</h1>";
     }
 ?>

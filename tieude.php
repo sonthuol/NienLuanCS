@@ -1,7 +1,7 @@
 <div id="tieude">
     <div id="tieude_cangiua">
         <div class="logo">
-            <h2><a href="index.php"><img src="img/logo/logo.png" alt="" width="120px"></a></h2>
+            <h2><a href="index.php"><img src="img/logo/logo.png" alt="" width="120px" height="50px" style="margin-top: 5px; margin-right: 20px;"></a></h2>
             <div id="danhsachhotrotuvan">
                 <ul class="danhsach">
                     <li><a href=""><i class="fas fa-exclamation-triangle"></i>Giới thiệu</a></li>

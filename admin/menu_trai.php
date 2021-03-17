@@ -20,11 +20,16 @@
             </ul>
         </li>
         <li><a href="quanlythanhvien.php">Quản lý khách hàng</a></li>
-        <li><a href="">Thống kê đơn hàng</a>  <i class="fas fa-angle-double-right"></i>
+        <li><a href="">Quản lý nhân viên</a>  <i class="fas fa-angle-double-right"></i>
+        <ul  class="sub">
+                <li><a href="danhsach_nv.php">Danh sách nhân viên</a></li>
+                <li><a href="them_nv.php">Thêm nhân viên</a></li>
+            </ul>
+        </li>
+        <li><a href="">Quản lý đơn hàng</a>  <i class="fas fa-angle-double-right"></i>
             <ul  class="sub">
-                <li><a href="">Đơn hàng khách đã đặt</a></li>
-                <li><a href="">Lập hóa đơn</a></li>
-                <li><a href="">Chi tiết hóa đơn</a></li>
+                <li><a href="">Đơn hàng chưa duyệt</a></li>
+                <li><a href="">Đơn hàng đã duyệt</a></li>
             </ul>
         </li>
         <li><a href="">Thông kê hàng tồn kho</a></li>

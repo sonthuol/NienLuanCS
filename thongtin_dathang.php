@@ -21,7 +21,9 @@
         $sql = "SELECT * from thanhvien where id = '".$_SESSION['id']."'";
         $result = $con->query($sql);
         $row = $result->fetch_assoc();
-        echo $sql;
+        $sql_hoadon = "SELECT * FROM `hoadon` where id = '".$_SESSION['id']."' ORDER BY `hoadon`.`id_hd` DESC";
+        $result_hoadon = $con->query($sql_hoadon);
+        $row_hoadon = $result_hoadon->fetch_assoc();
     ?>
     <!-- Nội dung của trang web -->
     <div id="noidung">
@@ -29,6 +31,10 @@
             <h1>Thông tin hóa đơn</h1>
             <div id="thongtin">
                 <table>
+                    <tr>
+                        <td>Mã đơn hàng: </td>
+                        <th><?php echo $row_hoadon['id_hd'] ?></th>
+                    </tr>
                     <tr>
                         <td>Tên khách hàng: </td>
                         <th><?php echo $row['hoten_tv'] ?></th>
@@ -40,6 +46,14 @@
                     <tr>
                         <td>Địa chỉ giao hàng: </td>
                         <th><?php echo $row['diachi'] ?></th>
+                    </tr>
+                    <tr>
+                        <td>Ghi chú: </td>
+                        <th><?php echo $row_hoadon['ghichu'] ?></th>
+                    </tr>
+                    <tr>
+                        <td>Thời gian đặt hàng: </td>
+                        <th><?php echo $row_hoadon['ngay_dathang'] ?></th>
                     </tr>
                 </table>
             </div>
@@ -67,7 +81,7 @@
                             echo "
                             <tr>
                                 <td>".++ $i."</td>
-                                <td><img src='./img/".$row_hd['img_sp']."' alt='' width=100px height=100px></td>
+                                <td><img src='./img/".$row_hd['img_sp']."' alt='' width=60px height=60px></td>
                                 <td>".$row_hd['ten_sp']."</td>
                                 <td>".number_format($row_hd['dongia'], 0, '', ',')." Đ</td>
                                 <td>".$row_hd['soluong']."</td>

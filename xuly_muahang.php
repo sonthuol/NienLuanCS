@@ -14,10 +14,10 @@
     //them thong tin khach hang trong bang khachhang
     include '/NienLuanCS/connection/connection.php';
     $sql = "UPDATE thanhvien set hoten_tv = '".$ten_kh."', sdt = '".$sdt."', diachi = '".$diachi."' where id = '".$id."'";
+    $con->query($sql);
     //insert vao hoa don
     $sql = "INSERT into hoadon(id_hd, id, ngay_dathang, noi_nhanhang, ghichu) 
             value (null,'$id', null, '$diachi', '$ghichu')";
-    echo($sql);
     $con->query($sql);
     $sql_hd = "SELECT * from hoadon where id = '".$id."'";
     $result_hd = $con->query($sql_hd);
@@ -45,7 +45,7 @@
             $con->query($sql_chitiet);
         }
     }
-            //lay du trong gio hang them vao chi tiet hoa don
+    //lay du trong gio hang them vao chi tiet hoa don
 
     //xoa du lieu trong gio hang neu co trang thai bang 1
     $sql = "DELETE from giohang where trangthai = 1 and id = ".$id."";
@@ -55,6 +55,5 @@
     $sl_capnhat = $soluong_goc - $soluong_ban;
     $sql = "UPDATE sanpham set sl_sp = '".$sl_capnhat."' where id_sp = '".$idsp."'";
     $con->query($sql);
-    
     header("Location: thongtin_dathang.php");
 ?>

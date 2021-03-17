@@ -3,6 +3,7 @@
     $idth = $_POST['idth'];
     $tensp = $_POST['tensp'];
     $gia = $_POST['gia_sp'];
+    $gia_ban = $_POST['gia_ban'];
     $anhsp = './img_sp/'.$_FILES['logo']['name'];
     move_uploaded_file($_FILES['logo']['tmp_name'], "../img/".$anhsp);
     $mausac = $_POST['mausac'];
@@ -20,6 +21,7 @@
         '".$idth."',
         '".$tensp."', 
         '".$gia."', 
+        '".$gia_ban."', 
         '".$anhsp."',
         '".$mausac."',
         '".$slsp."',
@@ -29,8 +31,9 @@
         '".$giaitrikhuyenmai."',
         '".$ngaybatdauKM."',
         '".$ngayketthucKM."',
-         null, null)";
+         null, null, '1')";
     $con->query($sql);
+    echo $sql;
     header("Location: them_sp.php");
     $con->close();
 ?>
