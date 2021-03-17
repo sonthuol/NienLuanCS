@@ -382,47 +382,133 @@
                     </div>
                 </div>
                 <div class="bnt_danhgia">
-                    <button>Gủi đánh giá của bạn</button>
+                    <?php
+                        if(isset($_SESSION['user'])){
+                            ?>
+                                <button>Gủi đánh giá của bạn</button>
+                            <?php
+                        }
+                    ?>
                 </div>
             </div>
-            <div class="khachhang_danhgia">
-                <form action="">
-                    <div class="danhgiasao">
-                        <h4>Chọn đánh giá của bạn:</h4>
-                        <div class="start">
-                                <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
-                                <label class="star star-5" for="star-5"></label>
-                                <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
-                                <label class="star star-4" for="star-4"></label>
-                                <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
-                                <label class="star star-3" for="star-3"></label>
-                                <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
-                                <label class="star star-2" for="star-2"></label>
-                                <input class="star star-1" id="star-1" type="radio" name="star" value="1" />
-                                <label class="star star-1" for="star-1"></label>
+            <?php
+                if(isset($_SESSION['user'])){
+                    ?>
+                        <div class="khachhang_danhgia">
+                            <form action="">
+                                <div class="danhgiasao">
+                                    <h4>Chọn đánh giá của bạn:</h4>
+                                    <div class="start">
+                                            <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
+                                            <label class="star star-5" for="star-5"></label>
+                                            <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
+                                            <label class="star star-4" for="star-4"></label>
+                                            <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
+                                            <label class="star star-3" for="star-3"></label>
+                                            <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
+                                            <label class="star star-2" for="star-2"></label>
+                                            <input class="star star-1" id="star-1" type="radio" name="star" value="1" />
+                                            <label class="star star-1" for="star-1"></label>
+                                    </div>
+                                </div>
+                                <div class="danhgia_all">
+                                    <div class="comment_and_anh">
+                                        <textarea name="noidungcmt" id="" cols="70" rows="5" placeholder="Nhập nội dụng đánh giá sản phẩm"></textarea>
+                                        <div class="input_anh">
+                                            <label for="files" class="btn"><i class="fas fa-camera-retro"></i>Chọn ảnh đánh giá sản phẩm</label>
+                                            <input id="files" style="visibility:hidden;" type="file">
+                                        </div>
+                                    </div>
+                                    <div class="tt_khach_comment">
+                                        <div class="hoten_sdt">
+                                            <input type="text" name="hoten_danhgia" placeholder="Họ tên">
+                                            <input type="text" name="sodienthoai_danhgia" placeholder="Số điện thoại">
+                                        </div>
+                                        <div class="email_bnt">
+                                            <input type="text" name="email_danhgia" placeholder="Email">
+                                            <input type="submit" value="Gửi đánh giá">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                    <div class="danhgia_all">
-                        <div class="comment_and_anh">
-                            <textarea name="noidungcmt" id="" cols="70" rows="5" placeholder="Nhập nội dụng đánh giá sản phẩm"></textarea>
-                            <div class="input_anh">
-                                <label for="files" class="btn"><i class="fas fa-camera-retro"></i>Chọn ảnh đánh giá sản phẩm</label>
-                                <input id="files" style="visibility:hidden;" type="file">
-                            </div>
-                        </div>
-                        <div class="tt_khach_comment">
-                            <div class="hoten_sdt">
-                                <input type="text" name="hoten_danhgia" placeholder="Họ tên">
-                                <input type="text" name="sodienthoai_danhgia" placeholder="Số điện thoại">
-                            </div>
-                            <div class="email_bnt">
-                                <input type="text" name="email_danhgia" placeholder="Email">
-                                <input type="submit" value="Gửi đánh giá">
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                    <?php
+                }
+            ?>
+        <div id="comment_main">
+            <div class="comment_item">
+                <div class="name_buyed">
+                    <div class="name">Sơn Thươl</div>
+                    <div class="buyed"><i class="fas fa-check-circle"></i>Đã mua hàng tại T&T_IT.com</div>
+                </div>
+                <div class="start">
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                </div>
+                <div class="content_comment">
+                    <p>Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình</p>                
+                </div>
+                <div class="time_day">
+                    <?php
+                        $now = new DateTime();
+                        ?>
+                            <p><?php echo $now->format('d-m-Y H:i:s')?></p>
+                        <?php
+                    ?>
+                </div>
             </div>
+            <div class="comment_item">
+                <div class="name_buyed">
+                    <div class="name">Sơn Thươl</div>
+                    <div class="buyed"><i class="fas fa-check-circle"></i>Đã mua hàng tại T&T_IT.com</div>
+                </div>
+                <div class="start">
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                </div>
+                <div class="content_comment">
+                    <p>Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình</p>                
+                </div>
+                <div class="time_day">
+                    <?php
+                        $now = new DateTime();
+                        ?>
+                            <p><?php echo $now->format('d-m-Y H:i:s')?></p>
+                        <?php
+                    ?>
+                </div>
+            </div>
+            <div class="comment_item">
+                <div class="name_buyed">
+                    <div class="name">Sơn Thươl</div>
+                    <div class="buyed"><i class="fas fa-check-circle"></i>Đã mua hàng tại T&T_IT.com</div>
+                </div>
+                <div class="start">
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                    <i class='fas fa-star'></i>
+                </div>
+                <div class="content_comment">
+                    <p>Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình</p>                
+                </div>
+                <div class="time_day">
+                    <?php
+                        $now = new DateTime();
+                        ?>
+                            <p><?php echo $now->format('d-m-Y H:i:s')?></p>
+                        <?php
+                    ?>
+                </div>
+            </div>
+        </div>
         </div>
         <?php
             $loaisp = "SELECT * from sanpham sp, loaisp lsp 

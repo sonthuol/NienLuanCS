@@ -102,3 +102,17 @@ td {
     width: 30px;
     height: 30px;
 }
+#content #noidungchinh table tr td button{
+    background-color: white;
+    border: none;
+    outline: none;
+}
+#content #noidungchinh table tr td button i{
+    color: rgb(107, 107, 107);
+    font-size: 30px;
+}
+
+#content #noidungchinh table tr td button i:hover{
+    color: rgb(31, 153, 0);
+}
+

@@ -28,8 +28,8 @@
         </li>
         <li><a href="">Quản lý đơn hàng</a>  <i class="fas fa-angle-double-right"></i>
             <ul  class="sub">
-                <li><a href="">Đơn hàng chưa duyệt</a></li>
-                <li><a href="">Đơn hàng đã duyệt</a></li>
+                <li><a href="donhang_chuaduyet.php">Đơn hàng chưa duyệt</a></li>
+                <li><a href="donhang_daduyet.php">Đơn hàng đã duyệt</a></li>
             </ul>
         </li>
         <li><a href="">Thông kê hàng tồn kho</a></li>

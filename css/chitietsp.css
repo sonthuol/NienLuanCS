@@ -353,3 +353,51 @@ input[type='submit'] {
     background-color: rgb(0, 81, 255);
     color: white;
 }
+
+#comment_main{
+    margin: 10px 0;
+}
+#comment_main .comment_item{
+    margin-bottom: 15px;
+}
+#comment_main .comment_item .name_buyed{
+    display: flex;
+    margin: 5px 0;
+}
+#comment_main .comment_item .name_buyed .name{
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+#comment_main .comment_item .name_buyed .buyed{
+    font-size: 15px;
+    line-height: 20px;
+    color: blue;
+}
+#comment_main .comment_item .name_buyed .buyed i{
+    color: rgb(15, 199, 15);
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+#comment_main .comment_item .start{
+    margin-left: 20px;
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: #fd9727;
+}
+#comment_main .comment_item .start i{}
+#comment_main .comment_item .content_comment{
+    width: 70%;
+    margin: 5px 20px;
+    font-size: 16px;
+}
+
+#comment_main .comment_item .time_day{
+    font-size: 13px;
+    font-weight: bold;
+    color: #979797;
+}
+
+
