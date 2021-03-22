@@ -95,6 +95,39 @@
         </div>
     </div>
     <?php
+        include("/NienLuanCS/connection/connection.php");
+    ?>
+    <div id="lichsumuahang">
+        <table>
+            <tr class="time">
+                <th colspan="7">Đơn hàng ngày: 3/22/2021, 4:51:11 PM</th>
+            </tr>
+            <tr class="th_mucchinh">
+                <th>STT</th>
+                <th>Sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Thời gian thêm vào giỏ hàng</th>
+            </tr>
+            <tr class="ttsp">
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr class="tt">
+                <th colspan="5">Tổng tiền</th>
+                <th>20,000,000 đ</th>
+                <th>Đang chờ sử lý</th>
+            </tr>
+        </table>
+    </div>
+    <?php
         include 'footer.php';
     ?>
     <script src="js/timkiemsp.js"></script>

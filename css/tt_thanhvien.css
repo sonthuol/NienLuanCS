@@ -81,3 +81,46 @@
     color: black;
     padding-top: 10px;
 }
+
+#lichsumuahang{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+#lichsumuahang table{
+    margin: 10px;
+    width: 1000px;
+    text-align: center;
+}
+#lichsumuahang table .time{
+    width: 1200px;
+    background-color:rgb(229, 255, 0);
+    color: rgb(0, 0, 0);
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid white;
+}
+#lichsumuahang table .th_mucchinh{
+    background-color:rgb(229, 255, 0);
+    height: 20px;
+    color: rgb(0, 0, 0);
+    line-height: 30px;
+    border: 1px solid white;
+}
+#lichsumuahang table .ttsp{
+    background-color: #f1f1f1;
+    height: 20px;
+    color: rgb(0, 0, 0);
+    line-height: 40px;
+    border: 1px solid rgb(0, 0, 0);
+}
+#lichsumuahang table .tt{
+    background-color: #9c9c9c;
+    height: 20px;
+    color: rgb(0, 0, 0);
+    line-height: 40px;
+    border: 1px solid rgb(255, 255, 255);
+}

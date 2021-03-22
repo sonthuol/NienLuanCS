@@ -45,7 +45,9 @@
     font-size: 18px;
     color: rgb(54, 54, 54);
 }
-
+#content #noidungchinh #danhsach table tr:nth-child(even) td{
+    background-color: rgb(219, 219, 219);
+}
 #content #noidungchinh h2 {
     margin-top: 20px;
 }

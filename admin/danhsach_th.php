@@ -70,7 +70,7 @@
                            <td>".$row['ma_loaisp']."</td>
                            <td>".$row['ma_th']."</td>
                            <td>".$row['ten_tenth']."</td>
-                           <td><img src='../img/".$row['img_th']."' alt='' width=160px height=40px></td>
+                           <td><img src='../img/".$row['img_th']."' alt='' width=160px height=30px></td>
                            <td><a href='sua_th.php?id=".$row['id_th']."'><img src='../img/edit.png' alt=''></a></td>
                            <td><a href='xoa_th.php?id=".$row['id_th']."'><img src='../img/delete.png' alt=''></a></td>
                        </tr>";
