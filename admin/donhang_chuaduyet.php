@@ -89,9 +89,9 @@
                         echo "
                             <td>".number_format($thanhtien, 0, '', ',')." đ</td>
                             <td>".$row['ngay_dathang']."</td>
-                            <td class='chuaduyet'>Chưa duyệt</td>
-                            <td><button onclick='xuly_donhang_duyet()';><i class='fas fa-check-square'></i></button></td>
-                            <td><a href='xoa_nv.php?id=".$row['id_hd']."'><img src='../img/delete.png' alt='' width='20px' height='20px'></a></td>
+                            <td id='".$row['id_hd']."_duyet'>Chưa duyệt</td>
+                            <td><button onclick='xuly_donhang_duyet(".$row['id_hd'].");' ><i class='fas fa-check-square' id='".$row['id_hd']."_check'></i></button></td>
+                            <td><a href='xoadonhang.php?id=".$row['id_hd']."'><img src='../img/delete.png' alt='' width='20px' height='20px'></a></td>
                         </tr>";
                     }
                 }
@@ -116,21 +116,11 @@
             xmlhttp.open("GET", "../ajax/timkiem_nv.php?tk="+str, true);
             xmlhttp.send();
         }
-
-        function xuly_donhang_duyet() {
-            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp=new XMLHttpRequest();
-            } else { // code for IE6, IE5
-                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            xmlhttp.onreadystatechange=function() {
-                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                    document.getElementsByClassName("chuaduyet").innerHTML=xmlhttp.responseText; 
-                } 
-            }   
-            xmlhttp.open("GET", "../ajax/xuly_donhang_duyet.php", true);
-            xmlhttp.send();
+    </script>
+    <script>
+        function xuly_donhang_duyet(id_hoadon){
+            document.getElementById(id_hoadon+'_duyet').innerHTML = 'Đã duyệt';
+            document.getElementById(id_hoadon+'_check').style.backgroundColor = 'black';
         }
     </script>
 </body>

@@ -94,42 +94,130 @@
             </div>
         </div>
     </div>
-    <?php
-        include("/NienLuanCS/connection/connection.php");
-    ?>
-    <div id="lichsumuahang">
-        <table>
-            <tr class="time">
-                <th colspan="7">Đơn hàng ngày: 3/22/2021, 4:51:11 PM</th>
-            </tr>
-            <tr class="th_mucchinh">
-                <th>STT</th>
-                <th>Sản phẩm</th>
-                <th>Hình ảnh</th>
-                <th>Giá</th>
-                <th>Số lượng</th>
-                <th>Thành tiền</th>
-                <th>Thời gian thêm vào giỏ hàng</th>
-            </tr>
-            <tr class="ttsp">
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-            </tr>
-            <tr class="tt">
-                <th colspan="5">Tổng tiền</th>
-                <th>20,000,000 đ</th>
-                <th>Đang chờ sử lý</th>
-            </tr>
-        </table>
+    <div class="bnt">
+        <div class="bnt_left">
+            <button onclick="kiemTraDonHang(0)" id='chuaduyet'>Đơn hàng chưa duyệt</button>
+        </div>
+        <div class="bnt_right">
+            <button onclick="kiemTraDonHang(1)" id='daduyet'>Đơn hàng đã duyệt</button>
+        </div>
+    </div>
+    <div id="hoadonChuaDuyet">
+        <?php
+            include("/NienLuanCS/connection/connection.php");
+            $sql_id_hoadon = "SELECT * from hoadon where id = '".$_SESSION['id']."' ORDER BY `hoadon`.`ngay_dathang` DESC";
+            $result_id_hoadon = $con->query($sql_id_hoadon);
+            if($result_id_hoadon->num_rows > 0){
+                while($row_id_hoadon = $result_id_hoadon->fetch_assoc()){
+                ?>
+                <div class="gach">
+                    <h3>Mã đơn hàng: <?php echo $row_id_hoadon['id_hd'];?></h3>
+                    <div class="lichsumuahang">
+                        <table>
+                            <tr class="time">
+                                <th colspan="6">Đơn hàng ngày: <?php echo $row_id_hoadon['ngay_dathang'];?></th>
+                            </tr>
+                            <tr class="th_mucchinh">
+                                <th>STT</th>
+                                <th>Sản phẩm</th>
+                                <th>Hình ảnh</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                            <?php
+                                $sql_cthd = "SELECT sp.ten_sp, sp.img_sp, cthd.dongia, cthd.sl_sp from chitiethoadon cthd, sanpham sp
+                                            WHERE cthd.id_sp = sp.id_sp and cthd.id_hd = '".$row_id_hoadon['id_hd']."'" ;
+                                $result_cthd = $con->query($sql_cthd);
+                                $stt = 0;
+                                while($row_cthd = $result_cthd->fetch_assoc()){
+                                ?> 
+                                    <tr class="ttsp">
+                                        <td><?php echo ++ $stt; ?></td>
+                                        <td><?php echo $row_cthd['ten_sp'];?></td>
+                                        <?php echo "<td><img src='img/".$row_cthd['img_sp']."' alt='' width=100px height=100px></td>";?>
+                                        <td><?php echo number_format($row_cthd['dongia'], 0, '', ',');?></td>
+                                        <td><?php echo $row_cthd['sl_sp'];?></td>
+                                        <td><?php echo number_format($row_cthd['dongia'], 0, '', ',');?></td>
+                                    </tr>
+                                <?php
+                                }
+                            ?>
+                            <tr class="tt">
+                                <th colspan="4">Tổng tiền</th>
+                                <th>20,000,000 đ</th>
+                                <th>Đang chờ sử lý</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <?php
+                }
+            }else{
+                echo"";
+            }
+        ?>
+    </div>
+    <div id="hoadonDaDuyet">
+        <!-- <?php
+            include("/NienLuanCS/connection/connection.php");
+            $sql_id_hoadon = "SELECT * from hoadon where id = '".$_SESSION['id']."' ORDER BY `hoadon`.`ngay_dathang` DESC";
+            $result_id_hoadon = $con->query($sql_id_hoadon);
+            if($result_id_hoadon->num_rows > 0){
+                while($row_id_hoadon = $result_id_hoadon->fetch_assoc()){
+                ?>
+                <div class="gach">
+                    <h3>Mã đơn hàng: <?php echo $row_id_hoadon['id_hd'];?></h3>
+                    <div class="lichsumuahang">
+                        <table>
+                            <tr class="time">
+                                <th colspan="6">Đơn hàng ngày: <?php echo $row_id_hoadon['ngay_dathang'];?></th>
+                            </tr>
+                            <tr class="th_mucchinh">
+                                <th>STT</th>
+                                <th>Sản phẩm</th>
+                                <th>Hình ảnh</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                            <?php
+                                $sql_cthd = "SELECT sp.ten_sp, sp.img_sp, cthd.dongia, cthd.sl_sp from chitiethoadon cthd, sanpham sp
+                                            WHERE cthd.id_sp = sp.id_sp and cthd.id_hd = '".$row_id_hoadon['id_hd']."'" ;
+                                $result_cthd = $con->query($sql_cthd);
+                                $stt = 0;
+                                while($row_cthd = $result_cthd->fetch_assoc()){
+                                ?> 
+                                    <tr class="ttsp">
+                                        <td><?php echo ++ $stt; ?></td>
+                                        <td><?php echo $row_cthd['ten_sp'];?></td>
+                                        <?php echo "<td><img src='img/".$row_cthd['img_sp']."' alt='' width=100px height=100px></td>";?>
+                                        <td><?php echo number_format($row_cthd['dongia'], 0, '', ',');?></td>
+                                        <td><?php echo $row_cthd['sl_sp'];?></td>
+                                        <td><?php echo number_format($row_cthd['dongia'], 0, '', ',');?></td>
+                                    </tr>
+                                <?php
+                                }
+                            ?>
+                            <tr class="tt">
+                                <th colspan="4">Tổng tiền</th>
+                                <th>20,000,000 đ</th>
+                                <th>Đang chờ sử lý</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <?php
+                }
+            }else{
+                echo"";
+            }
+        ?> -->
     </div>
     <?php
         include 'footer.php';
     ?>
     <script src="js/timkiemsp.js"></script>
+    <script src="js/kiemTraDonHang.js"></script>
 </body>
 </html>

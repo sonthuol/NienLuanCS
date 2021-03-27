@@ -10,4 +10,4 @@ function thanhtoan() {
         return false;
     }
     return true;
-}
+}    

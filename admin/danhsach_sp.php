@@ -47,7 +47,7 @@
                     <tr>
                         <th rowspan="2">STT</th>
                         <th rowspan="2">id_sp</th>
-                        <th rowspan="2">Tên sản phẩm</th>
+                        <th rowspan="2" >Tên sản phẩm</th>
                         <th rowspan="2">Ảnh sản phẩm</th>
                         <th rowspan="2">Màu sắc</th>
                         <th rowspan="2">Giá</th>
