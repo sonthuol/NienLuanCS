@@ -18,7 +18,7 @@
         ?>
        
         <div id="noidungchinh">
-            <h2>Danh sách đơn hàng chưa duyệt</h2>
+            <h2>Danh sách đơn hàng</h2>
             <div id="chucnang">
                 <div id="hienthi">
                 </div>
@@ -30,7 +30,7 @@
             <?php
                 include '/NienLuanCS/connection/connection.php';
                 $cout_hd = 0;
-                $sql_hd= "SELECT COUNT(id_hd) as count_hd FROM hoadon";
+                $sql_hd= "SELECT COUNT(id_hd) as count_hd FROM hoadon where trangthai = 0";
                 $result_hd = $con->query($sql_hd);
                 if($result_hd->num_rows > 0){
                     while($row_couthd = $result_hd->fetch_assoc()){
@@ -39,7 +39,7 @@
                 }
             ?>
             <div id="danhsach">
-            <p class="so_th">Tổng số hoá đơn chưa duyệt: <?php echo $cout_hd?></p>
+            <p class="so_th" id="so_th">Tổng số hoá đơn chưa duyệt: <?php echo $cout_hd?></p>
                 <table border="1">
                 <tr>
                         <th rowspan="2">STT</th>
@@ -119,9 +119,27 @@
     </script>
     <script>
         function xuly_donhang_duyet(id_hoadon){
-            document.getElementById(id_hoadon+'_duyet').innerHTML = 'Đã duyệt';
-            document.getElementById(id_hoadon+'_check').style.backgroundColor = 'black';
+            var daduyet = document.getElementById(id_hoadon+'_duyet').innerHTML = 'Đã duyệt';
+            if(daduyet == 'Đã duyệt'){
+                document.getElementById(id_hoadon+'_check').style.color = 'rgb(31, 153, 0)';
+                var str_alert = "Mã hoá đơn " + id_hoadon + " đã được duyệt :))"; 
+                alert(str_alert);
+            }
+            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    document.getElementById(id_hoadon+"_duyet").innerHTML=xmlhttp.responseText; 
+                } 
+            }   
+            xmlhttp.open("GET", "../ajax/xuly_donhan.php?id_hd="+id_hoadon, true);
+            xmlhttp.send();
+            //Đổi màu
         }
     </script>
 </body>
-</html>
+</html> 

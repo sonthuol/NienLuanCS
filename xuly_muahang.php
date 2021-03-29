@@ -16,8 +16,8 @@
     $sql = "UPDATE thanhvien set hoten_tv = '".$ten_kh."', sdt = '".$sdt."', diachi = '".$diachi."' where id = '".$id."'";
     $con->query($sql);
     //insert vao hoa don
-    $sql = "INSERT into hoadon(id_hd, id, ngay_dathang, noi_nhanhang, ghichu) 
-            value (null,'$id', null, '$diachi', '$ghichu')";
+    $sql = "INSERT into hoadon(id_hd, id, ngay_dathang, noi_nhanhang, id_nv, ghichu) 
+            value (null,'$id', null, '$diachi', null, '$ghichu')";
     $con->query($sql);
     $sql_hd = "SELECT * from hoadon where id = '".$id."'";
     $result_hd = $con->query($sql_hd);
