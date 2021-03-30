@@ -2,11 +2,10 @@
         <div class="trai">
             <a href="admin.php"><i class="fas fa-home"></i></a>
             <?php
-                session_start();
                 include ('/NienLuanCS/connection/connection.php');
                 if(isset($_SESSION['admin'])){
                     echo "<h2>Xin chào admin T&T_IT</h2>";
-                }else {
+                }else if(isset($_SESSION['id_nv'])){
                     $sql_nv  = "SELECT * from nhanvien where id_nv = '".$_SESSION['id_nv']."'";
                     $result_nv = $con->query($sql_nv);
                     if($result_nv->num_rows > 0){

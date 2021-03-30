@@ -10,4 +10,4 @@
     echo "Đã duyệt";
     $con->query($sql);
 
-?>
+?>  
