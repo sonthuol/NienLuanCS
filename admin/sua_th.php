@@ -19,7 +19,6 @@
             include 'menu_trai.php';
         ?>
         <?php
-            session_start();
             $idth = $_GET['id'];
             $_SESSION['id'] = $idth;
             include '/NienLuanCS/connection/connection.php';

@@ -19,7 +19,6 @@
                 include 'menu_trai.php';
             ?>
             <?php
-                session_start();
                 include '/NienLuanCS/connection/connection.php';
                 $id = $_GET['id'];
                 $_SESSION['id_lsp'] = $id;

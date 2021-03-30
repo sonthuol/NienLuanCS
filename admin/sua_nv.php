@@ -22,7 +22,6 @@
         <h2>Chỉnh sửa thông tin nhân viên</h2>
             <div id="themloaisp">
                 <?php
-                    session_start();
                     $id_nv = $_GET['id'];
                     include '/NienLuanCS/connection/connection.php';
                     $sql = "SELECT * from nhanvien where id_nv = '".$id_nv."'";
@@ -30,7 +29,7 @@
                     $i = 0;
                     $row_value_nv = $result->fetch_assoc();
                     $_SESSION['img_nv'] = $row_value_nv['img_nv'];
-                    $_SESSION['id_nv'] = $row_value_nv['id_nv'];
+                    $_SESSION['id_nhanvien'] = $row_value_nv['id_nv'];
                 ?>
                 <form action="xuly_sua_nv.php" method="POST" enctype="multipart/form-data">
                     <table>

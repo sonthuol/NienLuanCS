@@ -23,7 +23,6 @@
             <div id="themloaisp">
                 <form action="xuly_sua_sp.php" method="POST" enctype="multipart/form-data">
                 <?php
-                    session_start();
                     $idsp = $_GET['id'];
                     $_SESSION['idsp'] = $idsp;
                     include '/NienLuanCS/connection/connection.php';

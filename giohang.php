@@ -34,7 +34,7 @@
                     $result_gh = $con->query($sql);
                     $i = 0;
                     if($result_gh->num_rows > 0 && $_SESSION['id']){
-                        echo "<form action='xuly_muahang.php' method='POST' enctype='multipart/form-data' onsubmit='return thanhtoan()'>
+                        echo "<form action='xuly_muahang.php' method='POST' enctype='multipart/form-data' onsubmit='return thanhtoan()' >
                         <div id='bang_sp'>
                             <h1>Wellcome to carts</h1>";
                         echo "<table border='1'>";

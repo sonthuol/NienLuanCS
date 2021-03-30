@@ -1,7 +1,7 @@
 <?php
     session_start();
     include("/NienLuanCS/connection/connection.php");
-    $id_nv = $_SESSION['id_nv'];
+    $id_nv = $_SESSION['id_nhanvien'];
     $hoten = $_POST['ten_nv'];
     $tentaikhoan = $_POST['ten_tk_nv'];
     $matkhau = $_POST['matkhau_nv'];
@@ -21,7 +21,5 @@
     ";
     echo  $sql;
     $con->query($sql);
-    header("Location: sua_nv.php?id=".$_SESSION['id_nv']."");
-    $con->close();
-
+    header("Location: sua_nv.php?id=".$_SESSION['id_nhanvien']."");
 ?>
