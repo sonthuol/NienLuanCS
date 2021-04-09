@@ -22,10 +22,16 @@
             <h2>Danh sách thương hiệu sản phẩm</h2>
             <div id="chucnang">
                 <div id="upload">
-                    <form method="POST" action="./upload_excel/upload_excel_th.php" enctype="multipart/form-data">
-                            <input type="file" name="uploadFile" class="form-control" />
-                            <button type="submit" name="submit" class="btn btn-success">Upload</button>
-	                </form>
+                    <?php
+                        if(isset($_SESSION['admin'])){
+                            ?>
+                                <form method="POST" action="./upload_excel/upload_excel_th.php" enctype="multipart/form-data">
+                                <input type="file" name="uploadFile" class="form-control" />
+                                <button type="submit" name="submit" class="btn btn-success">Upload</button>
+	                        </form>
+                            <?php
+                        }
+                    ?>
                 </div>
                 <div id="timkiem">
                     <label>Tìm kiếm</label>
@@ -46,37 +52,58 @@
             <div id="danhsach">
             <p class="so_th">Tổng số thương hiệu: <?php echo $cout_th?></p>
                 <table border="1">
-                <tr>
-                        <th rowspan="2">ID_TH</th>
-                        <th rowspan="2">Loại SP</th>
-                        <th rowspan="2">Mã hiệu</th>
-                        <th rowspan="2">Tên thương hiệu</th>
-                        <th rowspan="2">Logo</th>
-                        <th colspan="2">Cập nhật</th>
-                    </tr>
-                <tr>
-                    <th>Sửa</th>
-                    <th>Xóa</th>
-                </tr>
+                <?php
+                    if(isset($_SESSION['admin'])){
+                        ?>
+                            <tr>
+                                    <th rowspan="2">ID_TH</th>
+                                    <th rowspan="2">Loại SP</th>
+                                    <th rowspan="2">Mã hiệu</th>
+                                    <th rowspan="2">Tên thương hiệu</th>
+                                    <th rowspan="2">Logo</th>
+                                    <th colspan="2">Cập nhật</th>
+                                </tr>
+                            <tr>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
+                        <?php
+                    }else{
+                        ?>
+                            <tr>
+                                    <th >ID_TH</th>
+                                    <th >Loại SP</th>
+                                    <th >Mã hiệu</th>
+                                    <th >Tên thương hiệu</th>
+                                    <th >Logo</th>
+                                </tr>
+                        <?php
+                    }
+                ?>
             <?php
-               include '/NienLuanCS/connection/connection.php';
-               $sql = "SELECT * from thuonghieu order by id_th";
-               $result = $con->query($sql);
-               $i = 0;
-               if($result->num_rows > 0){
-                   while($row = $result->fetch_assoc()){
-                   echo "
-                       <tr> 
-                           <td>".$row['id_th']."</td>
-                           <td>".$row['ma_loaisp']."</td>
-                           <td>".$row['ma_th']."</td>
-                           <td>".$row['ten_tenth']."</td>
-                           <td><img src='../img/".$row['img_th']."' alt='' width=160px height=30px></td>
-                           <td><a href='sua_th.php?id=".$row['id_th']."'><img src='../img/edit.png' alt=''></a></td>
-                           <td><a href='xoa_th.php?id=".$row['id_th']."'><img src='../img/delete.png' alt=''></a></td>
-                       </tr>";
-                   }
-               }
+                include '/NienLuanCS/connection/connection.php';
+                $sql = "SELECT * from thuonghieu order by id_th";
+                $result = $con->query($sql);
+                $i = 0;
+                if($result->num_rows > 0){
+                        while($row = $result->fetch_assoc()){
+                        echo "
+                            <tr> 
+                                <td>".$row['id_th']."</td>
+                                <td>".$row['ma_loaisp']."</td>
+                                <td>".$row['ma_th']."</td>
+                                <td>".$row['ten_tenth']."</td>
+                                <td><img src='../img/".$row['img_th']."' alt='' width=160px height=30px></td>";
+                                if(isset($_SESSION['admin'])){
+                                    echo "
+                                    <td><a href='sua_th.php?id=".$row['id_th']."'><img src='../img/edit.png' alt=''></a></td>
+                                    <td><a href='xoa_th.php?id=".$row['id_th']."'><img src='../img/delete.png' alt=''></a></td>";
+                                }
+                            echo "
+                                </tr>
+                            ";
+                    }
+                }
             ?>
                 </table>
             </div>

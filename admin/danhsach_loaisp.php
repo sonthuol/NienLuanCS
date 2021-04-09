@@ -21,10 +21,15 @@
             <h2>Danh sách loại sản phẩm</h2>
             <div id="chucnang">
                 <div id="upload">
-                    <form method="POST" action="./upload_excel/upload_excel_loaisp.php" enctype="multipart/form-data">
-                            <input type="file" name="uploadFile" class="form-control" />
-                            <button type="submit" name="submit" class="btn btn-success">Upload</button>
-	                </form>
+                    <?php
+                        if(isset($_SESSION['admin'])){
+                            echo "
+                            <form method='POST' action='./upload_excel/upload_excel_loaisp.php' enctype='multipart/form-data'>
+                                <input type='file' name='uploadFile' class='form-control' />
+                                <button type='submit' name='submit' class='btn btn-success'>Upload</button>
+	                        </form>";
+                        }
+                    ?>
                 </div>
                 <div id="timkiem">
                     <label>Tìm kiếm</label>
@@ -47,17 +52,31 @@
             <div id="danhsach">
                 <p class="so_loaisp">Tổng số loại sản phẩm: <?php echo $cout_loaisp?></p>
                 <table border="1">
+            <?php
+                if(isset($_SESSION['admin'])){
+                    echo "
                     <tr>
-                        <th rowspan="2">STT</th>
-                        <th rowspan="2">Mã Loại</th>
-                        <th rowspan="2">Tên Loại</th>
-                        <th colspan="2">Cập nhật</th>
+                        <th rowspan='2'>STT</th>
+                        <th rowspan='2'>Mã Loại</th>
+                        <th rowspan='2'>Tên Loại</th>
+                        <th colspan='2'>Cập nhật</th>
                     </tr>
                     <tr>
                         <th>Sửa</th>
                         <th>Xóa</th>
                     </tr>
+                    ";
+                }else{
+                    echo "
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã Loại</th>
+                        <th>Tên Loại</th>
 
+                    </tr>
+                    ";
+                }
+            ?>
             <?php
                 $i = 0;
                 if($result->num_rows > 0){
@@ -66,10 +85,15 @@
                         <tr>
                             <td>".($i = $i + 1)."</td>
                             <td>".$row['ma_loaisp']."</td>
-                            <td>".$row['ten_loaisp']."</td>
-                            <td><a href='./sua_loaisp.php?id=".$row['ma_loaisp']."'><img src='../img/edit.png' alt=''></a></td>
-                            <td><a href='./xoa_loaisp.php?id=".$row['ma_loaisp']."'><img src='../img/delete.png' alt=''></a></td>
-                        </tr>";
+                            <td>".$row['ten_loaisp']."</td>";
+                        if(isset($_SESSION['admin'])){
+                            echo "
+                                <td><a href='./sua_loaisp.php?id=".$row['ma_loaisp']."'><img src='../img/edit.png' alt=''></a></td>
+                                <td><a href='./xoa_loaisp.php?id=".$row['ma_loaisp']."'><img src='../img/delete.png' alt=''></a></td>";
+                        }
+                    echo "
+                        </tr>
+                    ";
                     }
                 }
             ?>

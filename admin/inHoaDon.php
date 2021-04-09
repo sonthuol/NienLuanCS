@@ -10,7 +10,7 @@
 <body onload="window.print();">
 <div id="page" class="page">
     <div class="header">
-        <div class="logo"><img src="../img/logo/logo_in.PNG"/></div>
+        <div class="logo"><img src="../img/logo/logo_in.PNG" width="180px" height="50px"/></div>
         <div class="company">TT thiết bị công nghệ T&T_IT</div>
     </div>
   <br/>

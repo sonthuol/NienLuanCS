@@ -48,7 +48,7 @@
                 }
             ?>
             <div id="danhsach">
-            <div id="soluong_cd_dd">
+            <div id="soluong_tshd_cd_dd">
                 <p class="so_th">Tổng số hoá đơn:<?php echo $cout_hd+$cout_hd_daduyet?></p>
                 <p class="so_th">Tổng số hoá đơn chưa duyệt: <?php echo $cout_hd?></p>
                 <p class="so_th">Tổng số hoá đơn đã duyệt: <?php echo $cout_hd_daduyet?></p>
@@ -58,11 +58,11 @@
                         <th rowspan="2">STT</th>
                         <th rowspan="2">Mã hoá đơn</th>
                         <th rowspan="2">Khách hàng</th>
-                        <?php
-                            if(isset($_SESSION['admin'])){
-                                echo "<th rowspan='2'>Người duyệt</th>";
-                            }
-                        ?>
+                    <?php
+                    if(isset($_SESSION['admin'])){
+                        echo "<th rowspan='2'>Người duyệt</th>";
+                    }
+                    ?>
                         <th rowspan="2">Sản phẩm</th>
                         <th rowspan="2" width='120px'>Tổng tiền</th>
                         <th rowspan="2">Ngày giờ</th>
@@ -126,12 +126,12 @@
                             echo"
                             <td>Đã duyệt</td>
                             <td><button><i class='fas fa-check-square' style='color: rgb(31, 153, 0);'></i></button></td>
-                            <td id='".$row['id_hd']."_in'><a href='inHoaDon.php?id_hd=".$row['id_hd']."'><i class='fas fa-print' style='color: #666666;'> In</i></a></td>
+                            <td id='".$row['id_hd']."_in'><a href='inHoaDon.php?id_hd=".$row['id_hd']."' target='_blank'><i class='fas fa-print' style='color: #666666;'> In</i></a></td>
                         </tr>";
                         }else{
                             echo"
                             <td id='".$row['id_hd']."_duyet'>Chưa duyệt</td>
-                            <td><button onclick='xuly_donhang_duyet(".$row['id_hd']."); soluong_dh_cd_dd();  ' ><i class='fas fa-check-square' id='".$row['id_hd']."_check'></i></button></td>
+                            <td><button onclick=' soluong_dh_cd_dd(); xuly_donhang_duyet(".$row['id_hd'].");' ><i class='fas fa-check-square' id='".$row['id_hd']."_check'></i></button></td>
                             <td id='".$row['id_hd']."_in'><a href='xoadonhang.php?id=".$row['id_hd']."'><img src='../img/delete.png' alt='' width='20px' height='20px'></a></td>
                         </tr>";
                         }
@@ -190,7 +190,7 @@
 
             xmlhttp.onreadystatechange=function() {
                 if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                    document.getElementById("soluong_cd_dd").innerHTML=xmlhttp.responseText; 
+                    document.getElementById("soluong_tshd_cd_dd").innerHTML=xmlhttp.responseText; 
                 } 
             }   
             xmlhttp.open("GET", "../ajax/dem_donhang_cd_dd.php", true);

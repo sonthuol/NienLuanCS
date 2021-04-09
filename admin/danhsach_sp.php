@@ -32,11 +32,19 @@
             <h2>Danh sách sản phẩm</h2>
             <div id="chucnang">
                 <div id="upload">
-                    <form method="POST" action="./upload_excel/upload_excel_sp.php" enctype="multipart/form-data">
-                            <input type="file" name="uploadFile" class="form-control" />
-                            <button type="submit" name="submit" class="btn btn-success">Upload</button>
-	                </form>
-                </div>
+            <?php
+                if(isset($_SESSION['admin'])){
+                    ?>
+
+                        <form method="POST" action="./upload_excel/upload_excel_sp.php" enctype="multipart/form-data">
+                                <input type="file" name="uploadFile" class="form-control" />
+                                <button type="submit" name="submit" class="btn btn-success">Upload</button>
+                        </form>
+     
+                    <?php
+                }
+            ?>
+                </div>     
                 <div id="timkiem">
                     <label>Tìm kiếm</label>
                     <input type="text" onkeyup="timkiem(this.value)">
@@ -45,24 +53,45 @@
             <div id="danhsach">
                 <p class="so_sp">Tổng số sản phẩm: <?php echo $cout_sp?></p>
                 <table border="1">
-                    <tr>
-                        <th rowspan="2">STT</th>
-                        <th rowspan="2">id_sp</th>
-                        <th rowspan="2" >Tên sản phẩm</th>
-                        <th rowspan="2">Ảnh sản phẩm</th>
-                        <th rowspan="2">Màu sắc</th>
-                        <th rowspan="2">Giá</th>
-                        <th rowspan="2">SL</th>
-                        <th rowspan="2">Khuyến mãi</th>
-                        <th rowspan="2">Giá trị khuyến mãi</th>
-                        <th colspan="2">Cập nhật</th>
-                        <th rowspan="2">+</th>
+                    <?php
+                        if(isset($_SESSION['admin'])){
+                            ?>
+                                 <tr>
+                                    <th rowspan="2">STT</th>
+                                    <th rowspan="2">id_sp</th>
+                                    <th rowspan="2" >Tên sản phẩm</th>
+                                    <th rowspan="2">Ảnh sản phẩm</th>
+                                    <th rowspan="2">Màu sắc</th>
+                                    <th rowspan="2">Giá</th>
+                                    <th rowspan="2">SL</th>
+                                    <th rowspan="2">Khuyến mãi</th>
+                                    <th rowspan="2">Giá trị khuyến mãi</th>
+                                    <th colspan="2">Cập nhật</th>
+                                    <th rowspan="2">+</th>
 
-                    </tr>
-                    <tr>
-                        <th>Sửa</th>
-                        <th>Xóa</th>
-                    </tr>
+                                </tr>
+                                <tr>
+                                    <th>Sửa</th>
+                                    <th>Xóa</th>
+                                </tr>
+                            <?php
+                        }else{
+                            ?>
+                                 <tr>
+                                    <th >STT</th>
+                                    <th >id_sp</th>
+                                    <th >Tên sản phẩm</th>
+                                    <th >Ảnh sản phẩm</th>
+                                    <th >Màu sắc</th>
+                                    <th >Giá</th>
+                                    <th >SL</th>
+                                    <th >Khuyến mãi</th>
+                                    <th >Giá trị khuyến mãi</th>
+
+                                </tr>
+                            <?php
+                        }
+                    ?>
             <?php
                 $sql = "SELECT * from sanpham";
                 $result = $con->query($sql);
@@ -79,11 +108,16 @@
                             <td>".number_format($row['gia_sp'], 0, '', ',')."</td>
                             <td>".$row['sl_sp']."</td>
                             <td>".$row['khuyenmai']."</td>
-                            <td>".number_format($row['giatrikhuyenmai'], 0, '', ',')."</td>
+                            <td>".number_format($row['giatrikhuyenmai'], 0, '', ',')."</td>";
+                        if(isset($_SESSION['admin'])){
+                        echo "
                             <td><a href='./sua_sp.php?id=".$row['id_sp']."'><img src='../img/edit.png' alt=''></a></td>
                             <td><a href='./xoa_sp.php?id=".$row['id_sp']."'><img src='../img/delete.png' alt=''></a></td>
-                            <td><a href='./chitietsp.php?idsp=".$row['id_sp']."'><img class='xemchitiet' src='../img/xemthem.jpg' alt=''></a></td>
-                        </tr>";
+                            <td><a href='./chitietsp.php?idsp=".$row['id_sp']."'><img class='xemchitiet' src='../img/xemthem.jpg' alt=''></a></td>";
+                        }
+                        echo "
+                            </tr>
+                        ";
                     }
                 }
             ?>

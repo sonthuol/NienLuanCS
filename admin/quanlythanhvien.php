@@ -21,6 +21,17 @@
             include 'menu_trai.php';
         ?>
         <div id="noidungchinh">
+            <?php
+                include '/NienLuanCS/connection/connection.php';
+                $cout_tv = 0;
+                $sql_tv = "SELECT COUNT(id) as count_tv FROM `thanhvien` WHERE 1";
+                $result_tv = $con->query($sql_tv);
+                if($result_tv->num_rows > 0){
+                    while($row_couttv = $result_tv->fetch_assoc()){
+                        $cout_tv = $row_couttv['count_tv'];
+                    } 
+                }
+            ?>
             <h2>Danh sách khách hàng</h2>
             <div id="chucnang">
                 <div id="hienthi">
@@ -31,19 +42,36 @@
                 </div>
             </div>
             <div id="danhsach">
+                <p class="so_sp">Tổng số khách hàng: <?php echo $cout_tv?></p>
                 <table border="1">
-                <tr>
-                        <th rowspan="2">STT</th>
-                        <th rowspan="2">Ảnh đại diện</th>
-                        <th rowspan="2">Họ tên</th>
-                        <th rowspan="2">Email</th>
-                        <th rowspan="2">Số điện thoại</th>
-                        <th rowspan="2">Xem chi tiết</th>
-                        <th colspan="1">Khoá tài khoản</th>
-                    </tr>
-                <tr>
-                    <th>Xóa</th>
-                </tr>
+                    <?php
+                        if(isset($_SESSION['admin'])){
+                            ?>
+                            <tr>
+                                    <th rowspan="2">STT</th>
+                                    <th rowspan="2">Ảnh đại diện</th>
+                                    <th rowspan="2">Họ tên</th>
+                                    <th rowspan="2">Email</th>
+                                    <th rowspan="2">Số điện thoại</th>
+                                    <th rowspan="2">Xem chi tiết</th>
+                                    <th colspan="1">Khoá tài khoản</th>
+                                </tr>
+                            <tr>
+                                <th>Xóa</th>
+                            </tr>
+                            <?php
+                        }else{
+                            ?>
+                            <tr>
+                                <th >STT</th>
+                                <th >Ảnh đại diện</th>
+                                <th >Họ tên</th>
+                                <th >Email</th>
+                                <th >Số điện thoại</th>
+                            </tr>
+                            <?php
+                        }
+                    ?>
             <?php
                include '/NienLuanCS/connection/connection.php';
                $sql = "SELECT * from thanhvien";
@@ -52,15 +80,18 @@
                if($result->num_rows > 0){
                    while($row = $result->fetch_assoc()){
                    echo "
-                       <tr>
-                           <td>".($i = $i + 1)."</td>
-                           <td><img src='../img/".$row['path_anh_tv']."' alt='' width=100px height=100px></td>
-                           <td>".$row['hoten_tv']."</td>
-                           <td>".$row['email']."</td>
-                           <td>".$row['sdt']."</td>
-                           <td><a href='chitiet_kh.php'>Xem chi tiết</a></td>
-                           <td><a href='xoa_tv.php?id=".$row['id']."'><img src='../img/delete.png' alt=''></a></td>
-                       </tr>";
+                        <tr>
+                            <td>".($i = $i + 1)."</td>
+                            <td><img src='../img/".$row['path_anh_tv']."' alt='' width=100px height=100px></td>
+                            <td>".$row['hoten_tv']."</td>
+                            <td>".$row['email']."</td>
+                            <td>".$row['sdt']."</td>";
+                        if(isset($_SESSION['admin'])){
+                    echo "
+                            <td><a href='chitiet_kh.php'>Xem chi tiết</a></td>
+                            <td><a href='xoa_tv.php?id=".$row['id']."'><img src='../img/delete.png' alt=''></a></td>";
+                        }
+                    echo "</tr";
                    }
                }else{
                     echo "
