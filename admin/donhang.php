@@ -30,29 +30,17 @@
             </div>
             <?php
                 include '/NienLuanCS/connection/connection.php';
-                $cout_hd_chuaduyet = 0;
-                $sql_hd= "SELECT COUNT(id_hd) as count_hd FROM hoadon where trangthai = 0";
+                $cout_hd = 0;
+                $sql_hd= "SELECT COUNT(id_hd) as count_hd FROM hoadon";
                 $result_hd = $con->query($sql_hd);
                 if($result_hd->num_rows > 0){
                     while($row_couthd = $result_hd->fetch_assoc()){
                         $cout_hd = $row_couthd['count_hd'];
                     }
                 }
-                $cout_hd_daduyet = 0;
-                $sql_hd_duyet= "SELECT COUNT(id_hd) as count_hd FROM hoadon where trangthai = 1";
-                $result_hd_duyet = $con->query($sql_hd_duyet);
-                if($result_hd_duyet->num_rows > 0){
-                    while($row_couthd_duyet = $result_hd_duyet->fetch_assoc()){
-                        $cout_hd_daduyet = $row_couthd_duyet['count_hd'];
-                    } 
-                }
             ?>
             <div id="danhsach">
-            <div id="soluong_tshd_cd_dd">
-                <p class="so_th">Tổng số hoá đơn:<?php echo $cout_hd+$cout_hd_daduyet?></p>
-                <p class="so_th">Tổng số hoá đơn chưa duyệt: <?php echo $cout_hd?></p>
-                <p class="so_th">Tổng số hoá đơn đã duyệt: <?php echo $cout_hd_daduyet?></p>
-            </div>
+                <p class="so_th">Tổng số hoá đơn:<?php echo $cout_hd?></p>
                 <table border="1">
                 <tr>
                         <th rowspan="2">STT</th>
@@ -131,7 +119,7 @@
                         }else{
                             echo"
                             <td id='".$row['id_hd']."_duyet'>Chưa duyệt</td>
-                            <td><button onclick=' soluong_dh_cd_dd(); xuly_donhang_duyet(".$row['id_hd'].");' ><i class='fas fa-check-square' id='".$row['id_hd']."_check'></i></button></td>
+                            <td><button onclick='xuly_donhang_duyet(".$row['id_hd'].");'><i class='fas fa-check-square' id='".$row['id_hd']."_check'></i></button></td>
                             <td id='".$row['id_hd']."_in'><a href='xoadonhang.php?id=".$row['id_hd']."'><img src='../img/delete.png' alt='' width='20px' height='20px'></a></td>
                         </tr>";
                         }
@@ -179,21 +167,6 @@
                 } 
             }   
             xmlhttp.open("GET", "../ajax/xuly_donhang.php?id_hd="+id_hoadon, true);
-            xmlhttp.send();
-        }
-        function soluong_dh_cd_dd(){
-            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp=new XMLHttpRequest();
-            } else { // code for IE6, IE5
-                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            xmlhttp.onreadystatechange=function() {
-                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                    document.getElementById("soluong_tshd_cd_dd").innerHTML=xmlhttp.responseText; 
-                } 
-            }   
-            xmlhttp.open("GET", "../ajax/dem_donhang_cd_dd.php", true);
             xmlhttp.send();
         }
     </script>

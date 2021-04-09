@@ -90,6 +90,51 @@
                             <td><input type="text" name="sl" placeholder="Nhập số lượng" value="<?php echo $row['sl_sp']; ?>"></td>
                         </tr>
                         <tr>
+                            <td>Màu sắc:</td>
+                            <td><input type="text" name="mausac" placeholder="" value="<?php echo $row['mausac']; ?>"></td>
+                        </tr>
+                        <tr>
+                            <td>Số sao:</td>
+                            <td>
+                                <select name="sosao" id="sosao">
+                                    <option value="<?php echo $row['sosao']; ?>"><?php echo $row['sosao']; ?></option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Số đánh giá:</td>
+                            <td><input type="text" name="danhgia" placeholder="" value="<?php echo $row['danhgia']; ?>"></td>
+                        </tr>
+                        <tr>
+                            <td>Khuyến mãi:</td>
+                            <td>
+                                <select name="khuyenmai" id="khuyenmai">
+                                    <option value="<?php echo $row['khuyenmai']; ?>"><?php echo $row['khuyenmai']; ?></option>
+                                    <option value="Không">Không</option>
+                                    <option value="Trả góp">Trả góp</option>
+                                    <option value="Giảm giá">Giảm giá</option>
+                                    <option value="Mới ra mắt">Mới ra măt</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Giá trị khuyến mãi</td>
+                            <td><input type="text" name="giatrikhuyenmai" placeholder="" value="<?php echo $row['giatrikhuyenmai']; ?>"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày bắt đầu KM:</td>
+                            <td><input type="date" name="ngaybatdaukhuyenmai" value="<?php echo $row['ngaybatdau_km']; ?>"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày kết thúc KM:</td>
+                            <td><input type="date" name="ngayketthuckhuyenmai" value="ngayketthuc_km"></td>
+                        </tr>
+                        <tr>
                             <td></td>
                             <td>
                                 <input type="submit" value="Sửa">
@@ -103,34 +148,47 @@
             <div id="danhsach">
             <h2>Danh sách loại sản phẩm</h2>
                 <table border="1">
-                    <tr>
-                        <th rowspan="2">STT</th>
-                        <th rowspan="2">Tên sản phẩm</th>
-                        <th rowspan="2">Ảnh sản phẩm</th>
-                        <th rowspan="2">Giá</th>
-                        <th rowspan="2">Số Lượng</th>
-                        <th colspan="2">Cập nhật</th>
-                    </tr>
-                    <tr>
-                        <th>Sửa</th>
-                        <th>Xóa</th>
-                    </tr>
+                <tr>
+                    <th rowspan="2">STT</th>
+                    <th rowspan="2">id_sp</th>
+                    <th rowspan="2" >Tên sản phẩm</th>
+                    <th rowspan="2">Ảnh sản phẩm</th>
+                    <th rowspan="2">Màu sắc</th>
+                    <th rowspan="2">Giá</th>
+                    <th rowspan="2">SL</th>
+                    <th rowspan="2">Khuyến mãi</th>
+                    <th rowspan="2">Giá trị khuyến mãi</th>
+                    <th colspan="2">Cập nhật</th>
+
+                </tr>
+                <tr>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
+                </tr>
             <?php
                 $sql = "SELECT * from sanpham where id_sp = '".$idsp."'";
                 $result = $con->query($sql);
                 $i = 0;
                 if($result->num_rows > 0){
                     while($row = $result->fetch_assoc()){
-                    echo "
+                        echo "
                         <tr>
                             <td>".($i = $i + 1)."</td>
+                            <td>".$row['id_sp']."</td>
                             <td>".$row['ten_sp']."</td>
-                            <td><img src='../img/".$row['img_sp']."' alt='' width=50px height=50px></td>
-                            <td>".number_format($row['gia_sp'], 0, '', ',')." Đ</td>
+                            <td><img src='../img/".$row['img_sp']."' alt='' width=100px height=100px></td>
+                            <td>".$row['mausac']."</td>
+                            <td>".number_format($row['gia_sp'], 0, '', ',')."</td>
                             <td>".$row['sl_sp']."</td>
-                            <td><a href='sua_sp.php?id=".$row['id_sp']."'><img src='../img/edit.png' alt=''></a></td>
-                            <td><a href='xoa_sp.php?id=".$row['id_sp']."'><img src='../img/delete.png' alt=''></a></td>
-                        </tr>";
+                            <td>".$row['khuyenmai']."</td>
+                            <td>".number_format($row['giatrikhuyenmai'], 0, '', ',')."</td>";
+
+                        echo "
+                            <td><a href='./sua_sp.php?id=".$row['id_sp']."'><img src='../img/edit.png' alt=''></a></td>
+                            <td><a href='./xoa_sp.php?id=".$row['id_sp']."'><img src='../img/delete.png' alt=''></a></td>";
+                        echo "
+                            </tr>
+                        ";
                     }
                 }
             ?>

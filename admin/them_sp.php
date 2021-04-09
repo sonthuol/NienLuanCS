@@ -26,7 +26,7 @@
                         <tr>
                             <td>Tên loại sản phẩm: </td>
                             <td>
-                                <select name="maloaisp" onclick="thuonghieu(this.value)">
+                                <select name="maloaisp" onchange="thuonghieu(this.value);">
                                     <?php
                                         include '/NienLuanCS/connection/connection.php';
                                         $sql = "SELECT * from loaisp";
@@ -127,6 +127,9 @@
                             <td>Ngày kết thúc KM:</td>
                             <td><input type="date" name="ngayketthuckhuyenmai"></td>
                         </tr>
+                        <div id="showthongtinkithuat">
+
+                        </div>
                         <tr>
                             <td></td>
                             <td>
@@ -141,34 +144,47 @@
             <div id="danhsach">
             <h2>Danh sách loại sản phẩm</h2>
                 <table border="1">
-                    <tr>
-                        <th rowspan="2">STT</th>
-                        <th rowspan="2">Tên sản phẩm</th>
-                        <th rowspan="2">Ảnh sản phẩm</th>
-                        <th rowspan="2">Giá</th>
-                        <th rowspan="2">Số Lượng</th>
-                        <th colspan="2">Cập nhật</th>
-                    </tr>
-                    <tr>
-                        <th>Sửa</th>
-                        <th>Xóa</th>
-                    </tr>
+                <tr>
+                    <th rowspan="2">STT</th>
+                    <th rowspan="2">id_sp</th>
+                    <th rowspan="2" >Tên sản phẩm</th>
+                    <th rowspan="2">Ảnh sản phẩm</th>
+                    <th rowspan="2">Màu sắc</th>
+                    <th rowspan="2">Giá</th>
+                    <th rowspan="2">SL</th>
+                    <th rowspan="2">Khuyến mãi</th>
+                    <th rowspan="2">Giá trị khuyến mãi</th>
+                    <th colspan="2">Cập nhật</th>
+
+                </tr>
+                <tr>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
+                </tr>
             <?php
                 $sql = "SELECT * FROM sanpham  ORDER BY id_sp DESC  LIMIT 1";
                 $result = $con->query($sql);
                 $i = 0;
                 if($result->num_rows > 0){
                     while($row = $result->fetch_assoc()){
-                    echo "
+                        echo "
                         <tr>
                             <td>".($i = $i + 1)."</td>
+                            <td>".$row['id_sp']."</td>
                             <td>".$row['ten_sp']."</td>
                             <td><img src='../img/".$row['img_sp']."' alt='' width=100px height=100px></td>
-                            <td>".number_format($row['gia_sp'], 0, '', ',')." Đ</td>
+                            <td>".$row['mausac']."</td>
+                            <td>".number_format($row['gia_sp'], 0, '', ',')."</td>
                             <td>".$row['sl_sp']."</td>
-                            <td><a href='sua_sp.php?id=".$row['id_sp']."'><img src='../img/edit.png' alt=''></a></td>
-                            <td><a href='xoa_sp.php?id=".$row['id_sp']."'><img src='../img/delete.png' alt=''></a></td>
-                        </tr>";
+                            <td>".$row['khuyenmai']."</td>
+                            <td>".number_format($row['giatrikhuyenmai'], 0, '', ',')."</td>";
+
+                        echo "
+                            <td><a href='./sua_sp.php?id=".$row['id_sp']."'><img src='../img/edit.png' alt=''></a></td>
+                            <td><a href='./xoa_sp.php?id=".$row['id_sp']."'><img src='../img/delete.png' alt=''></a></td>";
+                        echo "
+                            </tr>
+                        ";
                     }
                 }
             ?>
@@ -223,13 +239,6 @@
             }   
             xmlhttp.open("GET", "../ajax/fomatGia.php?gia=" + str, true);
             xmlhttp.send();
-        }
-        function showthongtinkithuat(str){
-            if(window.XMLHttpRequest){
-                xmlhttp = new XMLHttpRequest();
-            }else{
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
         }
     </script>
 </body>

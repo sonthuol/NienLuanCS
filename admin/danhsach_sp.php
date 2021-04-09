@@ -67,7 +67,6 @@
                                     <th rowspan="2">Khuyến mãi</th>
                                     <th rowspan="2">Giá trị khuyến mãi</th>
                                     <th colspan="2">Cập nhật</th>
-                                    <th rowspan="2">+</th>
 
                                 </tr>
                                 <tr>
@@ -87,7 +86,6 @@
                                     <th >SL</th>
                                     <th >Khuyến mãi</th>
                                     <th >Giá trị khuyến mãi</th>
-
                                 </tr>
                             <?php
                         }
@@ -112,8 +110,7 @@
                         if(isset($_SESSION['admin'])){
                         echo "
                             <td><a href='./sua_sp.php?id=".$row['id_sp']."'><img src='../img/edit.png' alt=''></a></td>
-                            <td><a href='./xoa_sp.php?id=".$row['id_sp']."'><img src='../img/delete.png' alt=''></a></td>
-                            <td><a href='./chitietsp.php?idsp=".$row['id_sp']."'><img class='xemchitiet' src='../img/xemthem.jpg' alt=''></a></td>";
+                            <td><a href='./xoa_sp.php?id=".$row['id_sp']."'><img src='../img/delete.png' alt=''></a></td>";
                         }
                         echo "
                             </tr>
