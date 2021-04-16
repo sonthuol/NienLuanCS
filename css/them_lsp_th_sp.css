@@ -67,3 +67,19 @@
     float: left;
     margin-left: 20px;
 }
+
+#dienthoai{
+    display: none;
+}
+
+#maytinhbang{
+    display: none;
+}
+
+#donghothongminh{
+    display: none;
+}
+
+#laptop{
+    display: contents;
+}

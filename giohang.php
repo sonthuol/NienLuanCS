@@ -102,16 +102,54 @@
                             <span>Họ Tên:</span><br>
                             <input type='text' name='name_cus' value='".$row_kh['hoten_tv']."'><br>
                             <span>Số ĐT:</span><br>
-                            <input type='text' name='phone' value='".$row_kh['sdt']."'><br>
-                            <span>Địa chỉ giao:</span><br>
-                            <textarea name='diachi' id='' cols='25' rows='10'>".$row_kh['diachi']."</textarea>
-                            <span>Ghi chú:</span><br>
+                            <input type='text' name='phone' value='".$row_kh['sdt']."'><br>";
+                    ?>
+                            <h5 class="diachigiao">Địa chỉ giao hàng</h5>
+                            <label>Tỉnh/TP</label>
+                            <select name="tinh_tp" id="" onchange="show_quanhuyen(this.value);">
+                                <?php
+                                    $sql_tinhtp = "SELECT * FROM `province`";
+                                    $result_tinhtp = $con->query($sql_tinhtp);
+                                    if($result_tinhtp->num_rows > 0){
+                                        while($row_tinhtp = $result_tinhtp->fetch_assoc()){
+                                            ?><option value="<?php echo $row_tinhtp['id'] ?>"><?php echo $row_tinhtp['_name'] ?></option><?php          
+                                        }
+                                    }
+                                ?>
+                            </select>
+                            <label>Quận/Huyện</label>
+                            <select name="quan_huyen" id="quan_huyen" onchange="show_xaphuong(this.value);">
+                                <?php
+                                    $sql_quanhuyen = "SELECT * FROM `district`";
+                                    $result_quanhuyen = $con->query($sql_quanhuyen);
+                                    if($result_quanhuyen->num_rows > 0){
+                                        while($row_quanhuyen = $result_quanhuyen->fetch_assoc()){
+                                            ?><option value="<?php echo $row_quanhuyen['id'] ?>"><?php echo $row_quanhuyen['_name'] ?></option><?php          
+                                        }
+                                    }
+                                ?>
+                            </select>
+                            <label>Xã/Phường</label>
+                            <select name="xa_phuong" id="xa_phuong">
+                                <?php
+                                    $sql_xaphuong = "SELECT * FROM `ward`";
+                                    $result_xaphuong = $con->query($sql_xaphuong);
+                                    if($result_xaphuong->num_rows > 0){
+                                        while($row_xaphuong = $result_xaphuong->fetch_assoc()){
+                                            ?><option value="<?php echo $row_xaphuong['id'] ?>"><?php echo $row_xaphuong['_name'] ?></option><?php          
+                                        }
+                                    }
+                                ?>
+                            </select>
+                            <span>Số nhà - đường</span><br>
+                            <textarea name='sonha' id='' cols='25' rows='5'></textarea>
+                    <?php
+                    echo "   <span>Ghi chú:</span><br>
                             <textarea name='ghichu' id='' cols='25' rows='10'></textarea>
                             <p id='tamtinh'>Tạm tính: ".number_format($tt, 0, '', ',')." Đ</p>
                             <input type='submit' value='Thanh Toán'>
                         </div>";   
                 }
-
             }else{
                 echo "<div id='ttkh'>
                     <h3>Thông tin khách hàng</h3>
@@ -182,6 +220,34 @@
                 }
             }
             xmlhttp.open("GET", "ajax/checksp.php?tk=" + so + "/" + idsp, true);
+            xmlhttp.send();
+        }
+        function show_quanhuyen(id_tinh) {
+            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("quan_huyen").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "ajax/show_quanhuyen.php?id="+id_tinh, true);
+            xmlhttp.send();
+        }
+        function show_xaphuong(id_huyen) {
+            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("xa_phuong").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "ajax/show_xaphuong.php?id="+id_huyen, true);
             xmlhttp.send();
         }
     </script>

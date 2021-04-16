@@ -1,4 +1,5 @@
 <?php
+    include '/NienLuanCS/connection/connection.php';
     function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
@@ -9,10 +10,34 @@
     $id = $_SESSION['id'];
     $ten_kh = test_input($_POST['name_cus']);
     $sdt = test_input($_POST['phone']);
-    $diachi = test_input($_POST['diachi']);
+    $matinh = $_POST['tinh_tp'];
+    $mahuyen = $_POST['quan_huyen'];
+    $ma_xaphuong = $_POST['xa_phuong'];
+    $diachi = test_input($_POST['sonha']);
+    //Hien thị tên tinh thành của việt Nam
+    $sql_show_tentinh = "SELECT _name FROM `province` where id = ".$matinh;
+    $result_tentinh = $con->query($sql_show_tentinh);
+    if($row_tentinh = $result_tentinh->fetch_assoc()){
+        $tentinh = $row_tentinh['_name'];
+    }
+    //Hiện thị quận huyện
+    $sql_show_quanhuyen = "SELECT _name, _prefix from district where id = ".$mahuyen;
+    $result_quanhuyen = $con->query($sql_show_quanhuyen);
+    if($row_quanhuyen =  $result_quanhuyen->fetch_assoc()){
+        $ten_quanhuyen = $row_quanhuyen['_name'];
+        $prefix = $row_quanhuyen['_prefix'];
+    }
+    //Hiển thị tên xã phường
+    $sql_xaphuong = "SELECT _name, _prefix from ward where id = ".$ma_xaphuong;
+    $result_xaphuong = $con->query($sql_xaphuong);
+    if($row_xaphuong = $result_xaphuong->fetch_assoc()){
+        $tenxaphuong = $row_xaphuong['_name'];
+        $prefix_xp = $row_xaphuong['_prefix'];
+    }
+    //noi chuoi tao thanh dia chi cu the
+    $diachi = $diachi .", " . $prefix_xp . " " . $tenxaphuong . ", " . $prefix . " " . $ten_quanhuyen .", " . $tentinh;
     $ghichu = test_input($_POST['ghichu']);
     //them thong tin khach hang trong bang khachhang
-    include '/NienLuanCS/connection/connection.php';
     $sql = "UPDATE thanhvien set hoten_tv = '".$ten_kh."', sdt = '".$sdt."', diachi = '".$diachi."' where id = '".$id."'";
     $con->query($sql);
     //insert vao hoa don

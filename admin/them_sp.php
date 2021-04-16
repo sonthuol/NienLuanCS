@@ -14,7 +14,7 @@
         session_start();
         include 'tieude.php';
     ?>
-    <div id="content">
+    <div id="content">x
         <?php
             include 'menu_trai.php';
         ?>
@@ -26,7 +26,7 @@
                         <tr>
                             <td>Tên loại sản phẩm: </td>
                             <td>
-                                <select name="maloaisp" onchange="thuonghieu(this.value);">
+                                <select name="maloaisp" onchange="thuonghieu(this.value); showTSKT(this.value);">
                                     <?php
                                         include '/NienLuanCS/connection/connection.php';
                                         $sql = "SELECT * from loaisp";
@@ -127,9 +127,166 @@
                             <td>Ngày kết thúc KM:</td>
                             <td><input type="date" name="ngayketthuckhuyenmai"></td>
                         </tr>
-                        <div id="showthongtinkithuat">
-
-                        </div>
+                        <tbody id="dienthoai">
+                            <tr>
+                                <td>Màn hình:</td>
+                                <td><input type="text" name="DT_manhinh" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Hệ điều hành:</td>
+                                <td><input type="text" name="DT_hedieuhanh" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Camera sau:</td>
+                                <td><input type="text" name="DT_camerasau" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Camera trước:</td>
+                                <td><input type="text" name="DT_cameratruoc" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>CPU:</td>
+                                <td><input type="text" name="DT_cpu" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>RAM:</td>
+                                <td><input type="text" name="DT_ram" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Bộ nhớ trong:</td>
+                                <td><input type="text" name="DT_bonhotrong" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Sim:</td>
+                                <td><input type="text" name="DT_sim" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Dung lượng pin:</td>
+                                <td><input type="text" name="DT_dungluongpin" placeholder=""></td>
+                            </tr>
+                        </tbody>
+                        <tbody id="donghothongminh">
+                            <tr>
+                                <td>Công nghệ màn hình: </td>
+                                <td><input type="text" name="DHTM_congnghemanhinh"></td>
+                            </tr>
+                            <tr>
+                                <td>Kích thước màn hình: </td>
+                                <td><input type="text" name="DHTM_kichthuocmanhinh"></td>
+                            </tr>
+                            <tr>
+                                <td>Thời gian sử dung pin: </td>
+                                <td><input type="text" name="DHTM_thoigiansudungpin"></td>
+                            </tr>
+                            <tr>
+                                <td>Hệ điều hành:</td>
+                                <td><input type="text" name="DHTM_hedieuhanh"></td>
+                            </tr>
+                            <tr>
+                                <td>Kết nối với HĐH:</td>
+                                <td><input type="text" name="DHTM_ketnoivoihedieuhanh"></td>
+                            </tr>
+                            <tr>
+                                <td>Chất liệu mặt:</td>
+                                <td><input type="text" name="DHTM_chatlieumat"></td>
+                            </tr>
+                            <tr>
+                                <td>Đường kính mặt:</td>
+                                <td><input type="text" name="DHTM_duongkinhmat"></td>
+                            </tr>
+                            <tr>
+                                <td>Kết nối:</td>
+                                <td><input type="text" name="DHTM_ketnoi"></td>
+                            </tr>
+                            <tr>
+                                <td>Ngôn ngữ: </td>
+                                <td><input type="text" name="DHTM_ngonngu"></td>
+                            </tr>
+                            <tr>
+                                <td>Theo dõi sức khỏe: </td>
+                                <td><input type="text" name="DHTM_theodoisuckhoe"></td>
+                            </tr>
+                        </tbody>
+                        <tbody id="laptop">
+                            <tr>
+                                <td>CPU: </td>
+                                <td><input type="text" name="LT_cpu" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>RAM: </td>
+                                <td><input type="text" name="LT_ram" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Ổ cứng: </td>
+                                <td><input type="text" name="LT_ocung" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Màn hình:</td>
+                                <td><input type="text" name="LT_manhinh" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Card màn hình:</td>
+                                <td><input type="text" name="LT_cardmanhinh" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Cổng kết nối:</td>
+                                <td><input type="text" name="LT_congketnoi" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Hệ điều hành:</td>
+                                <td><input type="text" name="LT_hedieuhanh" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Thiết kế:</td>
+                                <td><input type="text" name="LT_thietke" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Kích thước: </td>
+                                <td><input type="text" name="LT_kichthuoc" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Thời điểm ra mắt: </td>
+                                <td><input type="text" name="LT_thoidiemramat" placeholder=""></td>
+                            </tr>
+                        </tbody>
+                        <tbody id="maytinhbang">
+                            <tr>
+                                <td>Màn hình:</td>
+                                <td><input type="text" name="MTB_manhinh" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Hệ điều hành: </td>
+                                <td><input type="text" name="MTB_hedieuhanh" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>CPU: </td>
+                                <td><input type="text" name="MTB_cpu" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>RAM:</td>
+                                <td><input type="text" name="MTB_ram" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Bộ nhớ trong:</td>
+                                <td><input type="text" name="MTB_bonhotrong" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Camera sau:</td>
+                                <td><input type="text" name="MTB_camerasau" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Camera trước:</td>
+                                <td><input type="text" name="MTB_cameratruoc" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Kết nối mạng:</td>
+                                <td><input type="text" name="MTB_ketnoimang" placeholder=""></td>
+                            </tr>
+                            <tr>
+                                <td>Hộ trợ sim: </td>
+                                <td><input type="text" name="MTB_hotrosim" placeholder=""></td>
+                            </tr>
+                        </tbody>
                         <tr>
                             <td></td>
                             <td>
@@ -239,6 +396,37 @@
             }   
             xmlhttp.open("GET", "../ajax/fomatGia.php?gia=" + str, true);
             xmlhttp.send();
+        }
+
+        function showTSKT(str){
+            var laptop = document.getElementById('laptop');
+            var dienthoai = document.getElementById('dienthoai');
+            var maytinhbang = document.getElementById('maytinhbang');
+            var donghothongminh =  document.getElementById('donghothongminh');
+            if(str == 'LT'){
+                laptop.style.display = 'contents';
+                dienthoai.style.display = 'none';
+                maytinhbang.style.display = 'none';
+                donghothongminh.style.display = 'none';
+            }
+            if(str == 'ĐT'){
+                laptop.style.display = 'none';
+                dienthoai.style.display = 'contents';
+                maytinhbang.style.display = 'none';
+                donghothongminh.style.display = 'none';
+            }
+            if(str == 'MTB'){
+                laptop.style.display = 'none';
+                dienthoai.style.display = 'none';
+                maytinhbang.style.display = 'contents';
+                donghothongminh.style.display = 'none';
+            }
+            if(str == 'ĐHTM'){
+                laptop.style.display = 'none';
+                dienthoai.style.display = 'none';
+                maytinhbang.style.display = 'none';
+                donghothongminh.style.display = 'contents';
+            }
         }
     </script>
 </body>

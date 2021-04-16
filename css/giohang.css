@@ -123,6 +123,12 @@
     padding-top: 10px;
 }
 
+#bang #ttkh h5 {
+    color: rgb(0, 0, 0);
+    padding-top: 10px;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
 #bang #ttkh span {
     float: left;
     margin-left: 10%;
@@ -130,6 +136,21 @@
     padding-bottom: 5px;
     font-weight: 600;
 }
+
+#bang #ttkh label{
+    float: left;
+    font-size: 12px;
+    font-weight: 500;
+    width: 100px;
+    margin-bottom: 6px;
+}
+
+#bang #ttkh select{
+    display: block;
+    width: 200px;
+    margin-bottom: 6px;
+}
+
 
 #bang #ttkh input[type="text"] {
     border-radius: 10px;
