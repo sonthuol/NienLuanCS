@@ -315,10 +315,20 @@
                 </form>
             </div>
         </div>
+        <?php
+            //Tính tổng số đã bình luận trong 1 sản phẩm
+            $sql_tongsodanhgia = "SELECT COUNT(id_bl) as tongbl FROM danhgiasp WHERE id_sp = $idsp";
+            $result_tongsodanhgia = $con->query($sql_tongsodanhgia);
+            $row_tongsodanhgia = $result_tongsodanhgia->fetch_assoc();
+            //Tính trung bình số sao đã bình luận trong một sản phẩm
+            $sql_trungbinhsosao = "SELECT  round(AVG(sosao),1) as trungbinhsosao FROM danhgiasp WHERE id_sp = $idsp";
+            $result_trungbinhsosao = $con->query($sql_trungbinhsosao);
+            $row_trungbinhsosao = $result_trungbinhsosao->fetch_assoc();
+        ?>
         <div class="xemdanhgiasanpham">
             <div class="sodanhgia_timdanhgia">
                 <div class="sodanhgia">
-                    <h3 class="sodanhgia">1048 đánh giá cho sản phẩm</h3>
+                    <h3 class="sodanhgia"><?php echo $row_tongsodanhgia['tongbl'] ?> đánh giá cho sản phẩm</h3>
                 </div>
                 <div class="timdanhgia">
                     <i class="fa fa-search"></i>
@@ -327,65 +337,35 @@
             </div>
             <div class="tonghopdanhgia">
                 <div class="phantramsao">
-                    <p>6.5<i class="fas fa-star"></i></p>
+                    <p><?php echo $row_trungbinhsosao['trungbinhsosao'] ?><i class="fas fa-star"></i></p>
                 </div>
                 <div class="chitietsao">
-                    <div class="sosao_thongke_sodanhgia">
-                        <div class="sosao">
-                            <p>5<i class="fas fa-star"></i></p>
-                        </div>
-                        <div class="thongke">
-                        </div>
-                        <div class="sodanhgia">
-                            <a href="">255 đánh giá</a>
-                        </div>
-                    </div>
-                    <div class="sosao_thongke_sodanhgia">
-                        <div class="sosao">
-                            <p>4<i class="fas fa-star"></i></p>
-                        </div>
-                        <div class="thongke">
-                        </div>
-                        <div class="sodanhgia">
-                            <a href="">255 đánh giá</a>
-                        </div>
-                    </div>
-                    <div class="sosao_thongke_sodanhgia">
-                        <div class="sosao">
-                            <p>3<i class="fas fa-star"></i></p>
-                        </div>
-                        <div class="thongke">
-                        </div>
-                        <div class="sodanhgia">
-                            <a href="">255 đánh giá</a>
-                        </div>
-                    </div>
-                    <div class="sosao_thongke_sodanhgia">
-                        <div class="sosao">
-                            <p>2<i class="fas fa-star"></i></p>
-                        </div>
-                        <div class="thongke">
-                        </div>
-                        <div class="sodanhgia">
-                            <a href="">255 đánh giá</a>
-                        </div>
-                    </div>
-                    <div class="sosao_thongke_sodanhgia">
-                        <div class="sosao">
-                            <p>1<i class="fas fa-star"></i></p>
-                        </div>
-                        <div class="thongke">
-                        </div>
-                        <div class="sodanhgia">
-                            <a href="">255 đánh giá</a>
-                        </div>
-                    </div>
+                <?php
+                     //Tính từng số sao trong từng sản phẩm
+                    $sql_tinhtungsosao = "SELECT sosao, COUNT(sosao) as solan FROM danhgiasp WHERE id_sp= $idsp  
+                                            GROUP BY sosao ORDER BY `danhgiasp`.`sosao`  DESC";
+                    $result_tinhtungsosao = $con->query($sql_tinhtungsosao);
+                    while($row_tinhtungsosao = $result_tinhtungsosao->fetch_assoc()){
+                        ?>  
+                            <div class="sosao_thongke_sodanhgia">
+                                <div class="sosao">
+                                    <p><?php echo $row_tinhtungsosao['sosao']?><i class="fas fa-star"></i></p>
+                                </div>
+                                <div class="thongke">
+                                </div>
+                                <div class="sodanhgia">
+                                    <a href=""><?php echo $row_tinhtungsosao['solan']?> đánh giá</a>
+                                </div>
+                            </div>
+                        <?php
+                    }       
+                ?>
                 </div>
                 <div class="bnt_danhgia">
                     <?php
                         if(isset($_SESSION['user'])){
                             ?>
-                                <button>Gủi đánh giá của bạn</button>
+                                <button onclick="show_danhgia()" >Gửi đánh giá của bạn</button>
                             <?php
                         }
                     ?>
@@ -394,8 +374,8 @@
             <?php
                 if(isset($_SESSION['user'])){
                     ?>
-                        <div class="khachhang_danhgia">
-                            <form action="">
+                        <div id="khachhang_danhgia">
+                            <form action="xuly_danhgiasanpham.php" method="POST" enctype="multipart/form-data">
                                 <div class="danhgiasao">
                                     <h4>Chọn đánh giá của bạn:</h4>
                                     <div class="start">
@@ -416,7 +396,7 @@
                                         <textarea name="noidungcmt" id="" cols="70" rows="5" placeholder="Nhập nội dụng đánh giá sản phẩm"></textarea>
                                         <div class="input_anh">
                                             <label for="files" class="btn"><i class="fas fa-camera-retro"></i>Chọn ảnh đánh giá sản phẩm</label>
-                                            <input id="files" style="visibility:hidden;" type="file">
+                                            <input id="files" style="visibility:hidden;" type="file" name="anh_cmt">
                                         </div>
                                     </div>
                                     <div class="tt_khach_comment">
@@ -436,78 +416,46 @@
                 }
             ?>
         <div id="comment_main">
-            <div class="comment_item">
-                <div class="name_buyed">
-                    <div class="name">Sơn Thươl</div>
-                    <div class="buyed"><i class="fas fa-check-circle"></i>Đã mua hàng tại T&T_IT.com</div>
-                </div>
-                <div class="start">
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                </div>
-                <div class="content_comment">
-                    <p>Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình</p>                
-                </div>
-                <div class="time_day">
-                    <?php
-                        $now = new DateTime();
-                        ?>
-                            <p><?php echo $now->format('d-m-Y H:i:s')?></p>
-                        <?php
+            <?php
+                //Lấy thông tin nội dung ảnh cmt
+                $sql_laythongtincmt = "SELECT * FROM danhgiasp WHERE id_sp = $idsp ORDER BY sosao DESC";
+                $result_laythongtincmt = $con->query($sql_laythongtincmt);
+                while($row_laythongtincmt = $result_laythongtincmt->fetch_assoc()){
                     ?>
-                </div>
-            </div>
-            <div class="comment_item">
-                <div class="name_buyed">
-                    <div class="name">Sơn Thươl</div>
-                    <div class="buyed"><i class="fas fa-check-circle"></i>Đã mua hàng tại T&T_IT.com</div>
-                </div>
-                <div class="start">
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                </div>
-                <div class="content_comment">
-                    <p>Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình</p>                
-                </div>
-                <div class="time_day">
+                        <div class="comment_item">
+                            <div class="name_buyed">
+                                <div class="name"><?php echo $row_laythongtincmt['hoten_cmt']?></div>
+                                <div class="buyed"><i class="fas fa-check-circle"></i>Đã mua hàng tại T&T_IT.com</div>
+                            </div>
+                            <div class="start">
+                                <?php
+                                    for($i = 1; $i <= $row_laythongtincmt['sosao']; $i++){
+                                        echo "<i class='fas fa-star'></i>";
+                                    }
+                                ?>
+                            </div>
+                            <div class="content_comment">
+                                <p><?php echo $row_laythongtincmt['noidungdanhgia']?></p>                
+                            </div>
+                            <?php
+                                if($row_laythongtincmt['img_cmt'] != ""){
+                                    ?>
+                                        <div class="img_cmt">
+                                            <?php
+                                                echo "<img src='./img/".$row_laythongtincmt['img_cmt']."' alt=''>";
+                                            ?>
+                                        </div>
+                                    <?php
+                                }
+                            ?>
+
+                            <div class="time_day">
+                                <p><?php echo $row_laythongtincmt['ngaydanhgia']?></p>
+                            </div>
+                        </div>
                     <?php
-                        $now = new DateTime();
-                        ?>
-                            <p><?php echo $now->format('d-m-Y H:i:s')?></p>
-                        <?php
-                    ?>
-                </div>
-            </div>
-            <div class="comment_item">
-                <div class="name_buyed">
-                    <div class="name">Sơn Thươl</div>
-                    <div class="buyed"><i class="fas fa-check-circle"></i>Đã mua hàng tại T&T_IT.com</div>
-                </div>
-                <div class="start">
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                    <i class='fas fa-star'></i>
-                </div>
-                <div class="content_comment">
-                    <p>Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình Sản phẩm sử dụng rất tốt, chất lượng, hàng đẹp, nhân viên phục vụ tận tình</p>                
-                </div>
-                <div class="time_day">
-                    <?php
-                        $now = new DateTime();
-                        ?>
-                            <p><?php echo $now->format('d-m-Y H:i:s')?></p>
-                        <?php
-                    ?>
-                </div>
-            </div>
+                }
+            ?>
         </div>
         </div>
         <?php
@@ -597,6 +545,9 @@
             }
             slides[slideIndex-1].style.display = "block";
             dots[slideIndex-1].className += " active";
+        }
+        function show_danhgia(){
+            document.getElementById('khachhang_danhgia').style.display = 'block';
         }
     </script>
 </body>

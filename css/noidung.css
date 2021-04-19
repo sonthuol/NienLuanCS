@@ -188,5 +188,28 @@
     float: right;
 }
 
+#phantrang{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
 
+#phantrang .phantrang_item{
+    padding: 5px 10px;
+    border: 1px solid black;
+    margin-left: 5px;
+    font-weight: bold;
+    color: black;
+}
+
+#phantrang .phantrang_item:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+#phantrang .tranghientai{
+    background: black;
+    color: white;
+}
 /*Kết thúc nội dung*/

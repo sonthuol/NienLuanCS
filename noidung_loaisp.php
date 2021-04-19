@@ -13,6 +13,7 @@
         $sql = "SELECT * from loaisp where ma_loaisp = '".$ma_loaiSP."'";
         $con->query($sql);
         $row = $con->query($sql)->fetch_assoc();
+        $tenloaisp = $row['ten_loaisp']
 ?>
 
 <head>
@@ -47,18 +48,24 @@
     ?>
     <div id="noidung">
     <?php
+        $sql_tongso_sp = "SELECT * from sanpham where ma_loaisp = '".$ma_loaiSP."' group by ten_sp";
+        $result_tong = $con->query($sql_tongso_sp);
+        $tongso_sp = $result_tong->num_rows;
+        $tranghientai = !empty($_GET['page']) ? $_GET['page'] : 1;
+        $ofsset = ($tranghientai - 1) * 10;
         $loaisp = "SELECT * from sanpham sp, loaisp lsp 
                     where sp.ma_loaisp = '".$ma_loaiSP."' and sp.ma_loaisp = lsp.ma_loaisp and sl_sp > 0 
-                    GROUP by sp.ten_sp
-                    order by sp.id_sp;
+                    group by sp.ten_sp
+                    order by sp.id_sp
+                    limit 10 offset ".$ofsset."
         ";
+        $tongsotrang = ceil($tongso_sp/10);
         $result_lsp = $con->query($loaisp);
-        $row = $result_lsp->fetch_assoc();
         if($result_lsp->num_rows > 0){
             echo "<div id='dienthoai'>
                         <div class='tieude'>
-                            <h2><i class='fas fa-angle-double-right'></i>".$row['ten_loaisp']."</h2>
-                            <a href='noidung_loaisp.php?lsp=".$row['ma_loaisp']."'>Xem tất cả <i class='fas fa-angle-double-right'></i></a>
+                            <h2><i class='fas fa-angle-double-right'></i>".$tenloaisp."</h2>
+                            <a href='noidung_loaisp.php?lsp=".$ma_loaiSP."'>Xem tất cả <i class='fas fa-angle-double-right'></i></a>
                         </div>
                         <div class='danhsachsanpham'>";
             while($row1 = $result_lsp->fetch_assoc()){
@@ -98,12 +105,56 @@
                         </div>
                     ";
                 }
-            echo "  </div>
+            echo "  </div>";
+                ?>
+                    <div id="phantrang">
+                        <?php
+                            if($tranghientai > 2){
+                                $trangdau = 1;
+                                ?>
+                                    <a class="phantrang_item" href="noidung_loaisp.php?lsp=<?=$ma_loaiSP?>&page=<?=$trangdau?>">Đầu trang</a>
+                                <?php
+                            }
+                            if($tranghientai > 1){
+                                $trangtruoc = $tranghientai - 1;
+                                ?>
+                                    <a class="phantrang_item" href="noidung_loaisp.php?lsp=<?=$ma_loaiSP?>&page=<?=$trangtruoc?>"><<</a>
+                                <?php
+                            }
+                            for($i = 1; $i <= $tongsotrang; $i++){
+                                if($i != $tranghientai){
+                                    if($i > $tranghientai - 2 && $i < $tranghientai + 2){
+                                        ?>
+                                            <a class="phantrang_item" href="noidung_loaisp.php?lsp=<?=$ma_loaiSP?>&page=<?=$i?>"><?=$i?></a>
+                                        <?php
+                                    }
+                                }else{
+                                    ?>
+                                    <a class="phantrang_item tranghientai" href="noidung_loaisp.php?lsp=<?=$ma_loaiSP?>&page=<?=$i?>"><?=$i?></a>
+                                    <?php
+                                }
+                            }
+                            if($tranghientai < $tongsotrang - 1){
+                                $trangtieptheo = $tranghientai+1;
+                                ?>
+                                    <a class="phantrang_item" href="noidung_loaisp.php?lsp=<?=$ma_loaiSP?>&page=<?=$trangtieptheo?>">>></a>
+                                <?php
+                            }
+                            if($tranghientai < $tongsotrang - 2){
+                                $trangcuoi = $tongsotrang;
+                                ?>
+                                    <a class="phantrang_item" href="noidung_loaisp.php?lsp=<?=$ma_loaiSP?>&page=<?=$trangcuoi?>">Cuối trang</a>
+                                <?php
+                            }
+                        ?>
+                    </div>
+                <?php
+            echo"
             </div>
             ";
         }else{
             echo "<h1>Hệ Thống Chưa Cập Nhật</h1>";
-        }
+        }   
     ?>
     </div>
 <?php
