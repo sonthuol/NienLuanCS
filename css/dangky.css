@@ -35,6 +35,13 @@ body {
     margin: 5px;
 }
 
+.dangky .error{
+    margin: 5px 10px;
+    display: flex;
+    font-size: 15px;
+    color: red;
+}
+
 .dangky input[type="text"],
 input[type="password"] {
     border-radius: 40px;

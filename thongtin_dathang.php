@@ -105,6 +105,15 @@
         include 'footer.php';
     ?>
     <script src="js/timkiemsp.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+    <script>
+    Swal.fire(
+      'Thanh toán thành công',
+      '',
+      'success'
+    )
+    </script>
 </body>
     
 </html>

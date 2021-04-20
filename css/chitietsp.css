@@ -408,3 +408,20 @@ input[type='submit'] {
     height: 125px;
     margin-left: 20px;
 }
+
+#mau_dienthoai{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+#mau_dienthoai .mau{
+    width: 50px;
+    margin: 10px;
+}
+
+#mau_dienthoai .mau p{
+    height: 3px;
+}

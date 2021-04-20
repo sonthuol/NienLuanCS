@@ -179,8 +179,11 @@
     <?php
         include 'footer.php';
     ?>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
     <script src="js/button_soluong.js"></script>
     <script src="js/kt_sl_sp.js"></script>
+    
     <script>
         function soluonggiohang(idsp) {
             var so = document.getElementById(idsp).value;

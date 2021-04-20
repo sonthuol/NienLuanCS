@@ -9,6 +9,8 @@
     $result = $con->query($sql_ds);
     $result1 = $con->query($sql_ds);
     $row = $con->query($sql)->fetch_assoc();
+    $maloaisp = $row['ma_loaisp'];
+    $tensp = $row['ten_sp'];
 ?>
 
 <!DOCTYPE html>
@@ -305,12 +307,30 @@
                     $gia_fm = number_format($row['gia_ban'], 0, '', ',');
                     echo $gia_fm?><u>đ</u>
                     </h2>
-                    <span>-5%</span> 
+                    <span>-5%</span>
                 </div>
-                <form action="xuly_giohang.php" method="POST" enctype="multipart/form-data">
+                <form action="xuly_giohang.php" method="POST" enctype="multipart/form-data" onsubmit="return ktsession();">
+                <div id="mau_dienthoai">
+                <?php
+                    if($maloaisp == 'ĐT'){
+                        $sql_select_mausac = "SELECT * from sanpham where ten_sp = '".$tensp."'";
+                        $result_select_mausac = $con->query($sql_select_mausac);
+                        if($result_select_mausac->num_rows > 1){
+                            while($row_select_mausac = $result_select_mausac->fetch_assoc()){
+                                ?>                
+                                    <div class="mau">
+                                        <input type="radio" value="<?= $row_select_mausac['id_sp']?>" name="mausac">
+                                        <p><?= $row_select_mausac['mausac']?></p>
+                                    </div>
+                                <?php
+                            }
+                        }
+                    }
+                ?>
+                </div>
                 <div class="mua_giohang">
-                    <input type="submit" onclick="ktsession()" value="Mua Ngay"></input>
-                    <input type="submit" onclick="ktsession()" value="Thêm vào giỏ hàng"></input>
+                    <input type="submit" value="Mua Ngay"></input>
+                    <input type="submit" value="Thêm vào giỏ hàng"></input>
                 </div>
                 </form>
             </div>
@@ -519,6 +539,8 @@
         include 'footer.php';
     ?>
     <script src="js/ktsesstion.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
     <script>
         var slideIndex = 1;
         showSlides(slideIndex);

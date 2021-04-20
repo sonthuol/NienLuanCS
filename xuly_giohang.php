@@ -1,19 +1,47 @@
 <?php
     session_start();
     $id = $_SESSION['id'];
-    $idsp = $_SESSION['idsp'];
+    // $idsp = $_SESSION['idsp'];
+    if(isset($_POST['mausac'])){
+        $idsp = $_POST['mausac'];
+    }else{
+        $idsp = $_SESSION['idsp'];
+    }
     include '/NienLuanCS/connection/connection.php';
     $check = "SELECT * from giohang where id = '".$id."' and  id_sp = '".$idsp."'";
     $result = $con->query($check);
+    echo "<h1></h1>";
     if($result->num_rows == 0){
+        ?> 
+            <script src="js/jquery-3.6.0.min.js"></script>
+            <script src="js/sweetalert2.all.min.js"></script>
+            <script>
+                Swal.fire({
+                    title: 'Sản phẩm đã thêm vào giỏ hàng'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = 'giohang.php';
+                    }
+                })
+            </script>
+        <?php
         $sql = "INSERT INTO `giohang`(`id_gh`, `id`, `id_sp`, `soluong`, `trangthai`) VALUES (null,'$id','$idsp',1, 0)";
         $con->query($sql);
         $con->close();  
-        $message = "Sản phẩm đã thêm vào giỏ hàng";
-        echo "<script type='text/javascript'>alert('$message');</script>";
     }else{
-        $message = "Sản phẩm đã có trong giỏ hàng";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        ?>  
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/sweetalert2.all.min.js"></script>
+        <script>
+            Swal.fire({
+                    title: 'Sản phẩm đã có trong giỏ hàng'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = 'chitietsanpham.php?idsp=<?=$idsp?>';
+                    }
+                })
+        </script>
+        <?php
     }
-    header("Location: chitietsanpham.php?idsp=".$idsp."")
+    // header("Location: chitietsanpham.php?idsp=".$idsp."")
 ?>
