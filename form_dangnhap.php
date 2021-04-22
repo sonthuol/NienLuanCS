@@ -24,12 +24,14 @@
     include 'tieude.php';
 ?>
 <div class="dangky">
-    <form action="xyly_form_dangnhap.php" method="POST" enctype="multipart/form-data">
+    <form action="xyly_form_dangnhap.php" method="POST" enctype="multipart/form-data" onsubmit="return kiemTraFormDangNhap()">
         <h2>Đăng nhập</h2>
         <p>Tên đăng nhập:</p>
         <input type="text" name="tentaikhoan" id="tentaikhoan" placeholder="Nhập tên tài khoản">
+        <span id="error_tentaikhoan" class="error"></span>
         <p>Mật khẩu:</p>
         <input type="password" name="matkhau" id="matkhau" placeholder="Nhập mật khẩu">
+        <span id="error_matkhau" class="error"></span>
         <input type="submit" name="" value="Đăng nhập"><br>
         <div id="dangkytk">
             <span><a href="form_doimatkhau.php">Quên mật khẩu</a></span><br>
@@ -41,5 +43,6 @@
     include 'footer.php';
 ?>
 <script src="js/timkiemsp.js"></script>
+<script src="js/kiemtra_fromdangnhap.js"></script>
 </body>
 </html>

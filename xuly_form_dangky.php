@@ -12,7 +12,23 @@
     include '/NienLuanCS/connection/connection.php';
     $sql = "INSERT INTO thanhvien (hoten_tv, tentaikhoan, matkhau, email, sdt, path_anh_tv) 
         values ('$hoten','$ten', '$matkhau','$email', '$sdt' ,'$path_avata_tv')";
-    $result =   $con->query($sql);
+    if($con->query($sql)){
+        ?>  
+            <h1></h1>
+            <script src="js/jquery-3.6.0.min.js"></script>
+            <script src="js/sweetalert2.all.min.js"></script>
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Đã đăng ký thành công',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = 'form_dangnhap.php';
+                    }
+                })
+            </script>
+        <?php
+    }
     $con->close();
-    header("Location: form_dangnhap.php"); 
+    // header("Location: form_dangnhap.php"); 
 ?> 

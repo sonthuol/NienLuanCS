@@ -17,7 +17,8 @@
             <script src="js/sweetalert2.all.min.js"></script>
             <script>
                 Swal.fire({
-                    title: 'Sản phẩm đã thêm vào giỏ hàng'
+                    icon: 'success',
+                    title: 'Your work has been saved',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location = 'giohang.php';

@@ -119,7 +119,7 @@
                         }else{
                             echo"
                             <td id='".$row['id_hd']."_duyet'>Chưa duyệt</td>
-                            <td><button onclick='xuly_donhang_duyet(".$row['id_hd'].");'><i class='fas fa-check-square' id='".$row['id_hd']."_check'></i></button></td>
+                            <td><button onclick='xuly_donhang_duyet(".$row['id_hd'].");' class='btn_donhang'><i class='fas fa-check-square' id='".$row['id_hd']."_check'></i></button></td>
                             <td id='".$row['id_hd']."_in'><a href='xoadonhang.php?id=".$row['id_hd']."'><img src='../img/delete.png' alt='' width='20px' height='20px'></a></td>
                         </tr>";
                         }
@@ -130,6 +130,8 @@
             </div>
         </div>
     </div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
     <script>
         function timkiem(str) {
             if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari

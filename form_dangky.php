@@ -46,7 +46,7 @@
         <p>Ảnh đại diện:</p>
         <input type="file" name="anhdaidien" id="anhdaidien">
         <span id="error_fileanh" class="error"></span>
-        <input type="submit" value="Đăng ký"><br>
+        <input type="submit" value="Đăng ký" id="btn_dangky"><br>
         <div id="dangkytk">
             <span><a href="form_doimatkhau.php">Quên mật khẩu?</a></span><br>
             <span><a href="form_dangky.php">Chưa có tài khoản?</a></span>
