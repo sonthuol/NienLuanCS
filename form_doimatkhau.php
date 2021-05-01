@@ -23,15 +23,15 @@
 ?>
 <div class="dangky">
     <form action="xuly_doimatkhau.php" method="POST" enctype="multipart/form-data">
-        <h2>CẬP NHẬT LẠI MẬT KHẨU</h2>
+        <h2>Cập nhật lại mật khẩu</h2>
         <p>Tên đăng nhập:</p>
         <input type="text" name="tentaikhoan" id="tentaikhoan" placeholder="Nhập tên tài khoản">
         <p>Mật khẩu:</p>
         <input type="password" name="matkhau" id="matkhau" placeholder="Nhập mật khẩu">
         <p>Nhập lại mật khẩu:</p>
         <input type="password" name="nhaplai_matkhau" id="nhaplai_matkhau" placeholder="Nhập lại mật khẩu">
-        <input type="submit" name="" value="Cập nhật mật khẩu"><br>
         <div id="dangkytk">
+            <input type="submit" name="" value="Cập nhật mật khẩu"><br>
             <span><a href="form_dangky.php">Chưa có tài khoản?</a></span><br>
             <span><a href="form_dangnhap.php">Đăng nhập tài khoản</a></span>
         </div>

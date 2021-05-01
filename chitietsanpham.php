@@ -344,6 +344,10 @@
             $sql_trungbinhsosao = "SELECT  round(AVG(sosao),1) as trungbinhsosao FROM danhgiasp WHERE id_sp = $idsp";
             $result_trungbinhsosao = $con->query($sql_trungbinhsosao);
             $row_trungbinhsosao = $result_trungbinhsosao->fetch_assoc();
+            //Cập nhật lại số sao trong bình luận
+            $sql_capnhatsosao_danhgia = "UPDATE sanpham SET sosao = ". $row_trungbinhsosao['trungbinhsosao'].", danhgia = " . $row_tongsodanhgia['tongbl']
+                            ." where id_sp = ". $idsp;
+            $con->query($sql_capnhatsosao_danhgia)
         ?>
         <div class="xemdanhgiasanpham">
             <div class="sodanhgia_timdanhgia">

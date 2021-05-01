@@ -20,4 +20,5 @@
     // echo $sql_danhgiasp;
     $con->query($sql_danhgiasp);
     $con->close();
+    header('Location: chitietsanpham.php?idsp='.$_SESSION['idsp']);
 ?>

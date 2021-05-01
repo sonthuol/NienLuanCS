@@ -32,8 +32,9 @@
         <p>Mật khẩu:</p>
         <input type="password" name="matkhau" id="matkhau" placeholder="Nhập mật khẩu">
         <span id="error_matkhau" class="error"></span>
-        <input type="submit" name="" value="Đăng nhập"><br>
         <div id="dangkytk">
+        <input type="submit" name="" value="Đăng nhập"><br>
+
             <span><a href="form_doimatkhau.php">Quên mật khẩu</a></span><br>
             <span><a href="form_dangky.php">Chưa có tài khoản</a></span>
         </div>

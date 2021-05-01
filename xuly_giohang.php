@@ -8,6 +8,7 @@
         $idsp = $_SESSION['idsp'];
     }
     include '/NienLuanCS/connection/connection.php';
+    //Kiem tra san pham co trong gio hang hay chưa ?
     $check = "SELECT * from giohang where id = '".$id."' and  id_sp = '".$idsp."'";
     $result = $con->query($check);
     echo "<h1></h1>";
@@ -18,7 +19,7 @@
             <script>
                 Swal.fire({
                     icon: 'success',
-                    title: 'Your work has been saved',
+                    title: 'Sản phẩm đã được thêm thành công',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location = 'giohang.php';
@@ -35,6 +36,7 @@
         <script src="js/sweetalert2.all.min.js"></script>
         <script>
             Swal.fire({
+                    icon: 'error',
                     title: 'Sản phẩm đã có trong giỏ hàng'
                 }).then((result) => {
                     if (result.isConfirmed) {

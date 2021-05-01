@@ -50,7 +50,7 @@
                                     <td>
                                         <div class='buttons_added'>
                                             <input class='minus is-form' type='button' value='-' onclick='congtru(-1, ".$row_gh['id_sp']."); soluonggiohang(".$row_gh['id_sp'].")'>
-                                            <input type='number'  id='".$row_gh['id_sp']."' class='input-qty' min='1' max='20'    value='".$row_gh['soluong']."'>
+                                            <input type='number'  id='".$row_gh['id_sp']."' class='input-qty' min='1' max='20' value='".$row_gh['soluong']."'>
                                             <input class='plus is-form' type='button' value='+' onclick='congtru(1, ".$row_gh['id_sp']."); soluonggiohang(".$row_gh['id_sp'].")'>
                                         </div>
                                     </td>
