@@ -36,17 +36,17 @@
 
 #content #noidungchinh #danhsach table tr:first-child {
     background-color: rgb(141, 141, 141);
-    font-size: 20px;
+    font-size: 16px;
     color: rgb(54, 54, 54);
 }
 
 #content #noidungchinh #danhsach table tr:nth-child(2) {
     background-color: rgb(170, 170, 170);
-    font-size: 18px;
+    font-size: 16px;
     color: rgb(54, 54, 54);
 }
 #content #noidungchinh #danhsach table tr:nth-child(even) td{
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(236, 236, 236);
 }
 #content #noidungchinh h2 {
     margin-top: 20px;
@@ -98,6 +98,8 @@
 #content #noidungchinh table tr th,
 td {
     height: 30px;
+    border-bottom: 1px solid rgb(173, 173, 173);
+    border-left: 1px solid rgb(179, 179, 179);
 }
 
 #content #noidungchinh table tr td a img {

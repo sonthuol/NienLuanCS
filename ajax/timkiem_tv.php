@@ -8,7 +8,7 @@
     }
     $result = $con->query($sql);
 ?>
-   <table border="1">
+   <table>
     <?php
         session_start();
         if(isset($_SESSION['admin'])){

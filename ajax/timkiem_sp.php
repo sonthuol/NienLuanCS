@@ -8,7 +8,7 @@
     }
     $result = $con->query($sql);
 ?>
-<table border="1">
+<table>
 
     <?php
         session_start();
@@ -17,13 +17,13 @@
                 <tr>
                     <th rowspan="2">STT</th>
                     <th rowspan="2">id_sp</th>
-                    <th rowspan="2">Tên sản phẩm</th>
+                    <th rowspan="2"  style="width: 212px; ">Tên sản phẩm</th>
                     <th rowspan="2">Ảnh sản phẩm</th>
                     <th rowspan="2">Màu sắc</th>
                     <th rowspan="2">Giá</th>
                     <th rowspan="2">SL</th>
                     <th rowspan="2">Khuyến mãi</th>
-                    <th rowspan="2">Giá trị khuyến mãi</th>
+                    <th rowspan="2"  style="width: 100px; ">Giá trị khuyến mãi</th>
                     <th colspan="2">Cập nhật</th>
                 </tr>
                 <tr>

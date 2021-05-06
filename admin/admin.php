@@ -9,6 +9,7 @@
 </head>
 <body>
     <?php
+        include '/NienLuanCS/connection/connection.php';
         session_start();
         if(isset($_SESSION['admin'])){
             unset($_SESSION['id_nv']);
@@ -29,32 +30,53 @@
                         <div class="tren">
                             <a href=""><i class="fas fa-book"></i></a>
                             <div>
+                                <?php
+                                    //Tổng số sản phẩm
+                                    //Viết câu truy vấn
+                                    $sql_TongSoSanPham = "SELECT count(id_sp) as TongSoSanPham from sanpham";
+                                    $result_TongSoSanPham = $con->query($sql_TongSoSanPham);
+                                    $row_TongSoSanPham = $result_TongSoSanPham->fetch_assoc();
+                                ?>
                                 <p>Tổng số sản phẩm:</p>
-                                <h2>10</h2>
+                                <h2><?php echo $row_TongSoSanPham['TongSoSanPham']?></h2>
                             </div>
                         </div>
                         <div class="duoi">
-                            <a href="">Xem chi tiết</a>
-                            <a href=""> <i class="fas fa-angle-double-down"></i></a>
+                            <a href="danhsach_sp.php">Xem chi tiết</a>
+                            <a href="danhsach_sp.php"> <i class="fas fa-angle-double-down"></i></a>
                         </div>
                     </div>
                     <div class="fa hethangsp">
                         <div class="tren">
                             <a href=""><i class="fas fa-book"></i></a>
                             <div>
-                                <p>Sản phẩm hết hàng:</p>
-                                <h2>10</h2>
+                                <?php
+                                    //Tổng số sản phẩm hết hàng
+                                    //Viết câu truy vấn
+                                    $sql_TongSoSanPhamHetHang = "SELECT count(id_sp) as TongSoSanPhamHetHang from sanpham where sl_sp < 3";
+                                    $result_TongSoSanPhamHetHang = $con->query($sql_TongSoSanPhamHetHang);
+                                    $row_TongSoSanPhamHetHang = $result_TongSoSanPhamHetHang->fetch_assoc();
+                                ?>
+                                <p>Sản phẩm sắp hết hàng:</p>
+                                <h2><?php echo $row_TongSoSanPhamHetHang['TongSoSanPhamHetHang']?></h2>
                             </div>
                         </div>
                         <div class="duoi">
-                            <a href="">Xem chi tiết</a>
-                            <a href=""> <i class="fas fa-angle-double-down"></i></a>
+                            <a href="thongKeDonHangDaHet.php">Xem chi tiết</a>
+                            <a href="thongKeDonHangDaHet.php"> <i class="fas fa-angle-double-down"></i></a>
                         </div>
                     </div>
                     <div class="fa giohang">
                         <div class="tren">
                             <a href=""><i class="fas fa-book"></i></a>
                             <div>
+                                <?php
+                                    //Tổng số sản phẩm
+                                    //Viết câu truy vấn
+                                    $sql_TongSoSanPham = "SELECT count(id_sp) as TongSoSanPham from sanpham";
+                                    $result_TongSoSanPham = $con->query($sql_TongSoSanPham);
+                                    $row_TongSoSanPhamm = $result_TongSoSanPham->fetch_assoc();
+                                ?>
                                 <p>Tổng số giỏ hàng</p>
                                 <h2>10</h2>
                             </div>

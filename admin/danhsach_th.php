@@ -51,7 +51,7 @@
             ?>
             <div id="danhsach">
             <p class="so_th">Tổng số thương hiệu: <?php echo $cout_th?></p>
-                <table border="1">
+                <table>
                 <?php
                     if(isset($_SESSION['admin'])){
                         ?>

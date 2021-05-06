@@ -41,7 +41,7 @@
             ?>
             <div id="danhsach">
             <p class="so_th">Tổng số nhân viên: <?php echo $cout_nv?></p>
-                <table border="1">
+                <table>
                 <tr>
                         <th rowspan="2">STT</th>
                         <th rowspan="2">Họ và tên</th>

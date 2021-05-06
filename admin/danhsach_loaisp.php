@@ -51,7 +51,7 @@
             ?>
             <div id="danhsach">
                 <p class="so_loaisp">Tổng số loại sản phẩm: <?php echo $cout_loaisp?></p>
-                <table border="1">
+                <table>
             <?php
                 if(isset($_SESSION['admin'])){
                     echo "

@@ -43,7 +43,7 @@
             </div>
             <div id="danhsach">
                 <p class="so_sp">Tổng số khách hàng: <?php echo $cout_tv?></p>
-                <table border="1">
+                <table>
                     <?php
                         if(isset($_SESSION['admin'])){
                             ?>

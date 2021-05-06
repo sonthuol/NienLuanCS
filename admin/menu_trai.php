@@ -35,8 +35,8 @@
                         <li><a href="donhang.php">Đơn hàng chưa duyệt</a></li>
                     </ul>
                 </li>
-                <li><a href="">Thông kê hàng tồn kho</a></li>
-                <li><a href="">Tổng quát</a></li>
+                <li><a href="thongKeDonHangDaHet.php">Thông kê hàng đã hết</a></li>
+                <li><a href="admin.php">Tổng quát</a></li>
             </ul>
         </div>
     <?php

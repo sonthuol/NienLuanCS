@@ -8,7 +8,7 @@
     }
     $result = $con->query($sql);
 ?>
-   <table border="1">
+   <table >
     <tr>
         <th rowspan="2">STT</th>
         <th rowspan="2">Họ và tên</th>
