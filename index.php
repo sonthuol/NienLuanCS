@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T&T Trung tâm thiết bị điện tử</title>
     <link rel = "icon" href =  
-    "img/logo/logo.png" 
+    "img/logo/logo_in.png" 
     type = "image/x-icon"> 
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/tieude.css">

@@ -71,87 +71,60 @@
                             <a href=""><i class="fas fa-book"></i></a>
                             <div>
                                 <?php
-                                    //Tổng số sản phẩm
+                                    //Tổng số có trong giỏ hàng
                                     //Viết câu truy vấn
-                                    $sql_TongSoSanPham = "SELECT count(id_sp) as TongSoSanPham from sanpham";
-                                    $result_TongSoSanPham = $con->query($sql_TongSoSanPham);
-                                    $row_TongSoSanPhamm = $result_TongSoSanPham->fetch_assoc();
+                                    $sql_TongSoGioHang = "SELECT count(id_gh) as TongSoGioHang from giohang";
+                                    $result_TongSoGioHang = $con->query($sql_TongSoGioHang);
+                                    $row_TongSoGioHang = $result_TongSoGioHang->fetch_assoc();
                                 ?>
                                 <p>Tổng số giỏ hàng</p>
-                                <h2>10</h2>
+                                <h2><?php echo $row_TongSoGioHang['TongSoGioHang']?></h2>
                             </div>
                         </div>
                         <div class="duoi">
-                            <a href="">Xem chi tiết</a>
-                            <a href=""> <i class="fas fa-angle-double-down"></i></a>
+                            <a href="danhsach_gh.php">Xem chi tiết</a>
+                            <a href="danhsach_gh.php"> <i class="fas fa-angle-double-down"></i></a>
                         </div>
                     </div>
                     <div class="fa tongdonhang">
                         <div class="tren">
-                            <a href=""><i class="fas fa-book"></i></a>
+                            <a href="donhang.php"><i class="fas fa-book"></i></a>
                             <div>
+                                <?php
+                                    //Tổng số đơn hàng
+                                    //Viết câu truy vấn
+                                    $sql_TongSoDonHang = "SELECT count(id_hd) as TongSoDonHang from hoadon";
+                                    $result_TongSoDonHang = $con->query($sql_TongSoDonHang);
+                                    $row_TongSoDonHang = $result_TongSoDonHang->fetch_assoc();
+                                ?>
                                 <p>Tổng đơn hàng</p>
-                                <h2>10</h2>
+                                <h2><?php echo $row_TongSoDonHang['TongSoDonHang']?></h2>
                             </div>
                         </div>
                         <div class="duoi">
-                            <a href="">Xem chi tiết</a>
-                            <a href=""> <i class="fas fa-angle-double-down"></i></a>
+                            <a href="donhang.php">Xem chi tiết</a>
+                            <a href="donhang.php"> <i class="fas fa-angle-double-down"></i></a>
                         </div>
                     </div>
                     <div class="fa tongdt">
                         <div class="tren">
                             <a href=""><i class="fas fa-book"></i></a>
                             <div>
+                                <?php
+                                    //Tổng số danh thu
+                                    //Viết câu truy vấn
+                                    $sql_TongSoDoanhThu = "SELECT sum(thanhtien) as tongtien from chitiethoadon";
+                                    $result_TongSoDoanhThu = $con->query($sql_TongSoDoanhThu);
+                                    $row_TongSoDoanhThu = $result_TongSoDoanhThu->fetch_assoc();
+                                ?>
                                 <p>Tổng doanh thu</p>
-                                <h2>100.000.000 vnđ</h2>
+                                <h2><?php echo number_format($row_TongSoDoanhThu['tongtien'], 0, '', ',') . "VNĐ"?></h2>
                             </div>
                         </div>
                         <div class="duoi">
                             <a href="">Xem chi tiết</a>
                             <a href=""> <i class="fas fa-angle-double-down"></i></a>
                         </div>
-                    </div>
-                    <div class="fa dt_homnay">
-                        <div class="tren">
-                            <a href=""><i class="fas fa-book"></i></a>
-                            <div>
-                                <p>Tổng doanh thu hôm nay</p>
-                                <h2>100.000.000 vnđ</h2>
-                            </div>
-                        </div>
-                        <div class="duoi">
-                            <a href="">Xem chi tiết</a>
-                            <a href=""> <i class="fas fa-angle-double-down"></i></a>
-                        </div>
-                    </div>
-                    <div class="fa dt_thang">
-                        <div class="tren">
-                            <a href=""><i class="fas fa-book"></i></a>
-                            <div>
-                                <p>Doanh thu tháng</p>
-                                <h2>100.000.000 vnđ</h2>
-                            </div>
-                        </div>
-                        <div class="duoi">
-                            <a href="">Xem chi tiết</a>
-                            <a href=""> <i class="fas fa-angle-double-down"></i></a>
-                        </div>
-                    </div>
-                    <div class="fa dt_nam">
-                        <div class="tren">
-                            <a href=""><i class="fas fa-book"></i></a>
-                            <div>
-                                <p>Doanh thu năm</p>
-                                <h2>100.000.000 vnđ</h2>
-                            </div>
-                        </div>
-                        <div class="duoi">
-                            <a href="">Xem chi tiết</a>
-                            <a href=""> <i class="fas fa-angle-double-down"></i></a>
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
         </div>
