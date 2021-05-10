@@ -8,12 +8,10 @@
     move_uploaded_file($_FILES['logo']['tmp_name'], "../img/".$anhsp);
     $mausac = $_POST['mausac'];
     $slsp = $_POST['sl'];
-    $sosao = $_POST['sosao'];
-    $danhgia = $_POST['danhgia'];
+    $sosao = 0;
+    $danhgia = 0;
     $khuyenmai = $_POST['khuyenmai'];
     $giaitrikhuyenmai = $_POST['giatrikhuyenmai'];
-    $ngaybatdauKM = date('Y-m-d', strtotime($_POST['ngaybatdaukhuyenmai']));
-    $ngayketthucKM = date('Y-m-d', strtotime($_POST['ngayketthuckhuyenmai']));
     // $cpu = $_POST['cpu'];
     // $ram = $_POST['ram'];
     // $o_cung = $_POST['ocung'];
@@ -125,8 +123,6 @@
         '".$danhgia."',
         '".$khuyenmai."',
         '".$giaitrikhuyenmai."',
-        '".$ngaybatdauKM."',
-        '".$ngayketthucKM."',
          null, null, '1')";
     $con->query($sql);
     //Tim id lon nhat là id sau cùng để cập nhật id trong thông số kỉ thuật

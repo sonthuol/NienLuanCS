@@ -21,15 +21,15 @@
         <div id="noidungchinh">
         <h2>Thêm loại sản phẩm</h2>
             <div id="themloaisp">
-                <form action="xuly_themloaisp.php" method="POST" >
+                <form action="xuly_themloaisp.php" method="POST" enctype="multipart/form-data" onsubmit="return kiemTraFormThemLoaiSP()">
                     <table>
                         <tr>
                             <td>Mã loại SP: </td>
-                            <td><input type="text" name="ma_loai" placeholder="Mã loại sản phẩm"></td>
+                            <td><input type="text" name="ma_loai" id="ma_loai" placeholder="Mã loại sản phẩm"></td>
                         </tr>
                         <tr>
                             <td>Tên loại SP: </td>
-                            <td><input type="text" name="ten_loai" placeholder="Tên loại sản phẩm"></td>
+                            <td><input type="text" name="ten_loai" id="ten_loai" placeholder="Tên loại sản phẩm"></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -80,5 +80,34 @@
             </div>
         </div>
     </div>
+    <script>
+        var input_maloaisp = document.getElementById('ma_loai');
+        var input_tenloaisp = document.getElementById('ten_loai');
+
+
+        function kiemTraFormThemLoaiSP(){
+            var stopt_server = true;
+
+            //Kiem tra ten dang nhap
+            var ma_loai = input_maloaisp.value;
+            if(ma_loai == ''){
+                input_maloaisp.style.borderColor = 'red';
+                stopt_server = false;
+            }else{
+                input_maloaisp.style.borderColor = 'blue';
+            }
+
+            //Kiem tra mat khau
+            var ten_loai = input_tenloaisp.value;
+            if(ten_loai == ''){
+                input_tenloaisp.style.borderColor = 'red';
+                stopt_server = false;
+            }else{
+                input_tenloaisp.style.borderColor = 'blue';
+            }
+            
+            return stopt_server;
+        }
+    </script>
 </body>
 </html>

@@ -399,7 +399,7 @@
                 if(isset($_SESSION['user'])){
                     ?>
                         <div id="khachhang_danhgia">
-                            <form action="xuly_danhgiasanpham.php" method="POST" enctype="multipart/form-data">
+                            <form action="xuly_danhgiasanpham.php" method="POST" enctype="multipart/form-data" onsubmit="return  danhgiasp()">
                                 <div class="danhgiasao">
                                     <h4>Chọn đánh giá của bạn:</h4>
                                     <div class="start">
@@ -425,11 +425,11 @@
                                     </div>
                                     <div class="tt_khach_comment">
                                         <div class="hoten_sdt">
-                                            <input type="text" name="hoten_danhgia" placeholder="Họ tên">
-                                            <input type="text" name="sodienthoai_danhgia" placeholder="Số điện thoại">
+                                            <input type="text" name="hoten_danhgia" id="hoten" placeholder="Họ tên">
+                                            <input type="text" name="sodienthoai_danhgia" id="sdt" placeholder="Số điện thoại">
                                         </div>
                                         <div class="email_bnt">
-                                            <input type="text" name="email_danhgia" placeholder="Email">
+                                            <input type="text" name="email_danhgia" id="email" placeholder="Email">
                                             <input type="submit" value="Gửi đánh giá">
                                         </div>
                                     </div>
@@ -543,6 +543,7 @@
         include 'footer.php';
     ?>
     <script src="js/ktsesstion.js"></script>
+    <script src="js/kiemtradanhgiasp.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/sweetalert2.all.min.js"></script>
     <script>

@@ -21,7 +21,7 @@
         <div id="noidungchinh">
         <h2>Thêm sản phẩm</h2>
             <div id="themloaisp">
-                <form action="xuly_them_sp.php" method="POST" enctype="multipart/form-data">
+                <form action="xuly_them_sp.php" method="POST" enctype="multipart/form-data" onsubmit="return KiemtraForm_ThemSP()">
                     <table>
                         <tr>
                             <td>Tên loại sản phẩm: </td>
@@ -33,6 +33,7 @@
                                         $result = $con->query($sql);
                                         if($result->num_rows > 0){
                                             while($row = $result->fetch_assoc()){
+                                                $ma_loaisp = $row['ma_loaisp'];
                                                 echo " <option value='".$row['ma_loaisp']."'>".$row['ten_loaisp']."</option>";
                                             }
                                         }
@@ -45,7 +46,7 @@
                             <td>
                                 <select name="idth" id="showthuonghieu">
                                     <?php
-                                        $sql = "SELECT * from thuonghieu where ma_loaisp = 'LT'";
+                                        $sql = "SELECT * from thuonghieu where ma_loaisp = '".$ma_loaisp."'";
                                         $result = $con->query($sql);
                                         if($result->num_rows > 0){
                                             while($row = $result->fetch_assoc()){
@@ -58,11 +59,11 @@
                         </tr>
                         <tr>
                             <td>Tên sản phẩm: </td>
-                            <td><input type="text" name="tensp" placeholder="Tên thương hiệu"></td>
+                            <td><input type="text" name="tensp" id="tensp" placeholder="Tên thương hiệu"></td>
                         </tr>
                         <tr>
                             <td>Giá sản phẩm: </td>
-                            <td><input type="text" name="gia_sp" placeholder="Giá sản phẩm" onkeyup="giasp(this.value)"></td>
+                            <td><input type="text" name="gia_sp" id="gia_sp" placeholder="Giá sản phẩm" onkeyup="giasp(this.value)"></td>
                         </tr>
                         <tr>
                             <td>Định dạng giá: </td>
@@ -70,7 +71,7 @@
                         </tr>
                         <tr>
                             <td>Giá bán: </td>
-                            <td><input type="text" name="gia_ban" placeholder="Giá bán" onkeyup="giasp_ban(this.value)"></td>
+                            <td><input type="text" name="gia_ban" id="gia_ban" placeholder="Giá bán" onkeyup="giasp_ban(this.value)"></td>
                         </tr>
                         <tr>
                             <td>Định dạng giá bán: </td>
@@ -78,31 +79,18 @@
                         </tr>
                         <tr>
                             <td>Hình ảnh SP:</td>
-                            <td><input type="file" name="logo" placeholder="Logo"></td>
-                        </tr>
-                        <tr>
-                            <td>Số lượng:</td>
-                            <td><input type="text" name="sl" placeholder="Nhập số lượng"></td>
-                        </tr>
-                        <tr>
-                            <td>Màu sắc:</td>
-                            <td><input type="text" name="mausac" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Số sao:</td>
-                            <td>
-                                <select name="sosao" id="sosao">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
+                            <td><input type="file" name="logo" id="img_sp" placeholder="Logo">
+                                <br>
+                                <span id="error_img_sp" style="color: red;"></span>
                             </td>
                         </tr>
                         <tr>
-                            <td>Số đánh giá:</td>
-                            <td><input type="text" name="danhgia" placeholder=""></td>
+                            <td>Số lượng:</td>
+                            <td><input type="text" name="sl" id="sl_sp" placeholder="Nhập số lượng"></td>
+                        </tr>
+                        <tr>
+                            <td>Màu sắc:</td>
+                            <td><input type="text" name="mausac" id="mausac" placeholder=""></td>
                         </tr>
                         <tr>
                             <td>Khuyến mãi:</td>
@@ -117,15 +105,7 @@
                         </tr>
                         <tr>
                             <td>Giá trị khuyến mãi</td>
-                            <td><input type="text" name="giatrikhuyenmai" placeholder=""></td>
-                        </tr>
-                        <tr>
-                            <td>Ngày bắt đầu KM:</td>
-                            <td><input type="date" name="ngaybatdaukhuyenmai"></td>
-                        </tr>
-                        <tr>
-                            <td>Ngày kết thúc KM:</td>
-                            <td><input type="date" name="ngayketthuckhuyenmai"></td>
+                            <td><input type="text" name="giatrikhuyenmai" id="giatrikhuyenmai" placeholder=""></td>
                         </tr>
                         <tbody id="dienthoai">
                             <tr>
@@ -427,6 +407,112 @@
                 maytinhbang.style.display = 'none';
                 donghothongminh.style.display = 'contents';
             }
+        }
+
+        //kiem tra input trong form them san pham
+        var input_tensp = document.getElementById('tensp');
+        var input_giasp = document.getElementById('gia_sp');
+        var input_giaban = document.getElementById('gia_ban');
+        var input_img_sp = document.getElementById('img_sp');
+        var input_khuyenmai= document.getElementById('khuyenmai');
+        var input_giatrikhuyenmai= document.getElementById('giatrikhuyenmai');
+        var input_soluongsp = document.getElementById('sl_sp');
+        
+        //lay duoi file trong hinh anh
+        function getExtension(filename){
+            var parts =  filename.split('.');
+            return parts[parts.length - 1];
+        }
+
+        //kiem tra hinh anh
+        function isImage(filename){
+            var ext =  getExtension(filename);
+            switch (ext.toLowerCase()){
+                case 'jpg':
+                case 'gif':
+                case 'bmp':
+                case 'png':
+                    return true;
+            }
+            return false;
+        }
+
+        function KiemtraForm_ThemSP(){
+            var stop_server = true;
+
+            //kiem tra ten sp
+            var ten_sp = input_tensp.value;
+            if(ten_sp == ''){
+                input_tensp.style.borderColor = 'red';
+                stop_server = false;
+            }else{
+                input_tensp.style.borderColor = 'blue';
+            }
+
+            //kiem tra gia sp
+            var gia_sp = input_giasp.value;
+            if(gia_sp == ''){
+                input_giasp.style.borderColor = 'red';
+                stop_server = false;
+            }else{
+                input_giasp.style.borderColor = 'blue';
+            }
+
+            // kiem tra gia ban
+            var gia_ban = input_giaban.value;
+            if(gia_ban == ''){
+                input_giaban.style.borderColor = 'red';
+                stop_server = false;
+            }else{
+                input_giaban.style.borderColor = 'blue';
+            }
+
+            //kiem tra hinh anh
+            var file_img = input_img_sp.value;
+            if(file_img == ''){
+                input_img_sp.style.borderColor = 'red';
+                document.getElementById('error_img_sp').innerHTML = 'Chọn ảnh sản phẩm';
+                stop_server = false;
+            }else{
+                if(isImage(file_img)){
+                    input_img_sp.style.borderColor = 'blue';
+                    document.getElementById('error_img_sp').innerHTML = '';
+                }else{
+                    input_img_sp.style.borderColor = 'red';
+                    document.getElementById('error_img_sp').innerHTML = 'Chọn đúng dạng file ảnh';
+                    stop_server = false;
+                }
+            }
+
+            //kiem tra khuyen mai
+            var khuyenmai = input_khuyenmai.value;
+            if(khuyenmai == ''){
+                input_khuyenmai.style.borderColor = 'red';
+                stop_server = false;
+            }else{
+                input_khuyenmai.style.borderColor = 'blue';
+            }
+
+            //kiem tra gia tri khuyen mai
+            var giatrikhuyenmai = input_giatrikhuyenmai.value;
+            if(giatrikhuyenmai == ''){
+                input_giatrikhuyenmai.style.borderColor = 'red';
+                stop_server = false;
+            }else{
+                input_giatrikhuyenmai.style.borderColor = 'blue';
+            }
+
+
+            //kiem tra so luong sp
+            var soluongsp = input_soluongsp.value;
+            if(soluongsp == ''){
+                input_soluongsp.style.borderColor = 'red';
+                stop_server = false;
+            }else{
+                input_soluongsp.style.borderColor = 'blue';
+            }
+
+            return stop_server;
         }
     </script>
 </body>
