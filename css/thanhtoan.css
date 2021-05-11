@@ -105,7 +105,14 @@
     margin-top: 20px;
 }
 
-#thanhtoandonhang input{
+#thanhtoandonhang input[type="text"]{
+    padding-left: 10px;
+    margin-right: 30px;
+    margin-left: 5px;
+    height: 20px;
+}
+
+#thanhtoandonhang input[type = 'submit']{
     width: 120px;
     height: 30px;
     font-size: 16px;
