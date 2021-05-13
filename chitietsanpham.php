@@ -307,7 +307,16 @@
                     $gia_fm = number_format($row['gia_ban'], 0, '', ',');
                     echo $gia_fm?><u>đ</u>
                     </h2>
-                    <span>-5%</span>
+                    <?php
+                        if($row['giatrikhuyenmai'] != 0){
+                            ?><span>Giảm giá: -<?php echo  number_format($row['giatrikhuyenmai'], 0, '', ',') ?> đ</span><?php
+                        }else if($row['khuyenmai'] == 'Không'){
+                        }else if($row['khuyenmai'] == 'Trả góp'){
+                            ?><span><?php echo $row['khuyenmai']?>: 0%</span><?php
+                        }else{
+                            ?><span><?php echo $row['khuyenmai']?></span><?php
+                        }
+                    ?>
                 </div>
                 <form action="xuly_giohang.php" method="POST" enctype="multipart/form-data" onsubmit="return ktsession();">
                 <div id="mau_dienthoai">

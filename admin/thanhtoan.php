@@ -31,6 +31,7 @@
                                 <td>Tên sản phẩm</td>
                                 <td>số lượng</td>
                                 <td>Đơn giá</td>
+                                <td>Khuyến mãi</td>
                                 <td>Thành tiền</td>
                                 <td>Xoá </td>
                             </tr>

@@ -53,7 +53,6 @@
                                     <th rowspan="2">Họ tên</th>
                                     <th rowspan="2">Email</th>
                                     <th rowspan="2">Số điện thoại</th>
-                                    <th rowspan="2">Xem chi tiết</th>
                                     <th colspan="1">Khoá tài khoản</th>
                                 </tr>
                             <tr>
@@ -77,28 +76,42 @@
                $sql = "SELECT * from thanhvien";
                $result = $con->query($sql);
                $i = 0;
-               if($result->num_rows > 0){
-                   while($row = $result->fetch_assoc()){
-                   echo "
-                        <tr>
-                            <td>".($i = $i + 1)."</td>
-                            <td><img src='../img/".$row['path_anh_tv']."' alt='' width=100px height=100px></td>
-                            <td>".$row['hoten_tv']."</td>
-                            <td>".$row['email']."</td>
-                            <td>".$row['sdt']."</td>";
-                        if(isset($_SESSION['admin'])){
-                    echo "
-                            <td><a href='chitiet_kh.php'>Xem chi tiết</a></td>
-                            <td><a href='xoa_tv.php?id=".$row['id']."'><img src='../img/delete.png' alt=''></a></td>";
+                if($result->num_rows > 0){
+                    while($row = $result->fetch_assoc()){
+                        if($row['email'] == null){
+                                echo "
+                                <tr>
+                                    <td>".($i = $i + 1)."</td>
+                                    <td></td>
+                                    <td>".$row['hoten_tv']."</td>
+                                    <td></td>
+                                    <td>".$row['sdt']."</td>";
+                                if(isset($_SESSION['admin'])){
+                            echo "
+                                    <td><a href='xoa_tv.php?id=".$row['id']."'><img src='../img/delete.png' alt=''></a></td>";
+                                }
+                            echo "</tr";
+                        }else{
+                                echo "
+                                <tr>
+                                    <td>".($i = $i + 1)."</td>
+                                    <td><img src='../img/".$row['path_anh_tv']."' alt='' width=100px height=100px></td>
+                                    <td>".$row['hoten_tv']."</td>
+                                    <td>".$row['email']."</td>
+                                    <td>".$row['sdt']."</td>";
+                                if(isset($_SESSION['admin'])){
+                            echo "
+                                    <td><a href='xoa_tv.php?id=".$row['id']."'><img src='../img/delete.png' alt=''></a></td>";
+                                }
+                            echo "</tr";
+                            }
                         }
-                    echo "</tr";
-                   }
-               }else{
-                    echo "
-                        <tr>
-                            <td colspan='7'>Chưa có thành viên</td>
-                        </tr>";
-               }
+                }else{
+                        echo "
+                            <tr>
+                                <td colspan='7'>Chưa có thành viên</td>
+                            </tr>";
+                }
             ?>
                 </table>
             </div>

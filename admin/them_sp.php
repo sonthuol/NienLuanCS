@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="../css/danhsach_lsp_th_sp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 </head>
+<style>
+    #giatrikhuyenmai{
+        display: none;
+    }
+</style>
 <body>
     <?php
         session_start();
@@ -95,7 +100,7 @@
                         <tr>
                             <td>Khuyến mãi:</td>
                             <td>
-                                <select name="khuyenmai" id="khuyenmai">
+                                <select name="khuyenmai" id="khuyenmai" onclick="giamgia(this.value)">
                                     <option value="Không">Không</option>
                                     <option value="Trả góp">Trả góp</option>
                                     <option value="Giảm giá">Giảm giá</option>
@@ -435,6 +440,11 @@
                     return true;
             }
             return false;
+        }
+        function giamgia(giatri){
+            if(giatri === 'Giảm giá'){
+                document.getElementById('giatrikhuyenmai').style.display = 'block';
+            }
         }
 
         function KiemtraForm_ThemSP(){

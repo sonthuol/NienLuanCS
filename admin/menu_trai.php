@@ -20,7 +20,6 @@
                     <ul  class="sub">
                         <li><a href="danhsach_sp.php">Danh sách sản phẩm</a></li>
                         <li><a href="them_sp.php">Thêm sản phẩm</a></li>
-                        <li><a href="themdshinhanh.php">Cập nhập danh sách ảnh</a></li>
                     </ul>
                 </li>
                 <li><a href="quanlythanhvien.php">Quản lý khách hàng</a></li>

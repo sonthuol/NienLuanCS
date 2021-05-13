@@ -27,6 +27,7 @@
         <th>Tên sản phẩm</th>
         <th>Đơn giá</th>
         <th>Số lượng</th>
+        <th>Khuyến mãi</th>
         <th>Thành tiền</th>
         </tr>
         <?php
@@ -34,9 +35,9 @@
             include('/NienLuanCS/connection/connection.php');
             $id_hoadon = $_GET['id_hd'];
             $sql_ttsp_trongHD = "
-                                SELECT sp.ten_sp, SP_HD.sl_sp, SP_HD.dongia
-                                FROM ( SELECT cthd.id_sp, cthd.sl_sp, cthd.dongia FROM chitiethoadon cthd WHERE cthd.id_hd = '".$id_hoadon."' ) SP_HD, sanpham sp
-                                WHERE SP_HD.id_sp = sp.id_sp
+                SELECT sp.ten_sp, SP_HD.sl_sp, SP_HD.dongia, SP_HD.khuyenmai 
+                FROM ( SELECT cthd.id_sp, cthd.sl_sp, cthd.dongia, cthd.khuyenmai FROM chitiethoadon cthd WHERE cthd.id_hd = '".$id_hoadon."' ) SP_HD, sanpham sp
+                WHERE SP_HD.id_sp = sp.id_sp
             ";
 
             $result_hd = $con->query($sql_ttsp_trongHD);
@@ -44,20 +45,21 @@
             $pos = 0;
             if($result_hd ->num_rows > 0){
                 while($row = $result_hd->fetch_assoc()){
-                    $tongsotien += $row['sl_sp']*$row['dongia'];
+                    $tongsotien += $row['sl_sp'] * ($row['dongia'] - $row['khuyenmai']);
                     echo "<tr>";
                     echo "<td class=\"cotSTT\">".$pos++."</td>";
                     echo "<td class=\"cotTenSanPham\">".$row['ten_sp']."</td>";
                     echo "<td class=\"cotGia\">".number_format($row['dongia'],0,",",".")."</td>";
                     echo "<td class=\"cotSoLuong\" align='center'>".$row['sl_sp']."</td>";
-                    echo "<td class=\"cotSo\">".number_format(($row['sl_sp']*$row['dongia']),0,",",".")."</td>";
+                    echo "<td class=\"cotGia\">".number_format($row['khuyenmai']*$row['sl_sp'],0,",",".")."</td>";
+                    echo "<td class=\"cotSo\">".number_format(($row['sl_sp']*($row['dongia']-$row['khuyenmai'])),0,",",".")."</td>";
                     echo "</tr>";
 
                 }
             }
     ?>
         <tr>
-        <td colspan="4" class="tong">Tổng cộng</td>
+        <td colspan="5" class="tong">Tổng cộng</td>
         <td class="cotSo"><?php echo number_format(($tongsotien),0,",",".")?></td>
         </tr>
     </table>

@@ -62,12 +62,18 @@
             $soluong_ban = $row_tt['soluong'];
             $soluong_goc = $row_tt['sl_sp'];
             $idsp = $row_tt['id_sp'];
-            $tt = $row_tt['gia_ban']*$row_tt['soluong'];
+            $tt = ($row_tt['gia_ban'] - $row_tt['giatrikhuyenmai'])*$row_tt['soluong'];
+            $dongia = $row_tt['gia_ban'];
+            $khuyenmai =  $row_tt['giatrikhuyenmai'];
             $sql_chitiet = "
-                INSERT into chitiethoadon(id_cthd ,id_hd, id_sp, dongia, sl_sp, thanhtien)
-                value (null, '".$id_hd."', '".$row_tt['id_sp']."', '".$row_tt['gia_ban']."',  '".$row_tt['soluong']."',  $tt)
+                INSERT into chitiethoadon(id_cthd ,id_hd, id_sp, dongia, sl_sp, thanhtien, khuyenmai)
+                value (null, '".$id_hd."', '".$row_tt['id_sp']."', '".$dongia."',  '".$row_tt['soluong']."',  $tt, '$khuyenmai')
                 ";
             $con->query($sql_chitiet);
+            //cap nhat lai so luong san pham
+            $sl_capnhat = $soluong_goc - $soluong_ban;
+            $sql = "UPDATE sanpham set sl_sp = '".$sl_capnhat."' where id_sp = '".$row_tt['id_sp']."'";
+            $con->query($sql);
         }
     }
     //lay du trong gio hang them vao chi tiet hoa don
@@ -76,9 +82,5 @@
     $sql = "DELETE from giohang where trangthai = 1 and id = ".$id."";
     $con->query($sql);
     
-    //cap nhat lai so luong san pham
-    $sl_capnhat = $soluong_goc - $soluong_ban;
-    $sql = "UPDATE sanpham set sl_sp = '".$sl_capnhat."' where id_sp = '".$idsp."'";
-    $con->query($sql);
     header("Location: thongtin_dathang.php");
 ?>

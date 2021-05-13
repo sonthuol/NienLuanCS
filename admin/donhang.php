@@ -74,7 +74,7 @@
                         $row_tv = $result_thanhvien->fetch_assoc();
                         //tim thong tin nhanvien
                         if($row['id_nv'] == NULL){
-                            $ten_nv = 'NULL';
+                            $ten_nv = 'admin';
                         }else{
                             $sql_nv = "SELECT * from nhanvien where id_nv = ".$row['id_nv']."";
                             $result_nv = $con->query($sql_nv);
@@ -86,8 +86,8 @@
                         }
                         //Sản phẩm mà khách hàng đã mua
                         $sql_ttsp = "
-                                SELECT sp.ten_sp, SP_HD.sl_sp, SP_HD.dongia
-                                FROM ( SELECT cthd.id_sp, cthd.sl_sp, cthd.dongia FROM chitiethoadon cthd WHERE cthd.id_hd = '".$row['id_hd']."' ) SP_HD, sanpham sp
+                                SELECT sp.ten_sp, SP_HD.sl_sp, SP_HD.dongia, SP_HD.thanhtien
+                                FROM ( SELECT cthd.id_sp, cthd.sl_sp, cthd.dongia, cthd.thanhtien FROM chitiethoadon cthd WHERE cthd.id_hd = '".$row['id_hd']."' ) SP_HD, sanpham sp
                                 WHERE SP_HD.id_sp = sp.id_sp
                         ";
                         $result_ttsp = $con->query($sql_ttsp);
@@ -104,7 +104,7 @@
                                         echo "
                                             ".$row_ttsp['ten_sp']." [".$row_ttsp['sl_sp']."] <br>
                                         ";
-                                        $thanhtien = $thanhtien + $row_ttsp['dongia'];
+                                        $thanhtien = $thanhtien + $row_ttsp['thanhtien'];
                                     }
                                 echo "</td>";
                         echo "

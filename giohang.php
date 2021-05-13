@@ -43,18 +43,22 @@
                                 <tr>
                                     <td rowspan='2'>".++ $i."</td>
                                     <td rowspan='2'><img src='./img/".$row_gh['img_sp']."' alt='' width='120px' height='90px'></td>
-                                    <td colspan='5' class='tensp'>".$row_gh['ten_sp']."</td>
+                                    <td colspan='6' class='tensp'>".$row_gh['ten_sp']."</td>
                                 </tr>
                                 <tr>
-                                    <td class='giasp'>ĐG: ".number_format($row_gh['gia_sp'], 0, '', ',')." Đ</td>
+                                    <td class='giasp'>ĐG: ".number_format($row_gh['gia_ban'], 0, '', ',')." Đ</td>
                                     <td>
                                         <div class='buttons_added'>
                                             <input class='minus is-form' type='button' value='-' onclick='congtru(-1, ".$row_gh['id_sp']."); soluonggiohang(".$row_gh['id_sp'].")'>
                                             <input type='number'  id='".$row_gh['id_sp']."' class='input-qty' min='1' max='20' value='".$row_gh['soluong']."'>
                                             <input class='plus is-form' type='button' value='+' onclick='congtru(1, ".$row_gh['id_sp']."); soluonggiohang(".$row_gh['id_sp'].")'>
                                         </div>
-                                    </td>
-                                    <td class='giasp'>".number_format($row_gh['gia_sp']*$row_gh['soluong'], 0, '', ',')." Đ</td>";
+                                    </td>";
+                                    ?>
+                                        <td width="230px">KM: <?php echo number_format($row_gh['giatrikhuyenmai']*$row_gh['soluong'], 0, '', ',')?> Đ</td>
+                                    <?php
+                                    echo "
+                                    <td class='giasp'>".number_format(($row_gh['gia_ban']*$row_gh['soluong']) - ($row_gh['giatrikhuyenmai']*$row_gh['soluong']), 0, '', ',')." Đ</td>";
                                     if($row_gh['trangthai'] == 1){
                                         echo "<td><input id='".$row_gh['id_sp']."_mua' type='checkbox' value='1' onclick='checkmua(".$row_gh['id_sp'].")' checked></td>";
                                     }else{
@@ -72,7 +76,7 @@
                             while($rowtt = $result_tt->fetch_assoc()){
                                 echo "
                                     <tr id='tongtien'>
-                                        <td colspan='3'></td>
+                                        <td colspan='4'></td>
                                         <td>Tổng tiền:</td>
                                         <td>".number_format($rowtt['TT'], 0, '', ',').' Đ'."</td>
                                     </tr>

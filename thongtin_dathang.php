@@ -58,17 +58,18 @@
                 </table>
             </div>
             <div id="banghoadon">
-            <table border="1">
+            <table >
                 <tr>
                     <th>STT</th>
                     <th>Ảnh sản phẩm</th>
                     <th>Tên sản phẩm</th>
                     <th>Đơn giá</th>
                     <th>Số lượng</th>
+                    <th>Khuyến mãi</th>
                     <th>Thành tiền</th>
                 </tr>
                 <?php
-                    $sql = "SELECT *, cthd.sl_sp as soluong FROM chitiethoadon cthd, sanpham sp,(
+                    $sql = "SELECT *, cthd.sl_sp as soluong, cthd.khuyenmai FROM chitiethoadon cthd, sanpham sp,(
                             SELECT max(id_hd) as lonnhat FROM hoadon WHERE hoadon.id = '".$_SESSION['id']."' ) hd
                             WHERE cthd.id_hd = hd.lonnhat and cthd.id_sp = sp.id_sp
                         ";
@@ -84,14 +85,21 @@
                                 <td><img src='./img/".$row_hd['img_sp']."' alt='' width=60px height=60px></td>
                                 <td>".$row_hd['ten_sp']."</td>
                                 <td>".number_format($row_hd['dongia'], 0, '', ',')." Đ</td>
-                                <td>".$row_hd['soluong']."</td>
+                                <td>".$row_hd['soluong']."</td>";
+                                
+                                if($row_hd['khuyenmai'] != 0){
+                                    echo "<td>".number_format($row_hd['khuyenmai']*$row_hd['soluong'], 0, '', ',')." Đ</td>";
+                                }else{
+                                    echo "<td></td>";
+                                }
+                            echo "
                                 <td>".number_format($row_hd['thanhtien'], 0, '', ',')." Đ</td>
                             </tr>
                             ";
                         }
                         echo "
                             <tr>
-                                <th colspan='5' id='tt'>Tổng cộng</th>
+                                <th colspan='6' id='tt'>Tổng cộng</th>
                                 <th>".number_format($tt, 0, '', ',')." Đ</th>
                             </tr>
                         ";

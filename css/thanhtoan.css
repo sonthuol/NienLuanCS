@@ -77,9 +77,10 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 5px;
+    transition: 0.3s;
 }
 #thanhtoan #sanphamcanchon #showsanpham .item_sp:hover{
-    background-color: rgb(241, 241, 241);
+    background-color: rgb(207, 207, 207);
 }
 #thanhtoan #sanphamcanchon #showsanpham .item_sp img{
     width: 15%;
