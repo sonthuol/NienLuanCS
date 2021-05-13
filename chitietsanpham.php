@@ -505,12 +505,12 @@
                             <div class='danhsachsanpham'>";
                 while($row1 = $result_lsp->fetch_assoc()){
                         $gia_goc = number_format($row1['gia_ban'], 0, '', ',');
-                        $gia_giam = number_format($row1['gia_ban']-($row1['gia_ban']*0.05), 0, '', ',');
+                        $gia_giam = number_format($row1['gia_ban']-($row1['giatrikhuyenmai']), 0, '', ',');
                         echo "
                             <div class='sanpham'>
                                 <a href='chitietsanpham.php?idsp=".$row1['id_sp']."'>";
                             if($row1['khuyenmai'] == "Trả góp"){
-                                echo "<p class='tragop'>Trả góp ".$row1['giatrikhuyenmai']."</p>";
+                                echo "<p class='tragop'>Trả góp ".$row1['giatrikhuyenmai']." %</p>";
                             }else if($row1['khuyenmai'] == "Giảm giá"){
                                 echo "<p class='gg'>Giảm: -".number_format($row1['giatrikhuyenmai'], 0, '', ',')."</p>";
                             }else if($row1['khuyenmai'] == "Mới ra mắt"){
@@ -524,7 +524,7 @@
                                         <p class='tensp'>".$row1['ten_sp']."</p>
                                         <div class='giamgia_phantram'>
                                             <p class='giamgia'>".$gia_giam."<u>đ</u></p>
-                                            <p class='phantramgiam'>-5%</p>
+                                            <p class='phantramgiam'></p>
                                         </div>
                                         <p class='giagoc'>".$gia_goc."<u>đ</u></p>
                                         <div class='start'>

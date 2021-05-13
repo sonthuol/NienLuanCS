@@ -14,7 +14,7 @@
                         <img src='img/".$row['img_sp']."' alt='' width=50px height=50px>
                         <div class='noidung'>
                             <h5>".$row['ten_sp']."</h5>
-                            <h6>".number_format($row['gia_sp'], 0, '', ',')." Đ</h6>
+                            <h6>".number_format($row['gia_ban'], 0, '', ',')." Đ</h6>
                         </div>
                     </div>
                 </a>

@@ -50,12 +50,22 @@
     <div id="menu">
         <ul>
             <ul>
-                <li><a href="noidung_loaisp.php?lsp=ĐT"><i class="fas fa-mobile-alt"></i>Điện Thoại</a></li>
+                <?php
+                    include '/NienLuanCS/connection/connection.php';
+                    $sql_showdanhmucsanpham = "SELECT * from loaisp";
+                    $result_showdanhmucsanpham = $con->query($sql_showdanhmucsanpham);
+                    while($row_showdanhmucsanpham = $result_showdanhmucsanpham->fetch_assoc()){
+                        ?>
+                            <li><a href="noidung_loaisp.php?lsp=<?php echo $row_showdanhmucsanpham['ma_loaisp']?>"><i class="fas fa-laptop"></i><?php echo $row_showdanhmucsanpham['ten_loaisp']?></a></li>
+                        <?php
+                    }
+                ?>
+                <!-- <li><a href="noidung_loaisp.php?lsp=ĐT"><i class="fas fa-mobile-alt"></i>Điện Thoại</a></li>
                 <li><a href="noidung_loaisp.php?lsp=LT"><i class="fas fa-laptop"></i>Laptop</a></li>
                 <li><a href="noidung_loaisp.php?lsp=TB"><i class="fas fa-mobile-alt"></i></i>Tablet</a></li>
                 <li><a href="noidung_loaisp.php?lsp=PK"><i class="fas fa-headphones"></i>Phụ Kiện</a></li>
                 <li><a href="noidung_loaisp.php?lsp=ĐHTT"><i class="fas fa-mobile-alt"></i>Đồng hồ thời trang</a></li>
-                <li><a href="noidung_loaisp.php?lsp=ĐHTM"><i class="fas fa-mobile-alt"></i>Đồng hồ thông minh</a></li>
+                <li><a href="noidung_loaisp.php?lsp=ĐHTM"><i class="fas fa-mobile-alt"></i>Đồng hồ thông minh</a></li> -->
             </ul>
         </ul>
     </div>

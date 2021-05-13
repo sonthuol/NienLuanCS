@@ -34,6 +34,7 @@
                         <li><a href="donhang.php">Đơn hàng chưa duyệt</a></li>
                     </ul>
                 </li>
+                <li><a href="quanlydanhgiasp.php">Quản lý đánh giá sản phẩm</a></li>
                 <li><a href="thanhtoan.php">Thanh toán</a></li>
                 <li><a href="thongKeDonHangDaHet.php">Thông kê hàng đã hết</a></li>
                 <li><a href="admin.php">Tổng quát</a></li>

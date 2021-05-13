@@ -62,7 +62,7 @@
                                     <th rowspan="2"  style="width: 212px; ">Tên sản phẩm</th>
                                     <th rowspan="2">Ảnh sản phẩm</th>
                                     <th rowspan="2">Màu sắc</th>
-                                    <th rowspan="2">Giá</th>
+                                    <th rowspan="2">Giá bán</th>
                                     <th rowspan="2">SL</th>
                                     <th rowspan="2">Khuyến mãi</th>
                                     <th rowspan="2"  style="width: 100px;">Giá trị khuyến mãi</th>
@@ -82,7 +82,7 @@
                                     <th >Tên sản phẩm</th>
                                     <th >Ảnh sản phẩm</th>
                                     <th >Màu sắc</th>
-                                    <th >Giá</th>
+                                    <th >Giá bán</th>
                                     <th >SL</th>
                                     <th >Khuyến mãi</th>
                                     <th >Giá trị khuyến mãi</th>
@@ -103,7 +103,7 @@
                             <td>".$row['ten_sp']."</td>
                             <td><img src='../img/".$row['img_sp']."' alt='' width=100px height=100px></td>
                             <td>".$row['mausac']."</td>
-                            <td>".number_format($row['gia_sp'], 0, '', ',')."</td>
+                            <td>".number_format($row['gia_ban'], 0, '', ',')."</td>
                             <td>".$row['sl_sp']."</td>
                             <td>".$row['khuyenmai']."</td>
                             <td>".number_format($row['giatrikhuyenmai'], 0, '', ',')."</td>";
