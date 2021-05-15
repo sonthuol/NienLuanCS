@@ -56,7 +56,7 @@
                     $result_showdanhmucsanpham = $con->query($sql_showdanhmucsanpham);
                     while($row_showdanhmucsanpham = $result_showdanhmucsanpham->fetch_assoc()){
                         ?>
-                            <li><a href="noidung_loaisp.php?lsp=<?php echo $row_showdanhmucsanpham['ma_loaisp']?>"><i class="fas fa-laptop"></i><?php echo $row_showdanhmucsanpham['ten_loaisp']?></a></li>
+                            <li><a href="noidung_loaisp.php?lsp=<?php echo $row_showdanhmucsanpham['ma_loaisp']?>"><?php echo $row_showdanhmucsanpham['ten_loaisp']?></a></li>
                         <?php
                     }
                 ?>

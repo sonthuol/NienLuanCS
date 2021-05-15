@@ -19,7 +19,7 @@
         ?>
        
         <div id="noidungchinh">
-            <h2>Danh sách thương hiệu sản phẩm</h2>
+            <h2>Danh sách nhân viên</h2>
             <div id="chucnang">
                 <div id="hienthi">
                 </div>
