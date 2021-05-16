@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Danh sách nhân viên</title>
+    <link rel = "icon" href =  
+    "../img/logo/logo_in.png" 
+    type = "image/x-icon"> 
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/menu_trai.css">

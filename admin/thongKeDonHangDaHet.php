@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Thống kế đơn hàng</title>
+    <link rel = "icon" href =  
+    "../img/logo/logo_in.png" 
+    type = "image/x-icon"> 
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/danhsach_lsp_th_sp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
@@ -31,7 +34,7 @@
             ?>
             <h2>Danh sách sản phẩm sắp hết</h2>
             <div id="danhsach">
-                <p class="so_sp">Tổng số sản phẩm đã hết hàng: <?php echo $cout_sp?></p>
+                <p class="so_sp">Tổng số sản phẩm đã sắp hết hàng: <?php echo $cout_sp?></p>
                 <table>
                     <?php
                         if(isset($_SESSION['admin'])){
