@@ -50,7 +50,7 @@
                     </tr>
                     ";
             }
-            $sql = "SELECT SUM(sp.gia_sp*gh.soluong) as TT FROM sanpham sp, giohang gh, thanhvien tv
+            $sql = "SELECT SUM(sp.gia_ban*gh.soluong  -(gh.soluong*sp.giatrikhuyenmai)) as TT FROM sanpham sp, giohang gh, thanhvien tv
                 WHERE sp.id_sp = gh.id_sp and tv.id = gh.id and gh.id = ".$_SESSION['id']."";
             $result_tt = $con->query($sql);
             if($result_tt->num_rows > 0){
@@ -72,7 +72,7 @@
             $tt = 0;
             if($result_tt->num_rows > 0 && $_SESSION['id']){
                 while($row_tt = $result_tt->fetch_assoc()){
-                    $tt = $tt + $row_tt['gia_sp']*$row_tt['soluong'];
+                    $tt = $tt + ($row_tt['gia_ban']*$row_tt['soluong'] - $row_tt['soluong']*$row_tt['giatrikhuyenmai']) ;
                 }
             }
             $_SESSION['tongtien'] = $tt;

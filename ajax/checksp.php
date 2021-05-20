@@ -15,7 +15,7 @@
     $tt = 0;
     if($result_tt->num_rows > 0 && $_SESSION['id']){
         while($row_tt = $result_tt->fetch_assoc()){
-            $tt = $tt + $row_tt['gia_sp']*$row_tt['soluong'];
+            $tt = $tt + ($row_tt['gia_ban']*$row_tt['soluong'] - $row_tt['soluong']*$row_tt['giatrikhuyenmai']) ;
         }
     }
 

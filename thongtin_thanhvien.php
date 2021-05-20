@@ -115,7 +115,7 @@
                     <div class="lichsumuahang">
                         <table>
                             <tr class="time">
-                                <th colspan="7">Đơn hàng ngày: <?php echo $row_id_hoadon['ngay_dathang'];?></th>
+                                <th colspan="8">Đơn hàng ngày: <?php echo $row_id_hoadon['ngay_dathang'];?></th>
                             </tr>
                             <tr class="th_mucchinh">
                                 <th>STT</th>
@@ -123,25 +123,27 @@
                                 <th>Hình ảnh</th>
                                 <th>Giá</th>
                                 <th>Số lượng</th>
+                                <th>Giảm giá</th>
                                 <th>Thành tiền</th>
                                 <th>Trạng thái</th>
                             </tr>
                             <?php
-                                $sql_cthd = "SELECT sp.ten_sp, sp.img_sp, cthd.dongia, cthd.sl_sp from chitiethoadon cthd, sanpham sp
+                                $sql_cthd = "SELECT sp.ten_sp, sp.img_sp, cthd.dongia, cthd.sl_sp, sp.giatrikhuyenmai from chitiethoadon cthd, sanpham sp
                                             WHERE cthd.id_sp = sp.id_sp and cthd.id_hd = '".$row_id_hoadon['id_hd']."'" ;
                                 $result_cthd = $con->query($sql_cthd);
                                 $stt = 0;
                                 $tongtien_cd = 0;
                                 while($row_cthd = $result_cthd->fetch_assoc()){
-                                    $tongtien_cd += $row_cthd['dongia']*$row_cthd['sl_sp'];
+                                    $tongtien_cd += ($row_cthd['dongia']-($row_cthd['giatrikhuyenmai']))*$row_cthd['sl_sp'];
                                 ?> 
                                     <tr class="ttsp">
                                         <td><?php echo ++ $stt; ?></td>
                                         <td><?php echo $row_cthd['ten_sp'];?></td>
                                         <?php echo "<td><img src='img/".$row_cthd['img_sp']."' alt='' width=100px height=100px></td>";?>
-                                        <td><?php echo number_format($row_cthd['dongia'], 0, '', ',');?></td>
+                                        <td><?php echo number_format($row_cthd['dongia'], 0, '', ',');?> VNĐ</td>
                                         <td><?php echo $row_cthd['sl_sp'];?></td>
-                                        <td><?php echo number_format($row_cthd['dongia']*$row_cthd['sl_sp'], 0, '', ',');?></td>
+                                        <td><?php echo number_format($row_cthd['giatrikhuyenmai']*$row_cthd['sl_sp'], 0, '', ',');?> VNĐ</td>
+                                        <td><?php echo number_format(($row_cthd['dongia']-($row_cthd['giatrikhuyenmai']))*$row_cthd['sl_sp'], 0, '', ',');?> VNĐ</td>
 
                                         <td></td>
                                     </tr>
@@ -149,7 +151,7 @@
                                 }
                             ?>
                             <tr class="tt">
-                                <th colspan="5">Tổng tiền</th>
+                                <th colspan="6">Tổng tiền</th>
                                 <th><?= number_format($tongtien_cd, 0, '', ',')?></th>
                                 <th>Chưa xử lý</th>
                             </tr>
@@ -176,7 +178,7 @@
                     <div class="lichsumuahang">
                         <table>
                             <tr class="time">
-                                <th colspan="7">Đơn hàng ngày: <?php echo $row_id_hoadon['ngay_dathang'];?></th>
+                                <th colspan="8">Đơn hàng ngày: <?php echo $row_id_hoadon['ngay_dathang'];?></th>
                             </tr>
                             <tr class="th_mucchinh">
                                 <th>STT</th>
@@ -184,11 +186,12 @@
                                 <th>Hình ảnh</th>
                                 <th>Giá</th>
                                 <th>Số lượng</th>
+                                <th>Giảm giá</th>
                                 <th>Thành tiền</th>
                                 <th>Trạng thái</th>
                             </tr>
                             <?php
-                                $sql_cthd = "SELECT sp.ten_sp, sp.img_sp, cthd.dongia, cthd.sl_sp from chitiethoadon cthd, sanpham sp
+                                $sql_cthd = "SELECT sp.ten_sp, sp.img_sp, cthd.dongia, cthd.sl_sp, sp.giatrikhuyenmai from chitiethoadon cthd, sanpham sp
                                             WHERE cthd.id_sp = sp.id_sp and cthd.id_hd = '".$row_id_hoadon['id_hd']."'" ;
                                 $result_cthd = $con->query($sql_cthd);
                                 $stt = 0;
@@ -202,14 +205,15 @@
                                         <?php echo "<td><img src='img/".$row_cthd['img_sp']."' alt='' width=100px height=100px></td>";?>
                                         <td><?php echo number_format($row_cthd['dongia'], 0, '', ',');?></td>
                                         <td><?php echo $row_cthd['sl_sp'];?></td>
-                                        <td><?php echo number_format($row_cthd['dongia']*$row_cthd['sl_sp'], 0, '', ',');?></td>
+                                        <td><?php echo number_format($row_cthd['giatrikhuyenmai']*$row_cthd['sl_sp'], 0, '', ',');?> VNĐ</td>
+                                        <td><?php echo number_format(($row_cthd['dongia']-($row_cthd['giatrikhuyenmai']))*$row_cthd['sl_sp'], 0, '', ',');?></td>
                                         <td></td>
                                     </tr>
                                 <?php
                                 }
                             ?>
                             <tr class="tt">
-                                <th colspan="5">Tổng tiền</th>
+                                <th colspan="6">Tổng tiền</th>
                                 <th><?= number_format($tongtien, 0, '', ',')?></th>
                                 <th>Đã xử lý</th>
                             </tr>
